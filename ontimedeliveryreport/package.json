@@ -1,0 +1,43 @@
+{
+  "name": "ontimedeliveryreport",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/jest": "24.0.18",
+    "@types/node": "12.7.4",
+    "@types/react": "16.9.2",
+    "@types/react-dom": "16.9.0",
+    "jquery": "^3.4.1",
+    "office-ui-fabric-react": "^7.31.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-excel-workbook": "0.0.4",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "react-table": "^6.10.0",
+    "toastr": "^2.1.4",
+    "typescript": "3.6.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage": "https://emerson.sharepoint.com/sites/autosolpss/EEEC/EProjectControl/SiteAssets/OnTimeDeliveryReport"
+}

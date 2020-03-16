@@ -1,0 +1,383 @@
+.DottedBox {
+  margin: 40px;
+  border: 5px dotted pink;
+}
+
+#DottedBox_content {
+  font-size: 15px;
+  text-align: left;
+}
+.container {
+  max-width: 1140px;
+  margin-left: 0px;
+}
+input[type="text"] {
+width: 100%; 
+ 
+}
+
+ input#AgreedEndDate-label, input#ProjEndDate-label, input#ProjStartDate-label {
+  border: none;
+  font-weight: 600;
+   
+}
+
+th.ms-DatePicker-weekday.weekday_0368760b {
+  PADDING-left: 20px !IMPORTANT;
+}
+ 
+.dayWrapper_0368760b, .weekday_0368760b {
+    width: 50px;
+    height: 28px;
+    line-height: 18px;
+    font-size: 12px;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color:transparent !important;
+  background-clip: border-box;
+  padding: 5px;
+  border-radius: .25rem;
+}
+.InputTable
+{
+  width:100%;
+  border-collapse: separate;
+  border-spacing: 7px 0;
+  margin: 8px; 
+}
+
+body {
+margin: 0;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+.table-color{
+background-color: #004b8e !important;
+color: #ffffff !important;
+height: 41px;
+padding-top: 10px;
+padding-left: 10px;
+font-size: 16px;
+font-weight: 700;
+font-family: Franklin Gothic Book;
+
+
+}
+.page-header{
+background-color: #004b8e;
+color: #ffffff;
+margin: 0 0 0 0 !important;
+font-size:16px;
+font-weight: bold;
+font-family: Franklin Gothic Book;
+font-size: 16px;
+font-weight: 700;
+font-family: Franklin Gothic Book;
+}
+/* tr:first-child .btnRemove { display:none } */
+
+.btnRemove{ display: none;}
+
+.accordionTitle{
+text-decoration: none !important;
+}
+.pull-right {
+float: right !important;
+}
+@media print {
+ .get-data-panel, .page-header{
+    display: none;
+}
+}
+
+div#root {
+  margin-top: -20px;
+}
+
+@page { size: auto;  margin: 0mm; }
+
+textarea {
+resize: none;
+}
+label{
+font-weight: normal !important;
+}
+ 
+table#phase2Table {
+  margin-left: 11px;
+}
+
+.mandatory {
+  color: #a80000;
+}
+
+.btn-margin{
+margin-right: 10px;
+}
+
+.dpwidth{
+width: auto;
+}
+
+.tbl-width{
+width:305px;
+}
+.table-responsive {
+overflow-x: hidden !important;
+overflow-y: auto;
+}
+.done-block{
+color: #009900 !important;
+background-color:#f0fad3 !important;
+}
+.active-block{
+color: #a01c0a !important;
+background-color: #ffc700 !important;
+}
+.remove-block{
+display:none;
+}
+.disabledTab {
+pointer-events: none;
+background-color: #f6f6f6;
+}
+.icon-color{
+color:#913503
+}
+.panel-body{
+background: #f6f6f6;
+}
+.panel-heading{
+background: #fafafa;
+border: 1px solid #dcdcdc !important;
+}
+.tbl-background{
+background: #ffffff !important;
+}
+.tbl-tr-background{
+background:#f6f6f6;
+}
+ 
+.card-header
+{
+padding: 0px !important;
+border-bottom: 0px !important;
+font-size: 16px;
+  font-weight: 700;
+  font-family: Franklin Gothic Book
+}
+.card-header
+{
+padding: 0px !important;
+border-bottom: 0px !important;
+font-size: 16px;
+  font-weight: 700;
+  font-family: Franklin Gothic Book;
+  background-color: #004b8e!important;
+  color: white !important
+}
+td{
+  padding-right:20px;
+}
+h5#mainSubheader {
+width: 229px;
+padding-left: 32px;
+width: 255px !important;
+/* padding-left: 32px; */
+/* padding-right: 20px; */
+font-size: 23px;
+}
+td{
+text-align: left;
+font-weight: 550;
+font-size: 14px;
+}
+input#text {
+  width: 157px;
+}
+input.ms-BasePicker-input.input-59 {
+  border: none;
+}
+ 
+h5#mainSubheader {
+width: 175px;
+padding-left: 32px;
+padding-right: 20px;
+}
+button#ResetButton {
+margin-right: 527px;
+}
+input#ProjStartDate-label{
+border: none;
+}
+input#ProjEndDate-label
+{
+border:none;
+}
+input#ActualEndDate-label{
+border:none;
+}
+input#AgreedEndDate-label{
+border:none
+}
+input {
+height: 30px;
+}
+select {
+height: 30px;
+}
+input.ms-BasePicker-input.input-57 {
+border: none;
+}
+select#HardCopy {
+width: 44px;
+}
+
+input.ms-BasePicker-input.input-58 {
+border: none;
+}
+
+input.addProgressDeviation {
+  width: 173px !important;
+}
+td {
+  padding-bottom: 2px;
+}
+.theTooltip {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  will-change: opacity, visibility;
+  max-width: 250px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.7);
+  padding: 15px;
+  color: #fff;
+  box-sizing: border-box;
+  display: inline-block;
+   
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: translate(15%, -50%);
+          transform: translate(15%, -50%);
+  top: 50%;
+  left: auto;
+  right: auto;
+  bottom: auto;
+ 
+  margin: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+  z-index: 100;
+}
+.theTooltip:after {
+  content: '';
+ 
+  width: 0;
+  height: 0;
+  top: 50%;
+  
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid rgba(0,0,0,0.7);
+}
+table#addClosureEntry {
+  width: 1194px;
+}
+table.showHide {
+  margin-left: 21px;
+}
+input#addBudgetDeviation {
+  width: 173px;
+}
+.btn-primary {
+  background-color: 004B8E !;
+  background-color: #004B8E !important;
+  border: #ce9a01!important;
+  color: white !important;
+  margin-top: -13px;
+  height: 30px;
+  width: 30px;
+  margin-top: 9px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  /* padding-left: 26px; */
+}
+ 
+input#dummyField {
+  margin-left: -300px;
+  opacity: 0;
+  display: none;
+}
+input.addProgressDeviation {
+  width: 173px;
+}
+span.Shortnote {
+  font-size: 12px;
+   
+  font-family: inherit;
+  font-style: normal;
+}
+.redstar
+{
+  color:red
+}
+div#RiskRegister {
+  width: 173px;
+}
+div#Change {
+  width: 173px;
+}
+div#QIDocuments {
+  width: 173px;
+}
+div#Productivity1 {
+  width: 173px;
+}
+div#Productivity2 {
+  width: 173px;
+}
+div#ProjectReview {
+  width: 173px;
+}
+div#EndUserDesign {
+  width: 173px;
+}
+.glyphicon {
+  margin:10px
+}
+
+
+/* input[type=text] {
+
+background-color:#E8F0FF !important;
+
+}
+input, optgroup, select, textarea {
+margin: 0;
+font-family: inherit;
+font-size: inherit;
+line-height: inherit;
+background-color: #E8F0FF;
+}
+input[type=password], input[type=text], input[type=file], input:not([type]), textarea, .ms-inputBox {
+padding: 2px 5px;
+background-color: #E9F0FF !important;
+}
+.ms-BasePicker.ms-PeoplePicker.root-54 {
+background-color: #E9F0FF !important;
+} */
