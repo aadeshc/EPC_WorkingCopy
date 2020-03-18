@@ -362,6 +362,11 @@ div#EndUserDesign {
 }
 
 
+table#addClosureEntry {
+  width: 1194px !important;
+}
+
+
 /* input[type=text] {
 
 background-color:#E8F0FF !important;

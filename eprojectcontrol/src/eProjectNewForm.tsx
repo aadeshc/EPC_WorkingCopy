@@ -31,6 +31,7 @@ import { Helper } from './helper';
 import { DropdownMenuItemType, IDropdownStyles, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import { allResolved } from 'q';
 import { string } from 'prop-types';
+import { cpus } from 'os';
 initializeIcons(/* optional base url */);
 export interface IeProjectState {
   data: any;
@@ -897,7 +898,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
   }
 
   public getCurrentFY(shortyear, entereddate, type) {
-
+    this.setState({
+      flag: false
+    })
     var shortyearint = parseInt(shortyear);
     var year = shortyearint;
     var month = entereddate.getMonth();
@@ -912,7 +915,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
           //initialProj =response.d.results;
           var arr = Object.values(response.d.results);
           if (response.d.results.length == 0) {
-            alert("Financial Period for date is not defined .Please contact admin")
+
             this.setState({
               FinPeriod: "",
             });
@@ -920,18 +923,19 @@ export class eProjectNewForm extends React.Component<{}, any>{
           } else {
             for (let i in response.d.results) {
               console.log(response.d.results[i].Period_x0020_Name)
-
+              var count = 0;
               var startdatestring = response.d.results[i].Start_x0020_Date
               var Startdate = new Date(startdatestring);
               var enddatestring = response.d.results[i].End_x0020_Date
               var enddate = new Date(enddatestring);
+              var flag;
               if (entereddate >= Startdate && entereddate <= enddate) {
                 CurrentFinPeriod.push = response.d.results[i].Period_x0020_Name
                 CurrentPeriod = response.d.results[i].Period_x0020_Name
-
                 if (type == "start") {
                   this.setState({
                     FinPeriod: response.d.results[i].Period_x0020_Name,
+                    flag: true
                   });
                 }
                 if (type == "end") {
@@ -939,13 +943,25 @@ export class eProjectNewForm extends React.Component<{}, any>{
                     EndFinPeriod: response.d.results[i].Period_x0020_Name,
                   });
                   console.log(CurrentPeriod)
+
                 }
+                break;
+              } else {
+                this.setState({
 
-
-
+                  flag: false
+                })
               }
             }
           }
+
+          if (this.state.flag != true && type != "end") {
+            alert("‘Project Start Period’ is not defined for selected ‘Project Start Date’. Please contact e-Project Control administrator")
+            this.setState({
+              FinPeriod: "",
+            })
+          }
+
         }).catch((e) => {
           console.error(e.message, "Failed to fetch AzureFunctionAppURL from 'AzureAppConfiguration1' list");
           reject();
@@ -2169,11 +2185,11 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           </td>
                           <td style={{ paddingLeft: '30px' }}>
-                            Project Start Period
-                             </td>
+                            Project Start Period <span style={{ color: 'red' }}><b>*</b></span>
+                          </td>
                           <td>
 
-                            <input type="text" name="ProjectStartPeriod" id="addProjectStartPeriod" ref={this.ProjectPeriod} value={this.state.FinPeriod} disabled required />
+                            <input type="text" name="ProjectStartPeriod" id="addProjectStartPeriod" style={{ opacity: 0.3, color: "grey" }} ref={this.ProjectPeriod} value={this.state.FinPeriod} required onKeyPress={() => { return false }} />
 
                           </td>
 
@@ -3065,7 +3081,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                         <tr>
 
-                          <td><li>Is project close-out meeting conducted & lessons learnt including project close-out report uploaded to the EEEC Technical Info &nbsp;</li></td>
+                          <td><li>Is project close-out meeting conducted & lessons learnt including project close-out report uploaded to the EEEC Technical Info</li></td>
                           <td><select className="ms-Dropdown-select" id="Close" ref={this.close}>
                             <option >Yes</option>
                             <option selected>No</option>
