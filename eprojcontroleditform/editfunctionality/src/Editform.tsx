@@ -1188,7 +1188,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
               this.setState({
                 showResults: false,
                 opacity: false,
-
+                Group: "Quality"
               });
             }
           }
@@ -1538,10 +1538,16 @@ export class eProjectNewForm extends React.Component<{}, any>{
             EditDongleReturned: response.d.results[0].DongleReturned,
             EditDongleReturnedComments: response.d.results[0].DongleReturnedComments,
 
+          }, () => {
+            this.getcurrentcsergroup()
+            resolve();
           })
           console.log(arr[0])
+        }).then(() => {
           this.loadpeople(param);
-        }).catch((e) => {
+        }
+
+        ).catch((e) => {
           console.error(e.message, "Failed to fetch AzureFunctionAppURL from 'AzureAppConfiguration1' list");
           reject();
         });
@@ -1571,7 +1577,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
     this.EBU();
     this.loadPlatform();
     this.loadindustry();
-    this.getcurrentcsergroup();
+    // this.getcurrentcsergroup();
     this.loadCountry();
     this.loadcounter();
 
@@ -1600,6 +1606,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
             this.loadindsubtype(indtype);
 
             this.loadworldarea(response.d.results[i].Country.CountryCode);
+
+
+
             this.setState
               ({
                 EditEEECPM: response.d.results[i].EEECPM.Title,
@@ -2449,13 +2458,18 @@ export class eProjectNewForm extends React.Component<{}, any>{
             UID: response.d.results[0].BM.Id
 
           }, () => {
-            if (this.state.CurrentID != this.state.UID) {
 
-              // this.setState({
-              //   showButton: ""
-              // })
+            if ((this.state.CurrentID == this.state.EditEEECPMId) || (this.state.CurrentID == this.state.EditEEECLeId) || (this.state.CurrentID == this.state.EditFSOMPmId) || (this.state.CurrentID == this.state.EditFSOLeId) || (this.state.Group == "Quality") || (this.state.CurrentID == this.state.UID)) {
+              this.setState({
+
+              })
+            } else {
+              this.setState({
+                showButton: ""
+              })
             }
           });
+
         }).catch((e) => {
           console.error(e.message, "Failed to fetch AzureFunctionAppURL from 'AzureAppConfiguration1' list");
           reject();
@@ -4499,13 +4513,13 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         </tr>
                       </tbody>
                     </table>
-                    <table style={{ width: '100%' }}>
+                    <table style={{ pointerEvents: (this.state.showResults ? 'none' : 'auto'), opacity: (this.state.showResults ? 0.3 : 1), width: '100%' }}>
                       <tbody>
                         <tr>
-                          <td style={{ width: '20%', paddingLeft: '16px' }}> Close out Notes </td>
+                          <td style={{ width: '20%', paddingLeft: '16px' }} > Close out Notes </td>
                           <td style={{ textAlign: 'initial' }}>
 
-                            <textarea className="Remark" id="CloseOutNotes" value={this.state.EditCloseOut} ref={this.closeOut} onChange={this.handleTextChange} cols={119} rows={5} />
+                            <textarea className="Remark" id="CloseOutNotes" disabled={!this.state.showButton} value={this.state.EditCloseOut} ref={this.closeOut} onChange={this.handleTextChange} cols={119} rows={5} />
                           </td>
                         </tr>
                       </tbody>
