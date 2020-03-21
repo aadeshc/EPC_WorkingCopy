@@ -26,7 +26,8 @@ class App extends React.Component<{}, any> {
       filtered: [],
       data: [],
       EditID: 0,
-      columns: []
+      columns: [],
+      showAll: "false"
 
     }
 
@@ -81,9 +82,6 @@ class App extends React.Component<{}, any> {
     return true;
   };
 
-
-
-
   public softDelete(rowData) {
 
     console.log(rowData.EEECProjectID)
@@ -121,11 +119,66 @@ class App extends React.Component<{}, any> {
 
     }
   };
-  public componentDidMount() {
+  public getcurrentcsergroup() {
+    debugger;
+    var url = _spPageContextInfo.webAbsoluteUrl + '/_api/web/currentuser/groups'
+    //const restUrl = _spPageContextInfo.webAbsoluteUrl + `/_api/web/lists/getbyTitle('World%20Area')/Items`;
+    return new Promise((resolve, reject) => {
+      Helper.executeJson(url, null, null, null)
+        .then((response) => {
+          var group = response.d.results;
+          var arr;
+          for (let i in response.d.results) {
+            console.log(response.d.results[i].Title)
 
+            if (response.d.results[i].Title == "QualityTeam" || response.d.results[i].Title == "BMRole") {
+              this.setState({
+                showAll: "true",
+              });
+            }
+          }
+          resolve(response);
+        }).then(() => {
+          this.getuserid();
+        })
+        .catch((e) => {
+
+          reject();
+        });
+
+    });
+
+  }
+
+
+  public getuserid() {
+    debugger;
+    var url = _spPageContextInfo.webAbsoluteUrl + '/_api/web/currentuser'
+    //const restUrl = _spPageContextInfo.webAbsoluteUrl + `/_api/web/lists/getbyTitle('World%20Area')/Items`;
+    return new Promise((resolve, reject) => {
+      Helper.executeJson(url, null, null, null)
+        .then((response) => {
+          var group = response.d.results;
+          console.log(response.d.Id)
+          console.log(group)
+          this.setState({
+            CurrentID: response.d.Id
+          }, () => {
+            this.showdata()
+          })
+
+        }).catch((e) => {
+          console.error(e.message, "Failed to fetch AzureFunctionAppURL from 'AzureAppConfiguration1' list");
+          reject();
+        });
+
+    });
+  }
+
+  public showdata() {
     let initialProj = []
     debugger;
-    const restUrl = _spPageContextInfo.webAbsoluteUrl + `/_api/web/lists/getbyTitle('Projectmaster')/Items?$expand=EEECPM,EEECLe&$select=EEECProjID,ID,EEECCenter,ISDelivered,Created,Actuals,ProjectName,AgreedBudget,ETC,Progress,Status,ProjectStartPeriod,AgreedEndDate,ProjectPlatform,EEECPM/Title,EEEC/ID,EEECLe/Title&$filter=ISDelete ne 'Yes' &$top=4500`;
+    const restUrl = _spPageContextInfo.webAbsoluteUrl + `/_api/web/lists/getbyTitle('Projectmaster')/Items?$expand=EEECPM,EEECLe,FSOPm,FSOLe&$select=EEECProjID,ID,EEECCenter,EEECPM/ID,EEECLe/ID,FSOPm/ID,FSOLe/ID,ISDelivered,Created,Actuals,ProjectName,AgreedBudget,ETC,Progress,Status,ProjectStartPeriod,AgreedEndDate,ProjectPlatform,EEECPM/Title,EEECLe/Title&$filter=ISDelete ne 'Yes' &$top=4500`;
     var temparray = [];
 
     var jsonArray;
@@ -135,56 +188,61 @@ class App extends React.Component<{}, any> {
           initialProj = response.d.results;
 
           for (let i in response.d.results) {
+
+
             var jsonData = {};
 
-            jsonData["EEECPM"] = response.d.results[i].EEECPM.Title;
-            jsonData["EEECLe"] = response.d.results[i].EEECLe.Title;
-            jsonData["ID"] = response.d.results[i].ID
-            jsonData["EEECProjectID"] = response.d.results[i].EEECProjID;
-            jsonData["ProjectName"] = response.d.results[i].ProjectName;
-            jsonData["ProjPlatform"] = response.d.results[i].ProjectPlatform;
-            jsonData["ETC"] = response.d.results[i].ETC;
-            jsonData["Progress"] = response.d.results[i].Progress;
+            if (this.state.showAll == "true" ||
+              (this.state.showAll != "true" && (
+                (
+                  (this.state.CurrentID == response.d.results[i].EEECPM.ID) || (this.state.CurrentID == response.d.results[i].EEECLe.ID) || (this.state.CurrentID == response.d.results[i].FSOPm.ID) || (this.state.CurrentID == response.d.results[i].FSOLe.ID))))
+            ) {
 
-            jsonData["Status"] = response.d.results[i].Status;
 
-            jsonData["ProjectStartPeriod"] = response.d.results[i].ProjectStartPeriod;
-            var finaldate = ""
 
-            var datestring = String(response.d.results[i].AgreedEndDate)
-            if (datestring === null || (response.d.results[i].AgreedEndDate === null)) {
-              finaldate = ""
-            } else {
-              var newdate = new Date(datestring)
-              newdate.setDate(newdate.getDate())
+              jsonData["EEECPM"] = response.d.results[i].EEECPM.Title;
+              jsonData["EEECLe"] = response.d.results[i].EEECLe.Title;
+              jsonData["ID"] = response.d.results[i].ID
+              jsonData["EEECProjectID"] = response.d.results[i].EEECProjID;
+              jsonData["ProjectName"] = response.d.results[i].ProjectName;
+              jsonData["ProjPlatform"] = response.d.results[i].ProjectPlatform;
+              jsonData["ETC"] = response.d.results[i].ETC;
+              jsonData["Progress"] = response.d.results[i].Progress;
 
-              finaldate = newdate.toISOString().substring(0, 10);
+              jsonData["Status"] = response.d.results[i].Status;
+
+              jsonData["ProjectStartPeriod"] = response.d.results[i].ProjectStartPeriod;
+              var finaldate = ""
+
+              var datestring = String(response.d.results[i].AgreedEndDate)
+              if (datestring === null || (response.d.results[i].AgreedEndDate === null)) {
+                finaldate = ""
+              } else {
+                var newdate = new Date(datestring)
+                newdate.setDate(newdate.getDate() + 1)
+
+                finaldate = newdate.toISOString().substring(0, 10);
+              }
+              jsonData["AgreedEndDate"] = finaldate
+              jsonData["Actuals"] = response.d.results[i].Actuals;
+              jsonData["AgreedBudget"] = response.d.results[i].AgreedBudget;
+              jsonData["Created"] = response.d.results[i].Created
+              jsonData["EEEC"] = response.d.results[i].EEECCenter
+              temparray.push(jsonData);
+
             }
-            jsonData["AgreedEndDate"] = finaldate
-            jsonData["Actuals"] = response.d.results[i].Actuals;
-            jsonData["AgreedBudget"] = response.d.results[i].AgreedBudget;
-            jsonData["Created"] = response.d.results[i].Created
-            jsonData["EEEC"] = response.d.results[i].EEECCenter
-            temparray.push(jsonData);
-
           }
-
           var arr = Object.values(JSON.stringify(jsonData));
 
           this.setState({
             data: temparray,
             columns: [{
               Header: 'Edit',
-              Cell: props => <a href="#"><img src="/sites/autosolpss/EEEC/EProjectControl/SiteAssets/Edit.png"></img></a>,
+              Cell: props => <a href="#"><img src="/sites/process-dev2/EEEC/EProjectControl/SiteAssets/Edit.png"></img></a>,
               filterable: false,
               width: 50
             },
-            {
-              Header: 'Delete',
-              Cell: props => <a href="#"><img src="/sites/autosolpss/EEEC/EProjectControl/SiteAssets/Delete.png"></img></a>,
-              filterable: false,
-              width: 55,
-            },
+
             {
               Header: 'EEEC Center',
               accessor: 'EEEC',
@@ -272,6 +330,15 @@ class App extends React.Component<{}, any> {
 
     });
   }
+  public componentDidMount() {
+    this.getcurrentcsergroup();
+
+
+
+
+
+
+  }
 
   render() {
     let data = [{
@@ -314,7 +381,7 @@ class App extends React.Component<{}, any> {
                   this.softDelete(rowData);
                 }
                 if (column.Header == "Edit") {
-                  var link = "/sites/autosolpss/EEEC/EProjectControl/SiteAssets/CustomEditForm.aspx?id=" + rowData.EEECProjectID
+                  var link = "/sites/process-dev2/EEEC/EProjectControl/SiteAssets/CustomEditForm.aspx?id=" + rowData.EEECProjectID
                   window.location.href = link
                 }
 
@@ -367,7 +434,7 @@ class App extends React.Component<{}, any> {
 
 
         </ReactTable>
-      </div>
+      </div >
     )
 
   }
