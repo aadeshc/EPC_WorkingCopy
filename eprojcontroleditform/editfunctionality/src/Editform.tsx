@@ -1509,6 +1509,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
             EditWorkstationNodes: response.d.results[0].WorkstationNodes,
             EditFHX: response.d.results[0].ISProjectFHX,
             EditFHXComments: response.d.results[0].ISProjectFHXComments,
+            TopRisk: response.d.results[0].TopRisk,
             EditNoofCIOC: response.d.results[0].NoofCIOC,
             EditNoofCSLS: response.d.results[0].NoofCSLS,
             EditCEModules: response.d.results[0].NoofCSLS,
@@ -1539,6 +1540,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
             EditDongleReturnedComments: response.d.results[0].DongleReturnedComments,
 
           }, () => {
+            this.getProjectTypeID();
             this.getcurrentcsergroup()
             resolve();
           })
@@ -1555,6 +1557,36 @@ export class eProjectNewForm extends React.Component<{}, any>{
     });
   }
 
+
+  public getProjectTypeID() {
+    let deltavversion = []
+    debugger;
+    //const restUrl = _spPageContextInfo.webAbsoluteUrl + `/_api/web/lists/getbyTitle('Project%20Platform')/Items?&expand=BM&$select%20BM/Id,BM/Title,Project%20Platform?filter=Project%20Platform eq '` + this.state.EditProjectPlatform + `'`
+    const restUrl = _spPageContextInfo.webAbsoluteUrl + `/_api/web/lists/getbyTitle('Project%20Platform')/Items?$select=BM/Title,BM/Id,Project_x0020_Platform&$expand=BM&$filter=Project_x0020_Platform eq '` + this.state.EditProjectPlatform + `'`;
+    return new Promise((resolve, reject) => {
+      Helper.executeJson(restUrl, null, null, null)
+        .then((response) => {
+          deltavversion = response.d.results;
+          var arr = Object.values(response.d.results);
+
+          for (let i in response.d.results) {
+
+
+            this.setState({
+              BMID: response.d.results[0].BM.Id,
+              BMTitle: response.d.results[0].BM.Title
+            });
+          }
+          console.log(this.state.BMID)
+          console.log(response.d.results)
+        }).catch((e) => {
+          console.error(e.message, "Failed to fetch AzureFunctionAppURL from 'AzureAppConfiguration1' list");
+          reject();
+        });
+
+    });
+
+  }
   public componentDidMount() {
 
     var stringQuery = Helper.getQueryStringParameter('id');
@@ -1641,12 +1673,17 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
   }
 
+  public reloadpage() {
 
+  }
 
   public loadsubind() {
 
   }
   public postdata(e) {
+
+
+
     debugger;
     e.preventDefault();
     var EPC = this.EPC.current.value;
@@ -1882,7 +1919,11 @@ export class eProjectNewForm extends React.Component<{}, any>{
         FWIO: this.state.EditFWIO,
         ClarityID: this.state.EditProjectID,
         ChkSIS: this.state.ChkSIS,
-        ProjectLevelRiskStatus: this.state.ProjectRiskStatus
+
+        ProjectLevelRiskStatus: this.state.ProjectRiskStatus,
+        ISProjectFHXComments: this.state.EditFHXComments,
+        ISProjectFHX: this.state.EditFHX
+
 
 
 
@@ -1987,12 +2028,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
               FinPeriod: "",
               EditProjectStartPeriod: "",
             })
+
           }
           if (this.state.Endflag != true && type != "start") {
             alert("‘Project Start Period’ is not defined for selected ‘Project End Date’. Please contact e-Project Control administrator")
             this.setState({
               EndFinPeriod: "",
             })
+            document.getElementById("addActualEnd").setAttribute('required', 'required');
+
           }
         }).catch((e) => {
           console.error(e.message, "Failed to fetch AzureFunctionAppURL from 'AzureAppConfiguration1' list");
@@ -2002,14 +2046,21 @@ export class eProjectNewForm extends React.Component<{}, any>{
     });
   }
 
+
   public handleDateEvent = date => (name) => {
+
 
     if (date == "ActualEndDate") {
       var r = window.confirm("Entering date here will change project status to Delivered.Do you want to proceed");
-      if (r == true) {
-
+      if (r) {
         const valueOfInput = name.format();
         var prjdate = new Date(valueOfInput);
+        var ProjActDate = new Date(valueOfInput).toISOString()
+        pactDate = ProjActDate
+        this.setState({ EditActualEndDate: Helper.getUTCDate(name) });
+        this.setState({
+          Isdel: "Yes"
+        })
         var year = prjdate.getFullYear();
         var shortyear = year.toString().substring(2)
         var month = prjdate.getMonth();
@@ -2017,22 +2068,38 @@ export class eProjectNewForm extends React.Component<{}, any>{
         this.setState({
           EditStatus: "Delivered"
         })
+
         var doc = document.getElementById("ddlStatus")
 
         doc.innerHTML = "<option>WIP</option><option>On Hold</option><option>Shelved</option><option>Delivered</option>"
         console.log(doc)
-        document.getElementById("addHWIO").focus()
-
-      } else {
-
-      }
-
-      setTimeout(() => {
         alert("Please review 'Agreed End Date' and update if appropriate.Delivery will be considered delayed if 'Actual End Date' is after 'Agreed End Date'")
-      }, 400);
-      document.getElementById("addHWIO").focus()
-    }
+        document.getElementById("addAgreedBudget").focus()
 
+        // } else {
+        //   document.getElementById("ActualEndDate-label").nodeValue = ""
+        // }
+      } else {
+        this.setState({ EditActualEndDate: null, EndFinPeriod: "" }, () => {
+          setTimeout(() => {
+            var a: any = document.getElementById('ActualEndDate-label');
+            a.value = '';
+            // document.getElementById("ActualEndDate-label").nodeValue = ""
+            var doc = document.getElementById("ddlStatus")
+
+            doc.innerHTML = "<option>WIP</option><option>On Hold</option><option>Shelved</option>"
+
+          }, 400);
+
+        });
+
+
+
+
+
+        document.getElementById("addAgreedBudget").focus()
+      }
+    }
     if (date == "ProjectData") {
       this.setState({ currentDate: name });
 
@@ -2159,20 +2226,17 @@ export class eProjectNewForm extends React.Component<{}, any>{
       agreedendate = projStartDate
 
     }
-    if (date == "ActualEndDate") {
-      this.setState({ ProjRequestEndDate: name });
-      this.setState({ EditActualEndDate: Helper.getUTCDate(name) });
-      const valueOfInput = name.format();
-      var ProjActDate = new Date(valueOfInput).toISOString();
-      pactDate = ProjActDate
+    // if (date == "ActualEndDate" && r == true) {
+    //   this.setState({ ProjRequestEndDate: name });
+    //   this.setState({ EditActualEndDate: Helper.getUTCDate(name) });
+    //   const valueOfInput = name.format();
+    //  ;
 
-      this.setState({
-        Isdel: "Yes"
-      })
 
-    }
+    // }
 
   }
+
 
   public AnalysisArrow(): any {
     if (this.state.AnalysisDown === "Yes") {
@@ -2459,7 +2523,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
           }, () => {
 
-            if ((this.state.CurrentID == this.state.EditEEECPMId) || (this.state.CurrentID == this.state.EditEEECLeId) || (this.state.CurrentID == this.state.EditFSOMPmId) || (this.state.CurrentID == this.state.EditFSOLeId) || (this.state.Group == "Quality") || (this.state.CurrentID == this.state.UID)) {
+            if ((this.state.CurrentID == this.state.EditEEECPMId) || (this.state.CurrentID == this.state.EditEEECLeId) || (this.state.CurrentID == this.state.EditFSOMPmId) || (this.state.CurrentID == this.state.EditFSOLeId) || (this.state.Group == "Quality") || (this.state.CurrentID == this.state.UID) || (this.state.CurrentID == this.state.BMID)) {
               this.setState({
 
               })
@@ -3168,7 +3232,14 @@ export class eProjectNewForm extends React.Component<{}, any>{
   };
 
 
-
+  public clear() {
+    if (this.state.EditActualEndDate == null) {
+      setTimeout(function () {
+        var a: any = document.getElementById('ActualEndDate-label');
+        a.value = '';
+      }, 300);
+    }
+  }
 
 
   public render() {
@@ -3252,12 +3323,12 @@ export class eProjectNewForm extends React.Component<{}, any>{
                     <table className="InputTable" id="InputTable">
                       <tbody>
                         <tr>
-                          <td style={{ width: '15%' }}>
-                            EEEC Location <span style={{ color: 'red' }}><b>*</b></span>
+                          <td style={{ width: '250px' }}>
+                            EEEC Location
                           </td>
                           <td style={{ width: '17%' }}>
                             <Stack tokens={stackTokens}>
-                              <select className="AR-Select" id="ddlEEC" onChange={this.handleInputChange} value={this.state.EditEEEC} defaultValue={this.state.EditEEEC}>
+                              <select className="AR-Select" id="ddlEEC" onChange={this.handleInputChange} value={this.state.EditEEEC} disabled defaultValue={this.state.EditEEEC}>
                                 <option value=""> Please select</option>
                                 <option value="Pune"> Pune</option>
                                 <option value="Nashik">Nashik</option>
@@ -3265,12 +3336,12 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </Stack>
 
                           </td>
-                          <td style={{ paddingLeft: "30px" }}>
-                            Project Name <span style={{ color: 'red' }}><b>*</b></span>
+                          <td style={{ paddingLeft: "30px", width: '250px' }}>
+                            Project Name
                           </td>
                           <td>
 
-                            <input type="text" name="Projectname" id="addProjectName" ref={this.ProjectName} value={this.state.EditProjectName} onChange={this.handleTextChange} required />
+                            <input type="text" name="Projectname" id="addProjectName" disabled ref={this.ProjectName} value={this.state.EditProjectName} onChange={this.handleTextChange} required />
 
                           </td>
 
@@ -3279,7 +3350,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         </tr>
 
                         <tr>
-                          <td style={{ width: '15%' }}>
+                          <td style={{ width: '250px' }}>
                             Emerson Business Unit <span style={{ color: 'red' }}><b>*</b></span>
                           </td>
                           <td style={{ width: '17%' }}>
@@ -3290,7 +3361,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </Stack>
 
                           </td>
-                          <td style={{ width: '14%', paddingLeft: "30px" }}>
+                          <td style={{ width: '250px', paddingLeft: "30px" }}>
                             EPC <span style={{ color: 'red' }}><b>*</b></span>
                           </td>
                           <td style={{ width: "20%" }} >
@@ -3359,7 +3430,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               </select> </Stack>
 
                           </td>
-                          <td style={{ paddingLeft: "30px" }}>App/Industry SubType <span style={{ color: 'red' }}><b>*</b></span></td>
+                          <td style={{ paddingLeft: "30px" }}>App/Industry SubType</td>
                           <td>
                             <Stack tokens={stackTokens}>
                               <select className="AR-Select" onChange={this.handleInputChange} id="ddlSub" ref={this.IndSubType} value={this.state.EditIndustrySubtype} defaultValue={this.state.EditIndustrySubtype}>
@@ -3382,7 +3453,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </Stack>
                           </td>
                           <td style={{ paddingLeft: "30px" }}>
-                            World Area <span style={{ color: 'red' }}><b>*</b></span>
+                            World Area
                           </td>
                           <td>
                             <Stack tokens={stackTokens} onChange={this.handleInputChange} id="ddlCountryy">
@@ -3404,7 +3475,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </Stack>
                           </td>
                           <td style={{ paddingLeft: "30px" }}>
-                            EEEC Project ID <span style={{ color: 'red' }}><b>*</b></span>
+                            EEEC Project ID
                           </td>
                           <td>
 
@@ -3442,13 +3513,13 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         </tr>
                         <tr>
                           <td>
-                            Edit FSOLE
+                            Edit FSO LE
                 </td>
                           <td>
                             <SPPeoplePicker multi={false} pickerEnabled={true} onChange={this.handleFSOLEChange(this)} />
                           </td>
                           <td style={{ paddingLeft: "30px" }}>
-                            Edit FSOPM
+                            Edit FSO PM
                  </td>
                           <td>
                             <SPPeoplePicker multi={false} pickerEnabled={true} onChange={this.handleFSOPMChange(this)} />
@@ -3456,18 +3527,18 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         </tr>
                         <tr>
                           <td>
-                            EEECLE
+                            EEEC LE
                        </td>
                           <td> <label>{this.state.EditEEECLe}</label>  </td>
 
                           <td style={{ paddingLeft: "30px" }}>
-                            EEEC PM<span style={{ color: 'red' }}><b>*</b></span>
+                            EEEC PM
                           </td>
                           <td>  <label>{this.state.EditEEECPM}</label>  </td>
                         </tr>
                         <tr>
                           <td>
-                            Edit EEECLE
+                            Edit EEEC LE
                 </td>
                           <td>
                             <SPPeoplePicker multi={false} pickerEnabled={true} onChange={this.hardwareLeChange(this)} />
@@ -3489,7 +3560,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         </tr>
                         <tr>
 
-                          <td> EditHardwareLE</td>
+                          <td> Edit Hardware LE</td>
                           <td> <SPPeoplePicker multi={false} pickerEnabled={true} onChange={this.handleEEECLEChange(this)} /> </td>
 
                         </tr>
@@ -3507,11 +3578,11 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           </td>
                           <td style={{ paddingLeft: "20px" }}>
-                            Project Start Period <span style={{ color: 'red' }}><b>*</b></span>
+                            Project Start Period
                           </td>
                           <td colSpan={1}>
 
-                            <input type="text" name="ProjectStartPeriod" id="addProjectStartPeriod" ref={this.ProjectPeriod} value={this.state.EditProjectStartPeriod} onChange={this.handleTextChange} required disabled />
+                            <input type="text" name="ProjectStartPeriod" id="addProjectStartPeriod" ref={this.ProjectPeriod} value={this.state.EditProjectStartPeriod} onChange={this.handleTextChange} required onKeyPress={() => { return false }} style={{ opacity: 0.75, color: "grey" }} />
 
                           </td>
 
@@ -3545,7 +3616,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td>
 
                             <DatePicker showWeekNumbers={false} isMonthPickerVisible={true}
-                              showMonthPickerAsOverlay={true} maxDate={new Date()} minDate={new Date()} highlightCurrentMonth={true} className="addActualEndDate" id="ActualEndDate" onSelectDate={this.handleDateEvent("ActualEndDate")} value={this.state.EditActualEndDate} formatDate={Helper._onFormatDate} parseDateFromString={this._onParseActualEndDateFromString} onChange={this.handleTextChange}></DatePicker>
+                              showMonthPickerAsOverlay={true} onAfterMenuDismiss={this.clear.bind(this)} maxDate={new Date()} minDate={new Date()} highlightCurrentMonth={true} className="addActualEndDate" id="ActualEndDate" onSelectDate={this.handleDateEvent("ActualEndDate")} value={this.state.EditActualEndDate} formatDate={Helper._onFormatDate} parseDateFromString={this._onParseActualEndDateFromString} onChange={this.handleTextChange}></DatePicker>
 
                           </td>
                           <td style={{ paddingLeft: "20px" }}>
@@ -3608,7 +3679,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td></td> */}
                         {/* </tr> */}
                         <tr>
-                          <td style={{ width: '100px' }}>
+                          <td style={{ width: '180px' }}>
                             HW IO
                             </td>
                           <td style={{ width: '100px' }}>
@@ -3617,21 +3688,21 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           </td>
                           <td style={{ width: "50px" }}></td>
-                          <td style={{ width: '150px' }}>
+                          <td style={{ width: '180px' }}>
                             SW IO
                              </td>
                           <td style={{ width: '100px' }}>
 
-                            <input type="text" name="SWIO" id="addSWIO" ref={this.SWIO} onChange={this.handleTextChange} value={this.state.EditSWIO} />
+                            <input type="text" name="SWIO" id="addSWIO" pattern="^[0-9]{1,45}$" title="Please enter valid number" ref={this.SWIO} onChange={this.handleTextChange} value={this.state.EditSWIO} />
 
                           </td>
                           <td style={{ width: "50px" }}></td>
-                          <td style={{ width: '150px' }}>
+                          <td style={{ width: '180px' }}>
                             FF IO
                              </td>
                           <td style={{ width: '100px' }}>
 
-                            <input type="text" name="FFIO" id="addFFIO" ref={this.FFIO} onChange={this.handleTextChange} value={this.state.EditFWIO} />
+                            <input type="text" name="FFIO" id="addFFIO" pattern="^[0-9]{1,45}$" title="Please enter valid number" ref={this.FFIO} onChange={this.handleTextChange} value={this.state.EditFWIO} />
 
                           </td>
                         </tr>
@@ -3643,7 +3714,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </td>
                           <td>
 
-                            <input type="text" name="SISIO" id="addSISIO" ref={this.SSIO} onChange={this.handleTextChange} value={this.state.EditSSIO} />
+                            <input type="text" name="SISIO" id="addSISIO" ref={this.SSIO} onChange={this.handleTextChange} pattern="^[0-9]{1,45}$" title="Please enter valid number" value={this.state.EditSSIO} />
 
                           </td>
                           <td style={{ width: "50px" }}></td>
@@ -3652,7 +3723,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                              </td>
                           <td>
 
-                            <input type="text" name="Display" id="addDisplay" ref={this.Display} onChange={this.handleTextChange} value={this.state.EditDisplays} />
+                            <input type="text" name="Display" id="addDisplay" pattern="^[0-9]{1,45}$" title="Please enter valid number" ref={this.Display} onChange={this.handleTextChange} value={this.state.EditDisplays} />
 
                           </td>
                           <td style={{ width: "50px" }}></td>
@@ -3661,7 +3732,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </td>
                           <td>
 
-                            <input type="text" name="PR" id="addCabinetJBS" ref={this.Cabinet} onChange={this.handleTextChange} value={this.state.EditCabinetJBS} />
+                            <input type="text" name="PR" pattern="^[0-9]{1,45}$" title="Please enter valid number" id="addCabinetJBS" ref={this.Cabinet} onChange={this.handleTextChange} value={this.state.EditCabinetJBS} />
 
                           </td>
                         </tr>
@@ -3892,7 +3963,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           Top Level Risk Status
                         </td>
                         <td>
-                          <input type="text" id="TopRisk" width="70px" disabled></input>
+                          <input type="text" id="TopRisk" width="70px" value={this.state.TopRisk} disabled></input>
                         </td>
                         <td>
                           Project Level Risk Status
@@ -4103,7 +4174,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ paddingBottom: "20px" }}> Agreed Budget <b><span style={{ color: "red" }}>*</span></b> </td>
                           <td >
 
-                            <input type='number' readOnly disabled className="AgreedBudget" id="addAgreedBudget" ref={this.AgreedBudget} step="0.01" onChange={this.handleTextChange} value={this.state.EditAgreedBudget} />
+                            <input type='number' className="AgreedBudget" id="addAgreedBudget" ref={this.AgreedBudget} step="0.01" onChange={this.handleTextChange} value={this.state.EditAgreedBudget} />
                             <br></br><label>(Hours agreed with EPM FSO)</label></td>
 
                           <td> Internal Budget </td>
@@ -4142,7 +4213,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td>Actual End Period </td>
                           <td>
 
-                            <input type='text' className="ActualEnd" id="addActualEnd" ref={this.ActualEnd} onChange={this.handleTextChange} value={this.state.EndFinPeriod} style={{ opacity: 0.5 }} readOnly />
+                            <input type='text' className="ActualEnd" id="addActualEnd" ref={this.ActualEnd} onChange={this.handleTextChange} value={this.state.EndFinPeriod} style={{ opacity: 0.5 }} onKeyPress={() => { return false }} />
                           </td>
 
                           <td>
@@ -4268,7 +4339,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td>
 
                             <DatePicker showWeekNumbers={false} isMonthPickerVisible={true}
-                              showMonthPickerAsOverlay={true} maxDate={this.state.today} highlightCurrentMonth={true} className="addActualEndDate" id="QIDate" onSelectDate={this.handleDateEvent("ActualEndDate")} value={this.state.QIDate} formatDate={Helper._onFormatDate} parseDateFromString={this._QIDateFromString} onChange={this.handleTextChange}></DatePicker>
+                              showMonthPickerAsOverlay={true} maxDate={this.state.today} highlightCurrentMonth={true} className="addActualEndDate" id="QIDate" onSelectDate={this.handleDateEvent("QIDate")} value={this.state.QIDate} formatDate={Helper._onFormatDate} parseDateFromString={this._QIDateFromString} onChange={this.handleTextChange}></DatePicker>
 
                           </td>
 
@@ -4389,7 +4460,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </td>
                         </tr>
                         <tr>
-                          <td><li>Has the PM logged ITSS call for release of project hardware and/or deletion of project VLAN?</li></td>
+                          <td><li>Has the PM logged ITSS call for release of project hardware?</li></td>
                           <td><select className="ms-Dropdown-select" id="ITSS2" ref={this.ITSS2} onChange={this.handleInputChange} value={this.state.EditITSSCall}>
                             <option>Yes</option>
                             <option selected>No</option>

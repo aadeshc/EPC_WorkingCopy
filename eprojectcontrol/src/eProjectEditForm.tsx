@@ -611,7 +611,7 @@ export class eProjectEditForm extends React.Component {
                                                                                                 </td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                                <td>Has the PM logged ITSS call for release of project hardware and/or deletion of project VLAN?</td>
+                                                                                                <td>Has the PM logged ITSS call for release of project hardware</td>
                                                                                                 <td><select className="ms-Dropdown-select">
                                                                                                         <option>Yes</option>
                                                                                                         <option>No</option>

@@ -760,13 +760,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
         PostdeliveryComments: postdeliveryComments,
         Postdelivery: postdelivery,
         Status: Status,
+
+
         PDL: saveCHK,
         PCSD: savePCSD,
         VO: chkRVO2,
         ResourceCertifications: chkResourceCertifications,
         LBPManagingFAT: chkLBPManagingFAT,
         PAS: chkPAS,
-        EI: chkEI,
+        E_x0026_I: chkEI,
         ICSS: chkICSS,
         Syncade: chkSyncade,
         TMS: chkTMS,
@@ -780,6 +782,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
         CTO: chkCTO,
         ProductivityDVLive: chkDVLive,
         ChkboxSIS: chkSIS,
+        ChkSIS: chkSIS,
         DCSAO: this.DCSAO.current.value,
         DCSDI: this.DCSDI.current.value,
         DCSDO: this.DCSDO.current.value,
@@ -973,6 +976,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
   public handleDateEvent = date => (name) => {
 
     if (date == "ProjectData") {
+
       this.setState({ currentDate: name });
       const valueOfInput = name.format();
       var prjdate = new Date(valueOfInput);
@@ -1153,7 +1157,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
     if (EEEEE == 'undefined' || EEEEE == "UNDEFINED" || EEEEE == null) {
       this.setState(
         {
-          dummyValue: ''
+          dummyValue: null
         }
       )
 
@@ -1222,6 +1226,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
       this.setState(
         {
           FSOPM: EEEEE
+
         }
       )
 
@@ -1950,7 +1955,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tbody>
                         <tr>
 
-                          <td style={{ width: '15%' }}>
+                          <td style={{ width: '250px%' }}>
                             EEEC Location <span style={{ color: 'red' }}><b>*</b></span>
                           </td>
                           <td style={{ width: '17%' }}>
@@ -1964,17 +1969,17 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </Stack>
 
                           </td>
-                          <td style={{ paddingLeft: '30px' }}>
+                          <td style={{ paddingLeft: '50px', width: "250px" }}>
                             Project Name <span style={{ color: 'red' }}><b>*</b></span>
                           </td>
                           <td style={{ width: "20%" }} >
 
-                            <input type="text" name="Projectname" id="addProjectName" ref={this.ProjectName} required />
+                            <input type="text" name="Projectname" id="addProjectName" ref={this.ProjectName} required title="Please enter project name exactly same as decided in kickoff meeting" />
 
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ width: '17%' }}>
+                          <td style={{ width: '250px' }}>
                             Emerson Business Unit <span style={{ color: 'red' }}><b>*</b></span>
                           </td>
                           <td style={{ width: '17%' }}>
@@ -1986,7 +1991,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </Stack>
 
                           </td>
-                          <td style={{ width: '15.3%', paddingLeft: "30px" }}>
+                          <td style={{ width: '15.3%', paddingLeft: "50px" }}>
                             EPC <span style={{ color: 'red' }}><b>*</b></span>
                           </td>
                           <td>
@@ -2006,7 +2011,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <input type="text" name="addEndUser" id="addEnduser" required ref={this.EndUser} />
 
                           </td>
-                          <td style={{ paddingLeft: '30px' }}>
+                          <td style={{ paddingLeft: '50px' }}>
                             End-Destination <span style={{ color: 'red' }}><b>*</b></span>
                           </td>
                           <td style={{ width: "15%" }} >
@@ -2028,7 +2033,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
                           </td>
-                          <td style={{ paddingLeft: '30px' }}>
+                          <td style={{ paddingLeft: '50px' }}>
                             Project Type  <span style={{ color: 'red' }}><b>*</b></span>
                           </td>
                           <td style={{ width: "15%" }}>
@@ -2055,7 +2060,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               </select> </Stack>
 
                           </td>
-                          <td style={{ paddingLeft: '30px' }}>App/Industry-Subtype <span style={{ color: 'red' }}><b>*</b></span></td>
+                          <td style={{ paddingLeft: '50px' }}>App/Industry-Subtype</td>
                           <td  >
                             <Stack tokens={stackTokens}>
                               <select className="AR-Select" onChange={this.handleInputChange} id="ddlSub" ref={this.IndSubType} required>
@@ -2079,9 +2084,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               </select>
                             </Stack>
                           </td>
-                          <td style={{ paddingLeft: '30px' }}>
-                            World Area <span style={{ color: 'red' }}><b>*</b></span>
-                          </td>
+                          <td style={{ paddingLeft: '50px' }}>
+                            World Area                          </td>
                           <td style={{ width: "15%" }} >
                             <Stack tokens={stackTokens} onChange={this.handleInputChange} id="ddlCountryy">
 
@@ -2104,8 +2108,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
                                 {ProjectOptionsTemplate}</select>
                             </Stack>
                           </td>
-                          <td style={{ paddingLeft: '30px' }}>
-                            EEEC Project ID <span style={{ color: 'red' }}><b>*</b></span>
+                          <td style={{ paddingLeft: '50px' }}>
+                            EEEC Project ID
                           </td>
                           <td style={{ width: "19%" }} rowSpan={2}>
 
@@ -2140,7 +2144,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <SPPeoplePicker multi={false} pickerEnabled={true} onChange={this.handleFSOLEChange(this)} />
 
                           </td>
-                          <td style={{ paddingLeft: '30px' }}>
+                          <td style={{ paddingLeft: '50px' }}>
                             FSO PM
                              </td>
                           <td>
@@ -2156,10 +2160,10 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <SPPeoplePicker multi={false} pickerEnabled={true} onChange={this.handleEEECLEChange(this)} />
 
                           </td>
-                          <td style={{ paddingLeft: '30px' }}>
-                            EEEC PM<span style={{ color: 'red' }}><b>*</b></span>
+                          <td style={{ paddingLeft: '50px' }}>
+                            EEEC PM <span style={{ color: 'red' }}><b>*</b></span>
                           </td>
-                          <td>  <SPPeoplePicker multi={false} pickerEnabled={true} onChange={this.handlePeopleChnage("EEECPM")} />   </td><input type="text" width={10} id="dummyField" value={this.state.dummyValue} required></input>
+                          <td>  <SPPeoplePicker multi={false} pickerEnabled={true} onChange={this.handlePeopleChnage("EEECPM")} />   </td><input type="text" width={40} id="dummyField" value={this.state.dummyValue} required></input>
                         </tr>
                         <tr>
                           <td>
@@ -2184,12 +2188,12 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <DatePicker className="addStartDate" formatDate={Helper._onFormatDate} id="ProjStartDate" onSelectDate={this.handleDateEvent("ProjectData")} value={this.state.currentDate} strings={DayPickerStrings} showWeekNumbers={false} isMonthPickerVisible={true} showMonthPickerAsOverlay={true}  ></DatePicker>
 
                           </td>
-                          <td style={{ paddingLeft: '30px' }}>
-                            Project Start Period <span style={{ color: 'red' }}><b>*</b></span>
+                          <td style={{ paddingLeft: '50px' }}>
+                            Project Start Period
                           </td>
                           <td>
 
-                            <input type="text" name="ProjectStartPeriod" id="addProjectStartPeriod" style={{ opacity: 0.3, color: "grey" }} ref={this.ProjectPeriod} value={this.state.FinPeriod} required onKeyPress={() => { return false }} />
+                            <input type="text" name="ProjectStartPeriod" id="addProjectStartPeriod" style={{ opacity: 0.75, color: "grey" }} ref={this.ProjectPeriod} value={this.state.FinPeriod} required onKeyPress={() => { return false }} />
 
                           </td>
 
@@ -2205,7 +2209,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               showMonthPickerAsOverlay={true} minDate={this.state.currentDate} strings={DayPickerStrings} highlightCurrentMonth={true} className="addRequestEndDate" id="ProjEndDate" onSelectDate={this.handleDateEvent("ProjEndDate")} value={this.state.ProjEndDate}  ></DatePicker>
 
                           </td>
-                          <td style={{ paddingLeft: '30px' }}>
+                          <td style={{ paddingLeft: '50px' }}>
                             Agreed End Date <span style={{ color: 'red' }}><b>*</b></span>
                           </td>
                           <td>
@@ -2218,14 +2222,14 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         </tr>
 
                         <tr>
-                          <td style={{ paddingBottom: "10px" }}> Agreed Budget <span style={{ color: 'red' }}><b>*</b></span></td>
+                          <td style={{ paddingBottom: "20px" }}> Agreed Budget <span style={{ color: 'red' }}><b>*</b></span></td>
 
                           <td >
 
-                            <input type='number' className="AgreedBudget" id="addAgreedBudget1" ref={this.AgreedBudget} onChange={this.handleInputChange} required />
+                            <input type='number' className="AgreedBudget" id="addAgreedBudget1" ref={this.AgreedBudget} value={this.state.budget} onChange={this.handleInputChange} required />
                             <br></br><label>(Hours agreed with EPM FSO)</label>
                           </td>
-                          <td style={{ paddingLeft: '30px' }}>
+                          <td style={{ paddingLeft: '50px' }}>
                             Forecasted
                              </td>
                           <td>
@@ -2287,7 +2291,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </td>
                           <td>
 
-                            <input type="text" name="SWIO" id="addSWIO" ref={this.SWIO} />
+                            <input type="text" name="SWIO" pattern="^[0-9]{1,45}$" id="addSWIO" ref={this.SWIO} title="Please enter valid number" />
 
                           </td>
                           <td style={{ width: "210px", paddingLeft: "40px" }}>
@@ -2295,7 +2299,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </td>
                           <td>
 
-                            <input type="text" name="FFIO" id="addFFIO" ref={this.FFIO} />
+                            <input type="text" name="FFIO" id="addFFIO" pattern="^[0-9]{1,45}$" title="Please enter valid number" ref={this.FFIO} />
 
                           </td>
                         </tr>
@@ -2305,7 +2309,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </td>
                           <td>
 
-                            <input type="text" name="SISIO" id="addSISIO" ref={this.SSIO} />
+                            <input type="text" name="SISIO" id="addSISIO" pattern="^[0-9]{1,45}$" title="Please enter valid number" ref={this.SSIO} />
 
                           </td>
                           <td style={{ paddingLeft: "40px" }} >
@@ -2313,7 +2317,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </td>
                           <td>
 
-                            <input type="text" name="Display" id="addDisplay" ref={this.Display} />
+                            <input type="text" name="Display" id="addDisplay" pattern="^[0-9]{1,45}$" title="Please enter valid number" ref={this.Display} />
 
                           </td>
                           <td style={{ paddingLeft: "40px" }}>
@@ -2321,7 +2325,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </td>
                           <td>
 
-                            <input type="text" name="PR" id="addCabinetJBS" ref={this.Cabinet} />
+                            <input type="text" name="PR" pattern="^[0-9]{1,45}$" title="Please enter valid number" id="addCabinetJBS" ref={this.Cabinet} />
 
                           </td>
                         </tr>
@@ -2736,10 +2740,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                         </tr>
                         <tr>
-                          <td style={{ paddingBottom: "10px" }} > Agreed Budget <span style={{ color: 'red' }}><b>*</b></span></td>
+                          <td style={{ paddingBottom: "20px" }} > Agreed Budget <span style={{ color: 'red' }}><b>*</b></span></td>
                           <td  >
-
-                            <input type='number' className="AgreedBudget" id="addAgreedBudget" value={this.state.budget} onChange={this.handleInputChange} readOnly disabled />
+                            <input type='number' className="AgreedBudget" id="addAgreedBudget1" ref={this.AgreedBudget} value={this.state.budget} onChange={this.handleInputChange} required />
                             <br></br><label>(Hours agreed with EPM FSO)</label>
                           </td>
 
@@ -2991,7 +2994,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </td>
                           </tr>
                           <tr>
-                            <td><li>Has the PM logged ITSS call for release of project hardware and/or deletion of project VLAN?</li></td>
+                            <td><li>Has the PM logged ITSS call for release of project hardware?</li></td>
                             <td><select className="ms-Dropdown-select" id="ITSS2" ref={this.ITSS2}>
                               <option>Yes</option>
                               <option selected>No</option>

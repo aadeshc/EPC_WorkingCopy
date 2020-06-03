@@ -131,7 +131,7 @@ class App extends React.Component<{}, any> {
           for (let i in response.d.results) {
             console.log(response.d.results[i].Title)
 
-            if (response.d.results[i].Title == "QualityTeam" || response.d.results[i].Title == "BMRole") {
+            if (response.d.results[i].Title == "QualityTeam" || response.d.results[i].Title == "BMRole" || response.d.results[i].Title == "ADD") {
               this.setState({
                 showAll: "true",
               });
