@@ -131,7 +131,7 @@ class App extends React.Component<{}, any> {
           for (let i in response.d.results) {
             console.log(response.d.results[i].Title)
 
-            if (response.d.results[i].Title == "QualityTeam" || response.d.results[i].Title == "BMRole" || response.d.results[i].Title == "ADD") {
+            if (response.d.results[i].Title == "QualityTeam" || response.d.results[i].Title == "BMRole" || response.d.results[i].Title == "ADD" || response.d.results[i].Title == "DL EEEC IND Associate Director" || response.d.results[i].Title == "DL EEEC IND Directors") {
               this.setState({
                 showAll: "true",
               });
