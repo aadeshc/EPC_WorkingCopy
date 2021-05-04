@@ -1591,10 +1591,11 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
     var stringQuery = Helper.getQueryStringParameter('id');
     this.setState({
-      navURL: "https://emerson.sharepoint.com/sites/process-dev2/EEEC/EProjectControl/Pages/LinkPage.aspx?FilterField1=EEECProjectID&FilterValue1=" + stringQuery + ""
+      navURL: "https://emerson.sharepoint.com/sites//EEEC/EProjectControl/Pages/LinkPage.aspx?FilterField1=EEECProjectID&FilterValue1=" + stringQuery + ""
     }, () => {
-      var anchor = document.getElementById("rootbar")
-      anchor.setAttribute("href", this.state.navURL)
+      // var anchor = document.getElementById("rootbar")
+      // anchor.setAttribute("href", this.state.navURL)
+      // anchor.setAttribute("Target", "_blank")
     })
 
 
@@ -1923,6 +1924,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
         ProjectLevelRiskStatus: this.state.ProjectRiskStatus,
         ISProjectFHXComments: this.state.EditFHXComments,
         ISProjectFHX: this.state.EditFHX
+
 
 
 
@@ -2558,7 +2560,21 @@ export class eProjectNewForm extends React.Component<{}, any>{
   public handleInputChange = (event) => {
 
 
+
+
     let ddltype = event.target.id;
+
+
+    if (ddltype == "PPEProjectContractType") {
+
+      var index = event.nativeEvent.target.selectedIndex;
+      console.log(event.nativeEvent.target[index].text)
+
+
+      console.log(event.target.value)
+      console.log(event.target.text)
+    }
+
 
     if (ddltype == "ddlProjectRiskStatus") {
       this.setState({
@@ -3166,9 +3182,12 @@ export class eProjectNewForm extends React.Component<{}, any>{
     }
 
     if (ddltype == "ddlEBU") {
+
       let inputstring = this.state.EditYear + "-" + this.state.EditCountryCode + "-" + this.state.EditUnit + this.state.prjpltfrmunit + "-" + this.state.EditCounter
       this.setState({
-        EditEmerBuisUnit: event.target.value
+        EditEmerBuisUnit: event.target.value,
+        EditProjectPlatform: ""
+
       })
 
 
@@ -3191,7 +3210,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
       if (name == "RAS")
         keyval = "G99"
       if (name == "RPC")
-        keyval = "H99"
+        keyval = "F99"
       if (name == "RTG")
         keyval = "J99"
       if (name == "SBG")
@@ -3471,6 +3490,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <i className="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown" id="addProjectPlatform"></i>
                             <Stack tokens={stackTokens}>
                               <select className="AR-Select" id="ddlType" ref={this.ProjPlatform} value={this.state.EditProjectPlatform} defaultValue={this.state.EditProjectPlatform} onChange={this.handleInputChange}>
+                                <option value="">Please Select</option>
                                 {ProjectOptionsTemplate}</select>
                             </Stack>
                           </td>
@@ -3960,10 +3980,11 @@ export class eProjectNewForm extends React.Component<{}, any>{
                     <table id="phase2Table" className="phase2Table">
                       <tr>
                         <td>
-                          Top Level Risk Status
+                          Top Level Risk Status<br></br>
+                          This field will be updated from backend
                         </td>
                         <td>
-                          <input type="text" id="TopRisk" width="70px" value={this.state.TopRisk} disabled></input>
+                          <input type="text" id="TopRisk" width="70px" value={this.state.TopRisk} disabled placeholder=""></input>
                         </td>
                         <td>
                           Project Level Risk Status
@@ -4150,6 +4171,389 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                   </Card.Body>
                 </Accordion.Collapse>
+
+              </Accordion>
+
+              <Accordion defaultActiveKey="1">
+                <Card.Header>
+                  <Accordion.Toggle onClick={this.AnalysisCloseArrow} as={Card.Header} eventKey="1" className="header">
+                    <span className={this.state.AnalysisCloseDown === "Yes" ? "glyphicon glyphicon-menu-up" : "glyphicon glyphicon-menu-down"}></span>&nbsp;
+                              PPE Categorization <br></br>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="1">
+                  <Card.Body>
+                    <table id="PPECategorization">
+                      <tr>
+                        <td style={{ width: '290px' }}>
+                          Project Contract Type (Emerson)
+                                           </td>
+                        <td style={{ width: '345' }}>
+                          <select className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleInputChange} value={this.state.EditDeliveryComplete} >
+                            <option value="1" className="1">Workpack</option>
+                            <option value="2" className="2">T And M</option>
+                            <option value="3" className="3">Fixed Price</option>
+                            <option value="4" className="4">MIB/L1</option>
+                            <option value="5" className="5">Other</option>
+
+                          </select>
+                        </td>
+                        <td style={{ width: '285px' }}>
+                          Project LD  (Emerson)
+                                           </td>
+                        <td style={{ width: '375px' }}>
+                          <select className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleInputChange} value={this.state.EditDeliveryComplete} >
+                            <option value="1" className="1">Applicable</option>
+                            <option value="2" className="2">Not Applicable</option>
+
+
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Total Emerson Budgeted Engineering hour </td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPEmersonBudgeted" onChange={this.handleInputChange} >
+                            <option value="2" className="2"> {">"}1000 And {"<"}5,000   </option>
+                            <option value="3" className="2"> {">"}5000 And {"<"}10,000   </option>
+                            <option value="4" className="2"> {">"}10,000 And {"<"}25,000 </option>
+                            <option value="5" className="2"> {">"}25,000 And {"<"}50,000 </option>
+                            <option value="6" className="2"> {">"}50,000 And {"<"}75,000 </option>
+                            <option value="7" className="2"> {">"}75,000 And {"<"}100,000 </option>
+                            <option value="8" className="2"> {">"}100,000  </option>
+                            <option value="9" className="2">Not Available</option>
+                          </select>
+
+                        </td>
+                        <td>
+                          Total EEEC Budgeted Engineering hours </td>
+                        <td>
+
+
+
+                          <select className="ms-Dropdown-select" id="PPEEECBudgeted" onChange={this.handleInputChange} >
+                            <option value="2" className="2"> {">"}1000 And {"<"}5,000   </option>
+                            <option value="3" className="2"> {">"}5000 And {"<"}10,000   </option>
+                            <option value="4" className="2"> {">"}10,000 And {"<"}25,000 </option>
+                            <option value="5" className="2"> {">"}25,000 And {"<"}50,000 </option>
+                            <option value="6" className="2"> {">"}50,000 And {"<"}75,000 </option>
+                            <option value="7" className="2"> {">"}75,000 And {"<"}100,000 </option>
+                            <option value="8" className="2"> {">"}100,000  </option>
+                            <option value="9" className="2">Not Available</option>
+                          </select>
+
+                        </td>
+
+                      </tr>
+
+                      <tr>
+                        <td>
+                          Execution Strtegy And Model-FSO
+                        </td>
+                        <td>
+                          <input type="radio" id="FSO" name="FSO" value="0" />&nbsp;
+                          <label>One World Area</label> <br></br>
+                          <input type="radio" name="FSO" value="3" /> &nbsp;
+
+                          <label>Multiple World Area</label>
+
+                        </td>
+                        <td>
+                          Execution Strategy And Model-Execution
+                        </td>
+                        <td>
+                          <input type="radio" id="FSO" name="FSO" value="0" /> &nbsp;
+                          <label>FSO/EEEC Split : Same as defined in the Propsal</label> <br></br>
+                          <input type="radio" name="FSO" value="3" /> &nbsp;
+                          <label>FSO/EEEC Split:Decreased EEEC Utilization/Scope</label> <br></br>
+                          <input type="radio" name="FSO" value="3" /> &nbsp;
+                          <label>FSO/EEEC Split:Increased EEEC Utilization/Scope</label> <br></br>
+                          <input type="radio" name="FSO" value="3" />
+                          <label>Additional/Change in EEEC roles after Project Initiation</label>
+
+
+
+
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>  <input type="checkbox" name="chkEPC" id="PAS" onChange={this.handleInputChange} ></input>&nbsp;Multi EPC</td>
+
+                        <td>  <input type="checkbox" name="chkEngg" id="ChkSIS" onChange={this.handleInputChange}></input>&nbsp;Multi Engg Center</td>
+
+                        <td> <input type="checkbox" name="chkParallal" id="EI" onChange={this.handleInputChange}></input>&nbsp;Multi Area Phased Execution</td>
+
+                        <td> <input type="checkbox" name="chkPhased" id="ICSS" onChange={this.handleInputChange}></input>&nbsp;Multi Area Parallal Execution</td>
+
+                        <td  ><input type="checkbox" name="chkAdditional" id="RVO2" onChange={this.handleInputChange}></input>&nbsp;Additional Roles</td>
+                      </tr>
+
+                      <tr>
+                        <td> Adequacy of Budget & Schedule</td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleInputChange} >
+                            <option value="2" className="2"> Adequate Budget And Schedule  </option>
+                            <option value="3" className="2"> Budget Constraint   </option>
+                            <option value="4" className="2"> Schedule Constraint </option>
+                            <option value="5" className="2"> Budget And Schedule Constraint </option>
+                            <option value="6" className="2"> Not Known</option>
+
+                          </select>
+                        </td>
+                        <td>
+                          EEEC Utilization (Engineering)
+                        </td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleInputChange} >
+                            <option value="2" className="2">  {"<"}30% </option>
+                            <option value="3" className="2"> {">"}30% And {"<"}35%  </option>
+                            <option value="4" className="2"> {">"}35% And {"<"}50% </option>
+                            <option value="4" className="2"> {">"}50% And {"<"}70% </option>
+                            <option value="5" className="2"> {">"}75% </option>
+                          </select>
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>Time of EEEC Involvement</td>
+                        <td> <select className="ms-Dropdown-select" id="PPEInvolve" onChange={this.handleInputChange} >
+                          <option value="2" className="2"> Planned Late Involvement </option>
+                          <option value="3" className="2"> Fast Track  </option>
+
+                        </select></td>
+                        <td>
+                          Project Organisation Chart
+                        </td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPEOrgChart" onChange={this.handleInputChange} >
+                            <option value="2" className="2"> Well Defined Structure </option>
+                            <option value="3" className="2"> Multiple Roles per resource  </option>
+                            <option value="3" className="2">Resource allocation managed by FSO  </option>
+                          </select>
+                        </td>
+                      </tr>
+
+                      <br></br>
+
+                      <tr>
+                        <td>
+                          Overall Risk Ranking
+                       </td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
+                            <option value="2" className="2"> Low </option>
+                            <option value="3" className="2"> Medium</option>
+                            <option value="3" className="2">High  </option>
+                          </select>
+                        </td>
+                        <td>
+                          EEEC Scope
+                       </td>
+                        <td>
+                          <input type="checkbox" id="ChkPPEFeed"></input> &nbsp; Feed  <br></br>
+                          <input type="checkbox" id="ChkPPEFeed"></input> &nbsp;Execute  <br></br>
+                          <input type="checkbox" id="ChkPPEFeed"></input>&nbsp; FAT  <br></br>
+                          <input type="checkbox" id="ChkPPEFeed"></input>&nbsp; SAT  <br></br>
+                        </td>
+                      </tr>
+                      <tr>
+
+                        <td rowSpan={1}>
+                          EEEC Involvement and Project Scope
+                        </td>
+                        <td colSpan={4}>
+                          <table>
+                            <tr>
+                              <td><input type="checkbox" id="ChkPASBase" />&nbsp;PAS Base DB,Interlocks,Graphics  </td>
+                              <td><input type="checkbox" id="ChkPASCustom" />&nbsp; PAS Custom Logic,Sequences </td>
+                              <td><input type="checkbox" id="ChkPASComplex" />&nbsp;PAS Complex Logic  </td>
+                              <td><input type="checkbox" id="ChkPASBatch" />&nbsp;PAS Batch  </td>
+                              <td><input type="checkbox" id="ChkOtherPAS" />&nbsp;Other PAS  </td>
+                            </tr>
+
+                            <tr>
+                              <td> <input type="checkbox" id="ChkSISESD" />&nbsp;SIS ESD  </td>
+                              <td> <input type="checkbox" id="ChkSISFGS" /> &nbsp; SIS FGS </td>
+                              <td><input type="checkbox" id="ChkSISBMS" />&nbsp;SIS BMS   </td>
+                              <td><input type="checkbox" id="chkSIS" />&nbsp; SIS/PAS Integration </td>
+                              <td><input type="checkbox" id="ChkSISOther" />&nbsp;Other SIS Integration </td>
+                            </tr>
+                            <tr>
+                              <td> <input type="checkbox" id="chkPASCab" />&nbsp;PAS Cabinets  </td>
+                              <td><input type="checkbox" id="ChkSISCab" />&nbsp;SIS Cabinets  </td>
+
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox" id="chkPASCab" /> &nbsp;Other BU's and Engg Support</td>
+                              <td> <input type="checkbox" id="chkInterface" />&nbsp;Interface Lead  </td>
+                              <td><input type="checkbox" id="ChkDocument" /> &nbsp;Document Controller  </td>
+                              <td>  <input type="checkbox" id="ChkWriter" />&nbsp;Technical Writer  </td>
+                              <td><input type="checkbox" id="ChkOTS" />&nbsp; OTS   </td>
+
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox" id="ChkWireless" /> &nbsp; Wireless  </td>
+                              <td><input type="checkbox" id="ChkAgile" /> &nbsp;Agile OPS  </td>
+                              <td><input type="checkbox" id="ChkOther" />&nbsp;Other </td>
+                            </tr>
+
+
+
+                          </table>
+                        </td>
+                      </tr>
+                      <br></br>
+                      <tr>
+                        <td>FAT Engagement</td>
+                        <td><select className="ms-Dropdown-select">
+                          <option>Remote FAT</option>
+                          <option>Face to Face FAT</option>
+                        </select></td>
+                        <td>Overall PM</td>
+                        <td><select className="ms-Dropdown-select">
+                          <option>FSO</option>
+                          <option>EEC</option>
+                          <option>FSO + EEC</option>
+                        </select></td>
+                      </tr>
+
+                      <tr>
+                        <td>Overall Lead and Other LE's</td>
+                        <select className="ms-Dropdown-select">
+                          <option>FSO</option>
+                          <option>EEC</option>
+                          <option>EEC (Local)</option>
+                          <option>EEC(Local+Remote)</option>
+                          <option>FSO + EEC</option>
+                          <option>No Liaison in FSO</option>
+                        </select>
+                      </tr>
+                      <tr>
+                        <td rowSpan={2}> FSO PM And Lead</td>
+                        <td>
+                          <table >
+                            <tr>
+                              <td rowSpan={5}>Open</td>
+                            </tr>
+                            <tr>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" />&nbsp;Accomodative</td>
+                            </tr>
+                            <tr>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" />&nbsp;Non Accomodative</td>
+                            </tr>
+                            <tr>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" />&nbsp;Difficult to Classify</td>
+                            </tr>
+                          </table>
+
+                        </td>
+
+                        <td colSpan={2}>
+                          <table >
+                            <tr>
+                              <td rowSpan={5} style={{ width: "140px" }}>Technical</td>
+                            </tr>
+                            <tr>
+                              <td> <input type="radio" id="FSOPMTech" name="FSOPMTech" value="0" />&nbsp;Technical</td>
+                            </tr>
+                            <tr>
+                              <td> <input type="radio" id="FSOPMTech" name="FSOPMTech" value="0" />&nbsp;Non Technical</td>
+                            </tr>
+                            <tr>
+                              <td> <input type="radio" id="FSOPMTech" name="FSOPMTech" value="0" />Difficult to Classify</td>
+                            </tr>
+                          </table>
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <table >
+                            <tr>
+                              <td rowSpan={5}>Other</td>
+                            </tr>
+                            <tr>
+                              <td> <input type="radio" id="FSOPMTech" name="FSOOther" value="0" />Proactive</td>
+                            </tr>
+                            <tr>
+                              <td><input type="radio" id="FSOPMTech" name="FSOOther" value="0" />Reactive</td>
+                            </tr>
+                            <tr>
+                              <td><input type="radio" id="FSOPMTech" name="FSOOther" value="0" />Difficult to Classify</td>
+                            </tr>
+                          </table>
+
+                        </td>
+                        <td colSpan={2}>
+                          <table >
+                            <tr>
+                              <td rowSpan={5} style={{ width: "140px" }}>EEEC Experience</td>
+                            </tr>
+                            <tr>
+                              <td> <input type="radio" id="FSOPMTech" name="EEECExp" value="0" />Worked with EEEC</td>
+                            </tr>
+                            <tr>
+                              <td> <input type="radio" id="FSOPMTech" name="EEECExp" value="0" />New to EEEC</td>
+                            </tr>
+                            <tr>
+                              <td> <input type="radio" id="FSOPMTech" name="EEECExp" value="0" />Difficult to Classify</td>
+                            </tr>
+                          </table>
+
+                        </td>
+                      </tr>
+                      <br></br>
+                      <tr>
+                        <td> Resource Skillset</td>
+                        <td>
+
+                          <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
+                            <option value="2" className="2"> No Special Requirement </option>
+                            <option value="3" className="2"> Blended Mix</option>
+                            <option value="3" className="2">Special Skills  </option>
+                            <option value="3" className="2">Resource with Process background  </option>
+                          </select>
+                        </td>
+                        <td>Resource Plan and Project Loading Chart</td>
+                        <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
+                          <option value="2" className="2"> Yes </option>
+                          <option value="3" className="2"> No</option>
+                          <option value="3" className="2">To Be Defined Later  </option>
+
+                        </select>
+                      </tr>
+                      <tr>
+                        <td>What FSO Considers As a Success</td>
+                        <td><input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;Timely Delivery <br></br>
+                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;No Budget Overrun<br></br>
+                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;FAT Ready Deliverables<br></br>
+                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;Minimal Rework after FAT {"<"}1% of Budget
+<br></br>
+                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;Maintain or Improve Sales GP<br></br>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td> Non Standard Requirements</td>
+                        <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Implement Batch without using Batch Licences <br></br>
+                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Use of SIS Blocks in PAS Control Module<br></br>
+                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Use of Non-PCSD Library<br></br>
+                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Graphics for custom resolutions<br></br>
+                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;New Product/Technology<br></br>
+                        </td>
+                        <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Odd Shifts <br></br>
+                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;IP/Clause<br></br>
+                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Customer Demos<br></br>
+                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Develope Details FS based on limited information<br></br>
+                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Other<br></br>
+                        </td>
+                      </tr>
+
+                    </table>
+                  </Card.Body>
+                </Accordion.Collapse>
               </Accordion>
               <Accordion defaultActiveKey="1">
                 <Card.Header>
@@ -4162,11 +4566,11 @@ export class eProjectNewForm extends React.Component<{}, any>{
                   <Card.Body>
                     <table className="FrequentEntry" id="addFrequentEntry">
                       <tbody>
-                        <tr>
+                        {/* <tr>
                           <td colSpan={3}>
 
                             <a id="rootbar"> <b><u>Click here to add Risks and Opportunities.</u></b></a></td>
-                        </tr>
+                        </tr> */}
                         <tr>
                           <td></td>
                         </tr>
@@ -4425,7 +4829,6 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td> <select className="ms-Dropdown-select" id="addDeliv" ref={this.delivery} onChange={this.handleInputChange} value={this.state.EditDeliveryComplete} >
                             <option>Yes</option>
                             <option selected>No</option>
-                            <option>N/A</option>
 
                           </select> </td>
 
@@ -4437,7 +4840,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td> <select className="ms-Dropdown-select" id="AddITSS" ref={this.ITSS} onChange={this.handleInputChange} value={this.state.EditPMITSS}>
                             <option>Yes</option>
                             <option selected>No</option>
-                            <option>N/A</option>
+
 
                           </select> </td>
                           <td>
@@ -4460,11 +4863,11 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </td>
                         </tr>
                         <tr>
-                          <td><li>Has the PM logged ITSS call for release of project hardware?</li></td>
+                          <td><li>Has the PM logged ITSS call for release of RVO2 resources</li></td>
                           <td><select className="ms-Dropdown-select" id="ITSS2" ref={this.ITSS2} onChange={this.handleInputChange} value={this.state.EditITSSCall}>
                             <option>Yes</option>
                             <option selected>No</option>
-                            <option>N/A</option>
+
 
                           </select> </td>
                           <td>
@@ -4477,7 +4880,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td> <select className="ms-Dropdown-select" id="DongleReturn" ref={this.donglereturn} onChange={this.handleInputChange} value={this.state.EditDongleReturned}>
                             <option>Yes</option>
                             <option selected>No</option>
-                            <option>N/A</option>
+
 
                           </select> </td>
                           <td>
@@ -4490,7 +4893,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td> <select className="ms-Dropdown-select" id="ProjectCorrect" ref={this.projectcorrect} value={this.state.EditDatacorrect} onChange={this.handleInputChange} >
                             <option>Yes</option>
                             <option selected>No</option>
-                            <option>N/A</option>
+
 
                           </select> </td>
                           <td>
@@ -4504,7 +4907,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td> <select className="ms-Dropdown-select" id="PostDelivery" ref={this.postdelivery} onChange={this.handleInputChange} value={this.state.EditPostdelivery}>
                             <option>No</option>
                             <option>Yes</option>
-                            <option>N/A</option>
+
 
 
                           </select> </td>
@@ -4522,7 +4925,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <td> <select className="ms-Dropdown-select" id="FHX" onChange={this.handleInputChange} value={this.state.EditFHX}>
                               <option>No</option>
                               <option>Yes</option>
-                              <option>N/A</option>
+
 
 
                             </select> </td>
@@ -4542,7 +4945,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td ><select className="ms-Dropdown-select" id="CSS" ref={this.CSS} onChange={this.handleInputChange} value={this.state.EditCSSFormReceived}>
                             <option>No</option>
                             <option>Yes</option>
-                            <option>N/A</option>
+
 
                           </select> </td>
                           <td>
@@ -4558,7 +4961,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td><select className="ms-Dropdown-select" id="Close" ref={this.close} onChange={this.handleInputChange} value={this.state.EditProjectCloseMeeting}>
                             <option>No</option>
                             <option>Yes</option>
-                            <option>N/A</option>
+
 
                           </select></td>
                           <td>
@@ -4573,7 +4976,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td><select className="ms-Dropdown-select" id="ResourceSkill" ref={this.resourceskill} onChange={this.handleInputChange} value={this.state.EditResourceSkillUpdated}>
                             <option>No</option>
                             <option>Yes</option>
-                            <option>N/A</option>
+
 
                           </select> </td>
                           <td>
@@ -4612,10 +5015,10 @@ export class eProjectNewForm extends React.Component<{}, any>{
                   </td>
                 </tr>
               </table>
-            </div>
-          </Card>
-        </div>
-      </form>
+            </div >
+          </Card >
+        </div >
+      </form >
     )
   }
 }

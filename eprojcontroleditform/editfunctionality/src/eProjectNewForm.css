@@ -62,6 +62,10 @@ font-family: Franklin Gothic Book;
 
 }
 
+.ms-Dropdown-select {
+  width: 250px !important;
+}
+
 .page-header{
 background-color: #004b8e;
 color: #ffffff;
