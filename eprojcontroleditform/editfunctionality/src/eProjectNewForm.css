@@ -62,9 +62,26 @@ font-family: Franklin Gothic Book;
 
 }
 
+
+.MyClass{
+  border-width: "3px";
+  border-style: solid;
+  border-collapse: collapse;
+  padding: 10px !important;
+  background-color: blanchedalmond;
+  text-align: justify;
+}
+
+
+th {
+  padding: 5px;
+}
+
 .ms-Dropdown-select {
   width: 250px !important;
 }
+
+
 
 .page-header{
 background-color: #004b8e;
@@ -78,7 +95,6 @@ font-weight: 700;
 font-family: Franklin Gothic Book;
 }
 /* tr:first-child .btnRemove { display:none } */
-
 .btnRemove{ display: none;}
 
 .accordionTitle{

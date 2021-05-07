@@ -23,7 +23,7 @@ import {
 import { DateRangeType } from 'office-ui-fabric-react/lib/Calendar'
 import "./"
 import {
-  Label, Checkbox, PrimaryButton, Selection, SelectionMode, TextField, IPersonaProps, IPersona, DatePicker, DayOfWeek, Dropdown, values, DefaultButton, inputProperties, themeRulesStandardCreator
+  Label, Checkbox, PrimaryButton, Selection, SelectionMode, TextField, IPersonaProps, IPersona, DatePicker, DayOfWeek, Dropdown, values, DefaultButton, inputProperties, themeRulesStandardCreator, textAreaProperties
 } from "office-ui-fabric-react";
 
 import { DropdownMenuItemType, IDropdownStyles, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
@@ -4178,17 +4178,26 @@ export class eProjectNewForm extends React.Component<{}, any>{
                 <Card.Header>
                   <Accordion.Toggle onClick={this.AnalysisCloseArrow} as={Card.Header} eventKey="1" className="header">
                     <span className={this.state.AnalysisCloseDown === "Yes" ? "glyphicon glyphicon-menu-up" : "glyphicon glyphicon-menu-down"}></span>&nbsp;
-                              PPE Categorization <br></br>
+                              Project EE Categorization <br></br>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
                   <Card.Body>
-                    <table id="PPECategorization">
+                    <table>
+                      <tr className="MyClass">
+                        <th style={{ border: "1px solid black;" }}>Parameters</th>
+                        <th style={{ border: "1px solid black;" }}>Selection</th>
+                        <th style={{ border: "1px solid black;" }}>Risk Index</th>
+                        <th style={{ border: "1px solid black;" }}>Remarks</th>
+                      </tr>
                       <tr>
-                        <td style={{ width: '290px' }}>
+                        <td style={{ border: "1px solid black;" }} ></td>
+                      </tr>
+                      <tr>
+                        <td style={{ width: '20%' }}>
                           Project Contract Type (Emerson)
                                            </td>
-                        <td style={{ width: '345' }}>
+                        <td style={{ width: '50%' }}>
                           <select className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleInputChange} value={this.state.EditDeliveryComplete} >
                             <option value="1" className="1">Workpack</option>
                             <option value="2" className="2">T And M</option>
@@ -4198,10 +4207,14 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           </select>
                         </td>
-                        <td style={{ width: '285px' }}>
+                        <td style={{ width: '5%', padding: "4px" }}>1</td>
+                        <td><textarea rows={2} cols={30} ></textarea></td>
+                      </tr>
+                      <tr>
+                        <td style={{ width: '20%' }}>
                           Project LD  (Emerson)
                                            </td>
-                        <td style={{ width: '375px' }}>
+                        <td style={{ width: '45%' }}>
                           <select className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleInputChange} value={this.state.EditDeliveryComplete} >
                             <option value="1" className="1">Applicable</option>
                             <option value="2" className="2">Not Applicable</option>
@@ -4209,162 +4222,81 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           </select>
                         </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Total Emerson Budgeted Engineering hour </td>
-                        <td>
-                          <select className="ms-Dropdown-select" id="PPEmersonBudgeted" onChange={this.handleInputChange} >
-                            <option value="2" className="2"> {">"}1000 And {"<"}5,000   </option>
-                            <option value="3" className="2"> {">"}5000 And {"<"}10,000   </option>
-                            <option value="4" className="2"> {">"}10,000 And {"<"}25,000 </option>
-                            <option value="5" className="2"> {">"}25,000 And {"<"}50,000 </option>
-                            <option value="6" className="2"> {">"}50,000 And {"<"}75,000 </option>
-                            <option value="7" className="2"> {">"}75,000 And {"<"}100,000 </option>
-                            <option value="8" className="2"> {">"}100,000  </option>
-                            <option value="9" className="2">Not Available</option>
-                          </select>
-
-                        </td>
-                        <td>
-                          Total EEEC Budgeted Engineering hours </td>
-                        <td>
-
-
-
-                          <select className="ms-Dropdown-select" id="PPEEECBudgeted" onChange={this.handleInputChange} >
-                            <option value="2" className="2"> {">"}1000 And {"<"}5,000   </option>
-                            <option value="3" className="2"> {">"}5000 And {"<"}10,000   </option>
-                            <option value="4" className="2"> {">"}10,000 And {"<"}25,000 </option>
-                            <option value="5" className="2"> {">"}25,000 And {"<"}50,000 </option>
-                            <option value="6" className="2"> {">"}50,000 And {"<"}75,000 </option>
-                            <option value="7" className="2"> {">"}75,000 And {"<"}100,000 </option>
-                            <option value="8" className="2"> {">"}100,000  </option>
-                            <option value="9" className="2">Not Available</option>
-                          </select>
-
-                        </td>
-
+                        <td style={{ width: '10%' }}>1</td>
+                        <td><textarea rows={2} cols={30}></textarea></td>
                       </tr>
 
                       <tr>
-                        <td>
-                          Execution Strtegy And Model-FSO
-                        </td>
-                        <td>
-                          <input type="radio" id="FSO" name="FSO" value="0" />&nbsp;
-                          <label>One World Area</label> <br></br>
-                          <input type="radio" name="FSO" value="3" /> &nbsp;
+                        <td >
+                          Execution Strategy and Model
+                      </td>
+                        <td colSpan={1} style={{ width: '45%' }}>
+                          <table style={{ borderCollapse: "collapse", borderStyle: "thin", borderWidth: "1px", border: "1px solid darkgray;", width: "86%" }}>
+                            <tr>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}><u> Execution</u></th>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>FSO</u></th>
+                            </tr>
+                            <tr>
 
-                          <label>Multiple World Area</label>
-
-                        </td>
-                        <td>
-                          Execution Strategy And Model-Execution
-                        </td>
-                        <td>
-                          <input type="radio" id="FSO" name="FSO" value="0" /> &nbsp;
+                              <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", borderColor: "darkgray" }}> <input type="radio" id="FSO" name="FSO" value="0" /> &nbsp;
                           <label>FSO/EEEC Split : Same as defined in the Propsal</label> <br></br>
-                          <input type="radio" name="FSO" value="3" /> &nbsp;
+                                <input type="radio" name="FSO" value="3" /> &nbsp;
                           <label>FSO/EEEC Split:Decreased EEEC Utilization/Scope</label> <br></br>
-                          <input type="radio" name="FSO" value="3" /> &nbsp;
+                                <input type="radio" name="FSO" value="3" /> &nbsp;
                           <label>FSO/EEEC Split:Increased EEEC Utilization/Scope</label> <br></br>
-                          <input type="radio" name="FSO" value="3" />
-                          <label>Additional/Change in EEEC roles after Project Initiation</label>
+                                <input type="radio" name="FSO" value="3" />
+                                <label>Additional/Change in EEEC roles after Project Initiation</label>
+                              </td>
+                              <td style={{ borderStyle: "Solid", borderWidth: "1px", borderColor: 'grey' }}>
+                                <span >
+                                  <input type="radio" id="FSO" name="FSO" value="0" />&nbsp;
+                                     <label>One World Area</label> <br></br>
+                                  <input type="radio" name="FSO" value="3" /> &nbsp;
+
+                                    <label>Multiple World Area</label>
+                                </span>
+                              </td>
+                            </tr>
 
 
+                            <tr>
+                              <td colSpan={2} style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                <td>  <input type="checkbox" name="chkEPC" id="PAS" onChange={this.handleInputChange} ></input>&nbsp;Multi EPC</td>
+
+                                <td>  <input type="checkbox" name="chkEngg" id="ChkSIS" onChange={this.handleInputChange}></input>&nbsp;Multi Engg Center</td>
+
+                                <td> <input type="checkbox" name="chkParallal" id="EI" onChange={this.handleInputChange}></input>&nbsp;Multi Area Phased Execution</td>
+
+                                <td > <input type="checkbox" name="chkPhased" id="ICSS" onChange={this.handleInputChange}></input>&nbsp;Multi Area Parallal Execution</td>
+                                <br></br>
+                                <td ><input type="checkbox" name="chkAdditional" id="RVO2" onChange={this.handleInputChange}></input>&nbsp;Additional Roles</td>
+
+                              </td>
+                            </tr>
 
 
-                        </td>
-
-                      </tr>
-                      <tr>
-                        <td>  <input type="checkbox" name="chkEPC" id="PAS" onChange={this.handleInputChange} ></input>&nbsp;Multi EPC</td>
-
-                        <td>  <input type="checkbox" name="chkEngg" id="ChkSIS" onChange={this.handleInputChange}></input>&nbsp;Multi Engg Center</td>
-
-                        <td> <input type="checkbox" name="chkParallal" id="EI" onChange={this.handleInputChange}></input>&nbsp;Multi Area Phased Execution</td>
-
-                        <td> <input type="checkbox" name="chkPhased" id="ICSS" onChange={this.handleInputChange}></input>&nbsp;Multi Area Parallal Execution</td>
-
-                        <td  ><input type="checkbox" name="chkAdditional" id="RVO2" onChange={this.handleInputChange}></input>&nbsp;Additional Roles</td>
-                      </tr>
-
-                      <tr>
-                        <td> Adequacy of Budget & Schedule</td>
-                        <td>
-                          <select className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleInputChange} >
-                            <option value="2" className="2"> Adequate Budget And Schedule  </option>
-                            <option value="3" className="2"> Budget Constraint   </option>
-                            <option value="4" className="2"> Schedule Constraint </option>
-                            <option value="5" className="2"> Budget And Schedule Constraint </option>
-                            <option value="6" className="2"> Not Known</option>
-
-                          </select>
-                        </td>
-                        <td>
-                          EEEC Utilization (Engineering)
+                          </table>
                         </td>
                         <td>
-                          <select className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleInputChange} >
-                            <option value="2" className="2">  {"<"}30% </option>
-                            <option value="3" className="2"> {">"}30% And {"<"}35%  </option>
-                            <option value="4" className="2"> {">"}35% And {"<"}50% </option>
-                            <option value="4" className="2"> {">"}50% And {"<"}70% </option>
-                            <option value="5" className="2"> {">"}75% </option>
-                          </select>
-                        </td>
-
-                      </tr>
-                      <tr>
-                        <td>Time of EEEC Involvement</td>
-                        <td> <select className="ms-Dropdown-select" id="PPEInvolve" onChange={this.handleInputChange} >
-                          <option value="2" className="2"> Planned Late Involvement </option>
-                          <option value="3" className="2"> Fast Track  </option>
-
-                        </select></td>
-                        <td>
-                          Project Organisation Chart
+                          1
                         </td>
                         <td>
-                          <select className="ms-Dropdown-select" id="PPEOrgChart" onChange={this.handleInputChange} >
-                            <option value="2" className="2"> Well Defined Structure </option>
-                            <option value="3" className="2"> Multiple Roles per resource  </option>
-                            <option value="3" className="2">Resource allocation managed by FSO  </option>
-                          </select>
+                          <textarea rows={2} cols={30} ></textarea>
                         </td>
                       </tr>
 
-                      <br></br>
-
                       <tr>
                         <td>
-                          Overall Risk Ranking
-                       </td>
-                        <td>
-                          <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
-                            <option value="2" className="2"> Low </option>
-                            <option value="3" className="2"> Medium</option>
-                            <option value="3" className="2">High  </option>
-                          </select>
-                        </td>
-                        <td>
-                          EEEC Scope
-                       </td>
-                        <td>
-                          <input type="checkbox" id="ChkPPEFeed"></input> &nbsp; Feed  <br></br>
-                          <input type="checkbox" id="ChkPPEFeed"></input> &nbsp;Execute  <br></br>
-                          <input type="checkbox" id="ChkPPEFeed"></input>&nbsp; FAT  <br></br>
-                          <input type="checkbox" id="ChkPPEFeed"></input>&nbsp; SAT  <br></br>
+                          <br></br>
+                          <br></br>
                         </td>
                       </tr>
                       <tr>
-
-                        <td rowSpan={1}>
+                        <td>
                           EEEC Involvement and Project Scope
-                        </td>
-                        <td colSpan={4}>
-                          <table>
+                          </td>
+                        <td>
+                          <table style={{ width: "90%" }}>
                             <tr>
                               <td><input type="checkbox" id="ChkPASBase" />&nbsp;PAS Base DB,Interlocks,Graphics  </td>
                               <td><input type="checkbox" id="ChkPASCustom" />&nbsp; PAS Custom Logic,Sequences </td>
@@ -4385,6 +4317,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <td><input type="checkbox" id="ChkSISCab" />&nbsp;SIS Cabinets  </td>
 
                             </tr>
+
                             <tr>
                               <td><input type="checkbox" id="chkPASCab" /> &nbsp;Other BU's and Engg Support</td>
                               <td> <input type="checkbox" id="chkInterface" />&nbsp;Interface Lead  </td>
@@ -4403,108 +4336,79 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           </table>
                         </td>
-                      </tr>
-                      <br></br>
-                      <tr>
-                        <td>FAT Engagement</td>
-                        <td><select className="ms-Dropdown-select">
-                          <option>Remote FAT</option>
-                          <option>Face to Face FAT</option>
-                        </select></td>
-                        <td>Overall PM</td>
-                        <td><select className="ms-Dropdown-select">
-                          <option>FSO</option>
-                          <option>EEC</option>
-                          <option>FSO + EEC</option>
-                        </select></td>
-                      </tr>
-
-                      <tr>
-                        <td>Overall Lead and Other LE's</td>
-                        <select className="ms-Dropdown-select">
-                          <option>FSO</option>
-                          <option>EEC</option>
-                          <option>EEC (Local)</option>
-                          <option>EEC(Local+Remote)</option>
-                          <option>FSO + EEC</option>
-                          <option>No Liaison in FSO</option>
-                        </select>
-                      </tr>
-                      <tr>
-                        <td rowSpan={2}> FSO PM And Lead</td>
                         <td>
-                          <table >
-                            <tr>
-                              <td rowSpan={5}>Open</td>
-                            </tr>
-                            <tr>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" />&nbsp;Accomodative</td>
-                            </tr>
-                            <tr>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" />&nbsp;Non Accomodative</td>
-                            </tr>
-                            <tr>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" />&nbsp;Difficult to Classify</td>
-                            </tr>
-                          </table>
-
+                          1
+                          </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
                         </td>
 
-                        <td colSpan={2}>
-                          <table >
-                            <tr>
-                              <td rowSpan={5} style={{ width: "140px" }}>Technical</td>
-                            </tr>
-                            <tr>
-                              <td> <input type="radio" id="FSOPMTech" name="FSOPMTech" value="0" />&nbsp;Technical</td>
-                            </tr>
-                            <tr>
-                              <td> <input type="radio" id="FSOPMTech" name="FSOPMTech" value="0" />&nbsp;Non Technical</td>
-                            </tr>
-                            <tr>
-                              <td> <input type="radio" id="FSOPMTech" name="FSOPMTech" value="0" />Difficult to Classify</td>
-                            </tr>
-                          </table>
+                      </tr>
+                      <tr>
+                        <td>
+                          <br></br>
+                          <br></br>
+                        </td>
+                      </tr>
 
+                      <tr>
+                        <td>What FSO Considers As a Success</td>
+                        <td><input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;Timely Delivery <br></br>
+                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;No Budget Overrun<br></br>
+                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;FAT Ready Deliverables<br></br>
+                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;Minimal Rework after FAT {"<"}1% of Budget
+<br></br>
+                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;Maintain or Improve Sales GP<br></br>
+                        </td>
+                        <td>
+                          1
+                          </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <table >
-                            <tr>
-                              <td rowSpan={5}>Other</td>
-                            </tr>
-                            <tr>
-                              <td> <input type="radio" id="FSOPMTech" name="FSOOther" value="0" />Proactive</td>
-                            </tr>
-                            <tr>
-                              <td><input type="radio" id="FSOPMTech" name="FSOOther" value="0" />Reactive</td>
-                            </tr>
-                            <tr>
-                              <td><input type="radio" id="FSOPMTech" name="FSOOther" value="0" />Difficult to Classify</td>
-                            </tr>
-                          </table>
-
-                        </td>
-                        <td colSpan={2}>
-                          <table >
-                            <tr>
-                              <td rowSpan={5} style={{ width: "140px" }}>EEEC Experience</td>
-                            </tr>
-                            <tr>
-                              <td> <input type="radio" id="FSOPMTech" name="EEECExp" value="0" />Worked with EEEC</td>
-                            </tr>
-                            <tr>
-                              <td> <input type="radio" id="FSOPMTech" name="EEECExp" value="0" />New to EEEC</td>
-                            </tr>
-                            <tr>
-                              <td> <input type="radio" id="FSOPMTech" name="EEECExp" value="0" />Difficult to Classify</td>
-                            </tr>
-                          </table>
-
+                          <br></br>
+                          <br></br>
                         </td>
                       </tr>
-                      <br></br>
+                      <tr>
+
+                        <td> Non Standard Requirements</td>
+                        <table>
+                          <tr>
+                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Implement Batch without using Batch Licences </td> <br></br>
+                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Use of SIS Blocks in PAS Control Module</td> <br></br>
+                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Use of Non-PCSD Library</td> <br></br>
+                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Graphics for custom resolutions</td> <br></br>
+                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;New Product/Technology</td> <br></br>
+                          </tr>
+                          <tr>
+                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Odd Shifts  </td><br></br>
+                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;IP/Clause</td><br></br>
+                            <td> <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Customer Demos</td><br></br>
+                            <td> <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Develope Details FS based on limited information</td><br></br>
+                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Other</td> <br></br>
+
+                          </tr>
+                        </table>
+                        <td>
+                          1
+                          </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <br></br>
+                          <br></br>
+                        </td>
+                      </tr>
+
                       <tr>
                         <td> Resource Skillset</td>
                         <td>
@@ -4516,6 +4420,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <option value="3" className="2">Resource with Process background  </option>
                           </select>
                         </td>
+                        <td>
+                          1
+                          </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+
+                      </tr>
+                      <tr>
                         <td>Resource Plan and Project Loading Chart</td>
                         <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
                           <option value="2" className="2"> Yes </option>
@@ -4524,34 +4437,11 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                         </select>
                       </tr>
-                      <tr>
-                        <td>What FSO Considers As a Success</td>
-                        <td><input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;Timely Delivery <br></br>
-                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;No Budget Overrun<br></br>
-                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;FAT Ready Deliverables<br></br>
-                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;Minimal Rework after FAT {"<"}1% of Budget
-<br></br>
-                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;Maintain or Improve Sales GP<br></br>
-                        </td>
-                      </tr>
 
-                      <tr>
-                        <td> Non Standard Requirements</td>
-                        <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Implement Batch without using Batch Licences <br></br>
-                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Use of SIS Blocks in PAS Control Module<br></br>
-                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Use of Non-PCSD Library<br></br>
-                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Graphics for custom resolutions<br></br>
-                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;New Product/Technology<br></br>
-                        </td>
-                        <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Odd Shifts <br></br>
-                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;IP/Clause<br></br>
-                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Customer Demos<br></br>
-                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Develope Details FS based on limited information<br></br>
-                          <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Other<br></br>
-                        </td>
-                      </tr>
+
 
                     </table>
+
                   </Card.Body>
                 </Accordion.Collapse>
               </Accordion>
