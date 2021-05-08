@@ -82,6 +82,15 @@ th {
 }
 
 
+label {
+  margin-top: 7px;
+  margin-left: 3px;
+}
+
+th{
+  text-align:center;
+}
+
 
 .page-header{
 background-color: #004b8e;

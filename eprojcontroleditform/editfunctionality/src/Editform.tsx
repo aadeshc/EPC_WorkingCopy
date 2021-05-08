@@ -4191,14 +4191,20 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <th style={{ border: "1px solid black;" }}>Remarks</th>
                       </tr>
                       <tr>
+                        <td></td>
+                        <th style={{ textAlign: "right" }}> Total Risk Index</th>
+                        <th>10</th>
+                      </tr>
+                      <tr>
                         <td style={{ border: "1px solid black;" }} ></td>
                       </tr>
                       <tr>
                         <td style={{ width: '20%' }}>
                           Project Contract Type (Emerson)
                                            </td>
-                        <td style={{ width: '50%' }}>
+                        <td style={{ width: '55%' }}>
                           <select className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleInputChange} value={this.state.EditDeliveryComplete} >
+                            <option>Please Select</option>
                             <option value="1" className="1">Workpack</option>
                             <option value="2" className="2">T And M</option>
                             <option value="3" className="3">Fixed Price</option>
@@ -4207,7 +4213,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           </select>
                         </td>
-                        <td style={{ width: '5%', padding: "4px" }}>1</td>
+                        <td style={{ width: '5%', textAlign: "center" }}>1</td>
                         <td><textarea rows={2} cols={30} ></textarea></td>
                       </tr>
                       <tr>
@@ -4216,22 +4222,40 @@ export class eProjectNewForm extends React.Component<{}, any>{
                                            </td>
                         <td style={{ width: '45%' }}>
                           <select className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleInputChange} value={this.state.EditDeliveryComplete} >
+                            <option>Please Select</option>
                             <option value="1" className="1">Applicable</option>
                             <option value="2" className="2">Not Applicable</option>
 
 
                           </select>
                         </td>
-                        <td style={{ width: '10%' }}>1</td>
+                        <td style={{ width: '10%', textAlign: "center" }}>1</td>
                         <td><textarea rows={2} cols={30}></textarea></td>
                       </tr>
+
+                      <tr>
+                        <td>
+                          Project GP
+                          </td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleInputChange} value={this.state.EditDeliveryComplete} >
+                            <option>Please Select</option>
+                            <option value="2" className="2">Regular GP</option>
+                            <option value="1" className="1">Low GP</option>
+                            <option value="2" className="2">Negative GP</option>
+                          </select>
+                        </td>
+                        <td style={{ width: '10%', textAlign: "center" }}>1</td>
+                        <td><textarea rows={2} cols={30}></textarea></td>
+                      </tr>
+
 
                       <tr>
                         <td >
                           Execution Strategy and Model
                       </td>
                         <td colSpan={1} style={{ width: '45%' }}>
-                          <table style={{ borderCollapse: "collapse", borderStyle: "thin", borderWidth: "1px", border: "1px solid darkgray;", width: "86%" }}>
+                          <table style={{ borderCollapse: "collapse", borderStyle: "thin", borderWidth: "1px", border: "1px solid darkgray;", width: "95%" }}>
                             <tr>
                               <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}><u> Execution</u></th>
                               <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>FSO</u></th>
@@ -4239,12 +4263,12 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <tr>
 
                               <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", borderColor: "darkgray" }}> <input type="radio" id="FSO" name="FSO" value="0" /> &nbsp;
-                          <label>FSO/EEEC Split : Same as defined in the Propsal</label> <br></br>
+                          <label>FSO/EEEC Split : Same as defined in the Proposal</label> <br></br>
                                 <input type="radio" name="FSO" value="3" /> &nbsp;
                           <label>FSO/EEEC Split:Decreased EEEC Utilization/Scope</label> <br></br>
                                 <input type="radio" name="FSO" value="3" /> &nbsp;
                           <label>FSO/EEEC Split:Increased EEEC Utilization/Scope</label> <br></br>
-                                <input type="radio" name="FSO" value="3" />
+                                <input type="radio" name="FSO" value="3" />&nbsp;
                                 <label>Additional/Change in EEEC roles after Project Initiation</label>
                               </td>
                               <td style={{ borderStyle: "Solid", borderWidth: "1px", borderColor: 'grey' }}>
@@ -4261,15 +4285,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                             <tr>
                               <td colSpan={2} style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
-                                <td>  <input type="checkbox" name="chkEPC" id="PAS" onChange={this.handleInputChange} ></input>&nbsp;Multi EPC</td>
+                                <td>  <input type="checkbox" name="chkEPC" id="PAS" onChange={this.handleInputChange} ></input>&nbsp;<label>Multi EPC</label></td>
 
-                                <td>  <input type="checkbox" name="chkEngg" id="ChkSIS" onChange={this.handleInputChange}></input>&nbsp;Multi Engg Center</td>
+                                <td>  <input type="checkbox" name="chkEngg" id="ChkSIS" onChange={this.handleInputChange}></input>&nbsp;<label>Multi Engg Center</label></td>
 
-                                <td> <input type="checkbox" name="chkParallal" id="EI" onChange={this.handleInputChange}></input>&nbsp;Multi Area Phased Execution</td>
+                                <td> <input type="checkbox" name="chkParallal" id="EI" onChange={this.handleInputChange}></input>&nbsp;<label>Multi Area Phased Execution</label></td>
 
-                                <td > <input type="checkbox" name="chkPhased" id="ICSS" onChange={this.handleInputChange}></input>&nbsp;Multi Area Parallal Execution</td>
+                                <td > <input type="checkbox" name="chkPhased" id="ICSS" onChange={this.handleInputChange}></input>&nbsp;<label>Multi Area Parallal Execution</label></td>
                                 <br></br>
-                                <td ><input type="checkbox" name="chkAdditional" id="RVO2" onChange={this.handleInputChange}></input>&nbsp;Additional Roles</td>
+                                <td ><input type="checkbox" name="chkAdditional" id="RVO2" onChange={this.handleInputChange}></input>&nbsp;<label>Additional Roles</label></td>
 
                               </td>
                             </tr>
@@ -4277,7 +4301,33 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           </table>
                         </td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                        </td>
                         <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          Emerson Budgeted Engineering hour </td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPEmersonBudgeted" onChange={this.handleInputChange} >
+                            <option>Please Select</option>
+                            <option value="2" className="2"> {">"}1,000 And {"<"}5,000   </option>
+                            <option value="3" className="2"> {">"}5,000 and {"<"}10,000   </option>
+                            <option value="4" className="2"> {">"}10,000 and {"<"}25,000 </option>
+                            <option value="5" className="2"> {">"}25,000 and {"<"}50,000 </option>
+                            <option value="6" className="2"> {">"}50,000 and {"<"}75,000 </option>
+                            <option value="7" className="2"> {">"}75,000 and {"<"}100,000 </option>
+                            <option value="8" className="2"> {">"}100,000  </option>
+                            <option value="9" className="2">Not Available</option>
+                          </select>
+
+                        </td>
+                        <td style={{ textAlign: "center" }}>
                           1
                         </td>
                         <td>
@@ -4287,56 +4337,203 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                       <tr>
                         <td>
-                          <br></br>
-                          <br></br>
+                          EEEC Budgeted Engineering hours </td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPEEECBudgeted" onChange={this.handleInputChange} >
+                            <option>Please Select</option>
+                            <option value="2" className="2"> {">"}1,000 and {"<"}5,000   </option>
+                            <option value="3" className="2"> {">"}5,000 and {"<"}10,000   </option>
+                            <option value="4" className="2"> {">"}10,000 and {"<"}25,000 </option>
+                            <option value="5" className="2"> {">"}25,000 and {"<"}50,000 </option>
+                            <option value="6" className="2"> {">"}50,000 and {"<"}75,000 </option>
+                            <option value="7" className="2"> {">"}75,000 and {"<"}100,000 </option>
+                            <option value="8" className="2"> {">"}100,000  </option>
+                            <option value="9" className="2">Not Available</option>
+                          </select>
+
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
                         </td>
                       </tr>
+
+                      <tr>
+                        <td> Adequacy of Budget & Schedule</td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleInputChange} >
+                            <option>Please Select</option>
+                            <option value="2" className="2"> Adequate Budget And Schedule  </option>
+                            <option value="3" className="2"> Budget Constraint   </option>
+                            <option value="4" className="2"> Schedule Constraint </option>
+                            <option value="5" className="2"> Budget And Schedule Constraint </option>
+                            <option value="6" className="2"> Not Known</option>
+
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          EEEC Utilization (Engineering)
+                        </td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleInputChange} >
+                            <option>Please Select</option>
+                            <option value="2" className="2">  {"<"}30% </option>
+                            <option value="3" className="2"> {">"}30% And {"<"}35%  </option>
+                            <option value="4" className="2"> {">"}35% And {"<"}50% </option>
+                            <option value="4" className="2"> {">"}50% And {"<"}70% </option>
+                            <option value="5" className="2"> {">"}75% </option>
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+
+                      </tr>
+
+                      <tr>
+                        <td>Time of EEEC Involvement</td>
+                        <td> <select className="ms-Dropdown-select" id="PPEInvolve" onChange={this.handleInputChange} >
+                          <option>Please Select</option>
+                          <option value="2" className="2"> Planned Late Involvement </option>
+                          <option value="3" className="2"> Fast Track  </option>
+
+                        </select></td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          Project Organisation Chart
+                        </td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPEOrgChart" onChange={this.handleInputChange} >
+                            <option>Please Select</option>
+                            <option value="2" className="2"> Well Defined Structure </option>
+                            <option value="3" className="2"> Multiple Roles per resource  </option>
+                            <option value="3" className="2">Resource allocation managed by FSO  </option>
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                          </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Overall Risk Ranking
+                       </td>
+                        <td>
+                          <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
+                            <option>Please Select</option>
+                            <option value="2" className="2"> Low </option>
+                            <option value="3" className="2"> Medium</option>
+                            <option value="3" className="2">High  </option>
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                          </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          EEEC Scope
+                       </td>
+                        <td>
+
+                          <input type="checkbox" id="ChkPPEFeed"></input> &nbsp; Feed  <br></br>
+                          <input type="checkbox" id="ChkPPEFeed"></input> &nbsp;Execute  <br></br>
+                          <input type="checkbox" id="ChkPPEFeed"></input>&nbsp; FAT  <br></br>
+                          <input type="checkbox" id="ChkPPEFeed"></input>&nbsp; SAT  <br></br>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                          </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+                      </tr>
+
+
                       <tr>
                         <td>
                           EEEC Involvement and Project Scope
                           </td>
                         <td>
-                          <table style={{ width: "90%" }}>
-                            <tr>
-                              <td><input type="checkbox" id="ChkPASBase" />&nbsp;PAS Base DB,Interlocks,Graphics  </td>
-                              <td><input type="checkbox" id="ChkPASCustom" />&nbsp; PAS Custom Logic,Sequences </td>
-                              <td><input type="checkbox" id="ChkPASComplex" />&nbsp;PAS Complex Logic  </td>
-                              <td><input type="checkbox" id="ChkPASBatch" />&nbsp;PAS Batch  </td>
-                              <td><input type="checkbox" id="ChkOtherPAS" />&nbsp;Other PAS  </td>
-                            </tr>
+                          <div id="EEECInvolvement" style={{ width: "95%", border: "1px solid darkgray", padding: "10px", marginTop: "7px" }}>
+                            <table style={{ width: "100%" }} >
+                              <tr>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkPASBase" /></td><td>PAS Base DB,Interlocks,Graphics  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkPASCustom" /></td><td>PAS Custom Logic,Sequences </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkPASComplex" /></td><td>PAS Complex Logic  </td>
+                              </tr>
+                              <tr>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkPASBatch" /></td><td>PAS Batch  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkOtherPAS" /></td><td>Other PAS  </td>
+                              </tr>
 
-                            <tr>
-                              <td> <input type="checkbox" id="ChkSISESD" />&nbsp;SIS ESD  </td>
-                              <td> <input type="checkbox" id="ChkSISFGS" /> &nbsp; SIS FGS </td>
-                              <td><input type="checkbox" id="ChkSISBMS" />&nbsp;SIS BMS   </td>
-                              <td><input type="checkbox" id="chkSIS" />&nbsp; SIS/PAS Integration </td>
-                              <td><input type="checkbox" id="ChkSISOther" />&nbsp;Other SIS Integration </td>
-                            </tr>
-                            <tr>
-                              <td> <input type="checkbox" id="chkPASCab" />&nbsp;PAS Cabinets  </td>
-                              <td><input type="checkbox" id="ChkSISCab" />&nbsp;SIS Cabinets  </td>
+                              <tr>
+                                <td style={{ width: "20px" }}> <input type="checkbox" id="ChkSISESD" /></td><td>SIS ESD  </td>
+                                <td style={{ width: "20px" }}> <input type="checkbox" id="ChkSISFGS" /></td><td>SIS FGS </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkSISBMS" /></td><td>SIS BMS   </td>
+                              </tr>
+                              <tr>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="chkSIS" /> </td><td>SIS/PAS Integration </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkSISOther" /></td><td>Other SIS Integration </td>
+                              </tr>
+                              <tr>
+                                <td style={{ width: "20px" }}> <input type="checkbox" id="chkPASCab" /></td><td>PAS Cabinets  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkSISCab" /></td><td>SIS Cabinets  </td>
 
-                            </tr>
+                              </tr>
 
-                            <tr>
-                              <td><input type="checkbox" id="chkPASCab" /> &nbsp;Other BU's and Engg Support</td>
-                              <td> <input type="checkbox" id="chkInterface" />&nbsp;Interface Lead  </td>
-                              <td><input type="checkbox" id="ChkDocument" /> &nbsp;Document Controller  </td>
-                              <td>  <input type="checkbox" id="ChkWriter" />&nbsp;Technical Writer  </td>
-                              <td><input type="checkbox" id="ChkOTS" />&nbsp; OTS   </td>
+                              <tr>
+                                <td style={{ width: "20px" }}> <input type="checkbox" id="chkPASCab" /> </td><td>Other BU's and Engg Support</td>
+                                <td style={{ width: "20px" }}> <input type="checkbox" id="chkInterface" /></td><td>Interface Lead  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkDocument" /></td><td>Document Controller  </td>
+                              </tr>
+                              <tr>
+                                <td style={{ width: "20px" }} >  <input type="checkbox" id="ChkWriter" /></td><td>Technical Writer  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkOTS" /></td><td>OTS   </td>
 
-                            </tr>
-                            <tr>
-                              <td><input type="checkbox" id="ChkWireless" /> &nbsp; Wireless  </td>
-                              <td><input type="checkbox" id="ChkAgile" /> &nbsp;Agile OPS  </td>
-                              <td><input type="checkbox" id="ChkOther" />&nbsp;Other </td>
-                            </tr>
+                              </tr>
+                              <tr>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkWireless" /></td><td>Wireless  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkAgile" /> </td><td>Agile OPS  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkOther" /></td><td>Other </td>
+                              </tr>
 
 
 
-                          </table>
+                            </table>
+                          </div>
                         </td>
-                        <td>
+                        <td style={{ textAlign: "center" }}>
                           1
                           </td>
                         <td>
@@ -4345,11 +4542,100 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                       </tr>
                       <tr>
+                        <td>FAT Engagement</td>
+                        <td><select className="ms-Dropdown-select">
+                          <option>Please Select</option>
+                          <option>Remote FAT</option>
+                          <option>Face to Face FAT</option>
+                        </select></td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                          </td>
                         <td>
-                          <br></br>
-                          <br></br>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+
+
+                      </tr>
+
+                      <tr>
+                        <td>Overall PM</td>
+                        <td><select className="ms-Dropdown-select">
+                          <option>Please Select</option>
+                          <option>FSO</option>
+                          <option>EEC</option>
+                          <option>FSO + EEC</option>
+                        </select></td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                          </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>Overall Lead and Other LE's</td>
+                        <td>
+                          <select className="ms-Dropdown-select">
+                            <option>Please Select</option>
+                            <option>FSO</option>
+                            <option>EEC</option>
+                            <option>EEC (Local)</option>
+                            <option>EEC(Local+Remote)</option>
+                            <option>FSO + EEC</option>
+                            <option>No Liaison in FSO</option>
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                          </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
                         </td>
                       </tr>
+
+                      <tr>
+                        <td> FSO PM and Leads</td>
+                        <td>
+                          <table style={{ border: "1px solid lightgray" }}>
+
+                            <tr>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}><u> Open</u></th>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>Technical</u></th>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>Other</th>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>EEEC Experience</th>
+                            </tr>
+                            <tr>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" /> <label>Accomodative</label> </td>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMTechnical" value="0" /> <label>Technical</label> </td>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMOther" value="0" /> <label>Proactive</label> </td>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOEEEC" value="0" /> <label>Worked With EEEC</label> </td>
+                            </tr>
+                            <tr>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" /> <label>Non Accomodative</label> </td>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMTechnical" value="0" /> <label>Non Technical</label> </td>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMOther" value="0" /> <label>Reactive</label> </td>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOEEEC" value="0" /> <label>New to EEEC</label> </td>
+                            </tr>
+                            <tr>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMTechnical" value="0" /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMOther" value="0" /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" id="FSOMPMOpen" name="FSOEEEC" value="0" /> <label>Difficult to Classify</label> </td>
+                            </tr>
+
+
+                          </table>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                          </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+                      </tr>
+
 
                       <tr>
                         <td>What FSO Considers As a Success</td>
@@ -4360,40 +4646,42 @@ export class eProjectNewForm extends React.Component<{}, any>{
 <br></br>
                           <input type="checkbox" id="chkPASCab" name="FSOSuccess" /> &nbsp;Maintain or Improve Sales GP<br></br>
                         </td>
-                        <td>
+                        <td style={{ textAlign: "center" }}>
                           1
                           </td>
                         <td>
                           <textarea rows={2} cols={30}></textarea>
                         </td>
                       </tr>
-                      <tr>
-                        <td>
-                          <br></br>
-                          <br></br>
-                        </td>
-                      </tr>
+
                       <tr>
 
                         <td> Non Standard Requirements</td>
-                        <table>
-                          <tr>
-                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Implement Batch without using Batch Licences </td> <br></br>
-                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Use of SIS Blocks in PAS Control Module</td> <br></br>
-                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Use of Non-PCSD Library</td> <br></br>
-                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Graphics for custom resolutions</td> <br></br>
-                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;New Product/Technology</td> <br></br>
-                          </tr>
-                          <tr>
-                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Odd Shifts  </td><br></br>
-                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;IP/Clause</td><br></br>
-                            <td> <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Customer Demos</td><br></br>
-                            <td> <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Develope Details FS based on limited information</td><br></br>
-                            <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> &nbsp;Other</td> <br></br>
+                        <div id="EEECInvolvement" style={{ width: "95%", border: "1px solid darkgray", padding: "10px", marginTop: "7px" }}>
+                          <table style={{ width: "100%" }}>
+                            <tr>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Implement Batch without using Batch Licences </td> <br></br>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Use of SIS Blocks in PAS Control Module</td> <br></br>
 
-                          </tr>
-                        </table>
-                        <td>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /></td><td>Use of Non-PCSD Library</td> <br></br>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /></td><td>Graphics for custom resolutions</td> <br></br>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>New Product/Technology</td> <br></br>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Odd Shifts  </td><br></br>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>IP/Clause</td><br></br>
+                              <td> <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Customer Demos</td><br></br>
+                            </tr>
+                            <tr>
+                              <td> <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Develope Details FS based on limited information</td><br></br>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Other</td> <br></br>
+
+                            </tr>
+                          </table>
+                        </div>
+                        <td style={{ textAlign: "center" }}>
                           1
                           </td>
                         <td>
@@ -4414,13 +4702,14 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td>
 
                           <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
+                            <option>Please Select</option>
                             <option value="2" className="2"> No Special Requirement </option>
                             <option value="3" className="2"> Blended Mix</option>
                             <option value="3" className="2">Special Skills  </option>
                             <option value="3" className="2">Resource with Process background  </option>
                           </select>
                         </td>
-                        <td>
+                        <td style={{ textAlign: "center" }}>
                           1
                           </td>
                         <td>
@@ -4431,6 +4720,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <td>Resource Plan and Project Loading Chart</td>
                         <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
+                          <option>Please Select</option>
                           <option value="2" className="2"> Yes </option>
                           <option value="3" className="2"> No</option>
                           <option value="3" className="2">To Be Defined Later  </option>
