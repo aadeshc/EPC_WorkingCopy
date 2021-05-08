@@ -238,6 +238,12 @@ export class eProjectNewForm extends React.Component<{}, any>{
       RiskIndex_ResourceSkill: 0,
       RiskIndex_FSOSuccess: 0,
       RiskIndex_NonStandard: 0,
+      RiskIndex_ResourcePlan: 0,
+      FSO_OPEN: 0,
+      FSO_Tech: 0,
+      FSO_Oth: 0,
+      FSO_EEC: 0,
+
       restdata: [],
       projectDetails: [],
       deltav: [],
@@ -2585,12 +2591,40 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
   public handleRiskChange = (event) => {
 
-    var index = event.target.selectedIndex;
-    var optionElement = event.target.childNodes[index]
-    var option = optionElement.getAttribute('data-set');
-    this.setState({
-      [event.target.name]: parseInt(option)
-    })
+    if ((event.target.name == "FSOMPMOpen") || (event.target.name == "FSOPMTechnical") || (event.target.name == "FSOPMOther") || (event.target.name == "FSOEEEC")) {
+
+
+      if (event.target.name == "FSOMPMOpen") {
+        this.setState({
+          FSO_OPEN: parseInt(event.target.dataset.set)
+        })
+      }
+      if (event.target.name == "FSOPMTechnical") {
+        this.setState({
+          FSO_Tech: parseInt(event.target.dataset.set)
+        })
+      }
+      if (event.target.name == "FSOPMOther") {
+        this.setState({
+          FSO_Oth: parseInt(event.target.dataset.set)
+        })
+      }
+      if (event.target.name == "FSOEEEC") {
+        this.setState({
+          FSO_EEC: parseInt(event.target.dataset.set)
+        })
+      }
+
+
+    } else {
+
+      var index = event.target.selectedIndex;
+      var optionElement = event.target.childNodes[index]
+      var option = optionElement.getAttribute('data-set');
+      this.setState({
+        [event.target.name]: parseInt(option)
+      })
+    }
 
   }
   public handleInputChange = (event) => {
@@ -4664,30 +4698,30 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>EEEC Experience</th>
                             </tr>
                             <tr>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" /> <label>Accomodative</label> </td>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMTechnical" value="0" /> <label>Technical</label> </td>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMOther" value="0" /> <label>Proactive</label> </td>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOEEEC" value="0" /> <label>Worked With EEEC</label> </td>
+                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOMPMOpen" onChange={this.handleRiskChange} value="0" /> <label>Accomodative</label> </td>
+                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOPMTechnical" onChange={this.handleRiskChange} /> <label>Technical</label> </td>
+                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOPMOther" value="0" onChange={this.handleRiskChange} /> <label>Proactive</label> </td>
+                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOEEEC" value="0" onChange={this.handleRiskChange} /> <label>Worked With EEEC</label> </td>
                             </tr>
                             <tr>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" /> <label>Non Accomodative</label> </td>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMTechnical" value="0" /> <label>Non Technical</label> </td>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMOther" value="0" /> <label>Reactive</label> </td>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOEEEC" value="0" /> <label>New to EEEC</label> </td>
+                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOMPMOpen" value="0" onChange={this.handleRiskChange} /> <label>Non Accomodative</label> </td>
+                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOPMTechnical" value="0" onChange={this.handleRiskChange} /> <label>Non Technical</label> </td>
+                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOPMOther" value="0" onChange={this.handleRiskChange} /> <label>Reactive</label> </td>
+                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOEEEC" value="0" onChange={this.handleRiskChange} /> <label>New to EEEC</label> </td>
                             </tr>
                             <tr>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOMPMOpen" value="0" /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMTechnical" value="0" /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOPMOther" value="0" /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" id="FSOMPMOpen" name="FSOEEEC" value="0" /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOMPMOpen" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOPMTechnical" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOPMOther" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOEEEC" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
                             </tr>
 
 
                           </table>
                         </td>
                         <td style={{ textAlign: "center" }}>
-                          1
-                          </td>
+                          {this.state.FSO_OPEN + this.state.FSO_Tech + this.state.FSO_Oth + this.state.FSO_EEC}
+                        </td>
                         <td>
                           <textarea rows={2} cols={30}></textarea>
                         </td>
@@ -4758,7 +4792,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td> Resource Skillset</td>
                         <td>
 
-                          <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleRiskChange} >
+                          <select name="RiskIndex_ResourceSkill" className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleRiskChange} >
                             <option>Please Select</option>
                             <option data-set="1" value="2" className="2"> No Special Requirement </option>
                             <option data-set="2" value="3" className="2"> Blended Mix</option>
@@ -4767,8 +4801,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
-                          1
-                          </td>
+                          {this.state.RiskIndex_ResourceSkill}
+                        </td>
                         <td>
                           <textarea rows={2} cols={30}></textarea>
                         </td>
@@ -4776,13 +4810,19 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       </tr>
                       <tr>
                         <td>Resource Plan and Project Loading Chart</td>
-                        <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
+                        <select name="RiskIndex_ResourcePlan" className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
                           <option>Please Select</option>
                           <option value="2" className="2"> Yes </option>
                           <option value="3" className="2"> No</option>
                           <option value="3" className="2">To Be Defined Later  </option>
 
                         </select>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_ResourcePlan}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
                       </tr>
 
 
