@@ -23,7 +23,7 @@ import {
 import { DateRangeType } from 'office-ui-fabric-react/lib/Calendar'
 import "./"
 import {
-  Label, Checkbox, PrimaryButton, Selection, SelectionMode, TextField, IPersonaProps, IPersona, DatePicker, DayOfWeek, Dropdown, values, DefaultButton, inputProperties, themeRulesStandardCreator, textAreaProperties
+  Label, Checkbox, PrimaryButton, Selection, SelectionMode, TextField, IPersonaProps, IPersona, DatePicker, DayOfWeek, Dropdown, values, DefaultButton, inputProperties, themeRulesStandardCreator, textAreaProperties, thProperties
 } from "office-ui-fabric-react";
 
 import { DropdownMenuItemType, IDropdownStyles, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
@@ -214,6 +214,30 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
     this.state = {
+      TotalRiskIndex: 0,
+      RiskIndex_ProjectCT: 0,
+      RiskIndex_ProjectLD: 0,
+      RiskIndex_ProjectGP: 0,
+      RiskIndex_ExecutionFSO: 0,
+      RiskIndex_Execution: 0,
+      RiskIndex_ExecutionMulti: 0,
+      RiskIndex_EmersonHours: 0,
+      RiskIndex_EEECHours: 0,
+      RiskIndex_Budget: 0,
+      RiskIndex_Utilization: 0,
+      RiskIndex_Duration: 0,
+      RiskIndex_EEECInvolvement: 0,
+      RiskIndex_ProjectChart: 0,
+      RiskIndex_EEECScope: 0,
+      RiskIndex_EEECInvolvementScope: 0,
+      RiskIndex_FAT: 0,
+      RiskIndex_OverallPM: 0,
+      RiskIndex_OverallRisk: 0,
+      RiskIndex_OverallLead: 0,
+      RiskIndex_FSOLead: 0,
+      RiskIndex_ResourceSkill: 0,
+      RiskIndex_FSOSuccess: 0,
+      RiskIndex_NonStandard: 0,
       restdata: [],
       projectDetails: [],
       deltav: [],
@@ -2557,6 +2581,18 @@ export class eProjectNewForm extends React.Component<{}, any>{
     })
   }
 
+
+
+  public handleRiskChange = (event) => {
+
+    var index = event.target.selectedIndex;
+    var optionElement = event.target.childNodes[index]
+    var option = optionElement.getAttribute('data-set');
+    this.setState({
+      [event.target.name]: parseInt(option)
+    })
+
+  }
   public handleInputChange = (event) => {
 
 
@@ -2569,6 +2605,10 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
       var index = event.nativeEvent.target.selectedIndex;
       console.log(event.nativeEvent.target[index].text)
+
+      var index = event.target.selectedIndex;
+      var optionElement = event.target.childNodes[index]
+      var option = optionElement.getAttribute('data-id');
 
 
       console.log(event.target.value)
@@ -4203,17 +4243,17 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           Project Contract Type (Emerson)
                                            </td>
                         <td style={{ width: '55%' }}>
-                          <select className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleInputChange} value={this.state.EditDeliveryComplete} >
-                            <option>Please Select</option>
-                            <option value="1" className="1">Workpack</option>
-                            <option value="2" className="2">T And M</option>
-                            <option value="3" className="3">Fixed Price</option>
-                            <option value="4" className="4">MIB/L1</option>
-                            <option value="5" className="5">Other</option>
+                          <select name="RiskIndex_ProjectCT" className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleRiskChange}>
+                            <option data-set="0">Please Select</option>
+                            <option data-set="1" value="1" className="1">Workpack</option>
+                            <option data-set="2" value="2" className="2">T And M</option>
+                            <option data-set="3" value="3" className="3">Fixed Price</option>
+                            <option data-set="4" value="4" className="4">MIB/L1</option>
+                            <option data-set="5" value="5" className="5">Other</option>
 
                           </select>
                         </td>
-                        <td style={{ width: '5%', textAlign: "center" }}>1</td>
+                        <td style={{ width: '5%', textAlign: "center" }}>{this.state.RiskIndex_ProjectCT}</td>
                         <td><textarea rows={2} cols={30} ></textarea></td>
                       </tr>
                       <tr>
@@ -4221,15 +4261,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           Project LD  (Emerson)
                                            </td>
                         <td style={{ width: '45%' }}>
-                          <select className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleInputChange} value={this.state.EditDeliveryComplete} >
-                            <option>Please Select</option>
-                            <option value="1" className="1">Applicable</option>
-                            <option value="2" className="2">Not Applicable</option>
+                          <select name="RiskIndex_ProjectLD" className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleRiskChange}>
+                            <option data-set="0">Please Select</option>
+                            <option data-set="1" value="1" className="1">Applicable</option>
+                            <option data-set="2" value="2" className="2">Not Applicable</option>
 
 
                           </select>
                         </td>
-                        <td style={{ width: '10%', textAlign: "center" }}>1</td>
+                        <td style={{ width: '10%', textAlign: "center" }}>{this.state.RiskIndex_ProjectLD}</td>
                         <td><textarea rows={2} cols={30}></textarea></td>
                       </tr>
 
@@ -4238,14 +4278,14 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           Project GP
                           </td>
                         <td>
-                          <select className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleInputChange} value={this.state.EditDeliveryComplete} >
+                          <select name="RiskIndex_ProjectGP" className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleRiskChange}>
                             <option>Please Select</option>
-                            <option value="2" className="2">Regular GP</option>
-                            <option value="1" className="1">Low GP</option>
-                            <option value="2" className="2">Negative GP</option>
+                            <option data-set="1" value="2" className="2">Regular GP</option>
+                            <option data-set="4" value="1" className="1">Low GP</option>
+                            <option data-set="6" value="2" className="2">Negative GP</option>
                           </select>
                         </td>
-                        <td style={{ width: '10%', textAlign: "center" }}>1</td>
+                        <td style={{ width: '10%', textAlign: "center" }}>{this.state.RiskIndex_ProjectGP}</td>
                         <td><textarea rows={2} cols={30}></textarea></td>
                       </tr>
 
@@ -4314,21 +4354,21 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td>
                           Emerson Budgeted Engineering hour </td>
                         <td>
-                          <select className="ms-Dropdown-select" id="PPEmersonBudgeted" onChange={this.handleInputChange} >
-                            <option>Please Select</option>
-                            <option value="2" className="2"> {">"}1,000 And {"<"}5,000   </option>
-                            <option value="3" className="2"> {">"}5,000 and {"<"}10,000   </option>
-                            <option value="4" className="2"> {">"}10,000 and {"<"}25,000 </option>
-                            <option value="5" className="2"> {">"}25,000 and {"<"}50,000 </option>
-                            <option value="6" className="2"> {">"}50,000 and {"<"}75,000 </option>
-                            <option value="7" className="2"> {">"}75,000 and {"<"}100,000 </option>
-                            <option value="8" className="2"> {">"}100,000  </option>
-                            <option value="9" className="2">Not Available</option>
+                          <select name="RiskIndex_EmersonHours" className="ms-Dropdown-select" id="PPEmersonBudgeted" onChange={this.handleRiskChange} >
+                            <option data-set="0">Please Select</option>
+                            <option data-set="2" value="2" className="2"> {">"}1,000 And {"<"}5,000   </option>
+                            <option data-set="3" value="3" className="2"> {">"}5,000 and {"<"}10,000   </option>
+                            <option data-set="4" value="4" className="2"> {">"}10,000 and {"<"}25,000 </option>
+                            <option data-set="5" value="5" className="2"> {">"}25,000 and {"<"}50,000 </option>
+                            <option data-set="6 " value="6" className="2"> {">"}50,000 and {"<"}75,000 </option>
+                            <option data-set="7" value="7" className="2"> {">"}75,000 and {"<"}100,000 </option>
+                            <option data-set="8" value="8" className="2"> {">"}100,000  </option>
+                            <option data-set="9" value="9" className="2">Not Available</option>
                           </select>
 
                         </td>
                         <td style={{ textAlign: "center" }}>
-                          1
+                          {this.state.RiskIndex_EmersonHours}
                         </td>
                         <td>
                           <textarea rows={2} cols={30} ></textarea>
@@ -4339,21 +4379,21 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td>
                           EEEC Budgeted Engineering hours </td>
                         <td>
-                          <select className="ms-Dropdown-select" id="PPEEECBudgeted" onChange={this.handleInputChange} >
+                          <select name="RiskIndex_EEECHours" className="ms-Dropdown-select" id="PPEEECBudgeted" onChange={this.handleRiskChange} >
                             <option>Please Select</option>
-                            <option value="2" className="2"> {">"}1,000 and {"<"}5,000   </option>
-                            <option value="3" className="2"> {">"}5,000 and {"<"}10,000   </option>
-                            <option value="4" className="2"> {">"}10,000 and {"<"}25,000 </option>
-                            <option value="5" className="2"> {">"}25,000 and {"<"}50,000 </option>
-                            <option value="6" className="2"> {">"}50,000 and {"<"}75,000 </option>
-                            <option value="7" className="2"> {">"}75,000 and {"<"}100,000 </option>
-                            <option value="8" className="2"> {">"}100,000  </option>
-                            <option value="9" className="2">Not Available</option>
+                            <option data-set="2" value="2" className="2"> {">"}1,000 and {"<"}5,000   </option>
+                            <option data-set="3" value="3" className="2"> {">"}5,000 and {"<"}10,000   </option>
+                            <option data-set="4" value="4" className="2"> {">"}10,000 and {"<"}25,000 </option>
+                            <option data-set="5" value="5" className="2"> {">"}25,000 and {"<"}50,000 </option>
+                            <option data-set="6" value="6" className="2"> {">"}50,000 and {"<"}75,000 </option>
+                            <option data-set="7" value="7" className="2"> {">"}75,000 and {"<"}100,000 </option>
+                            <option data-set="8" value="8" className="2"> {">"}100,000  </option>
+                            <option data-set="9" value="9" className="2">Not Available</option>
                           </select>
 
                         </td>
                         <td style={{ textAlign: "center" }}>
-                          1
+                          {this.state.RiskIndex_EEECHours}
                         </td>
                         <td>
                           <textarea rows={2} cols={30} ></textarea>
@@ -4363,18 +4403,18 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <td> Adequacy of Budget & Schedule</td>
                         <td>
-                          <select className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleInputChange} >
-                            <option>Please Select</option>
-                            <option value="2" className="2"> Adequate Budget And Schedule  </option>
-                            <option value="3" className="2"> Budget Constraint   </option>
-                            <option value="4" className="2"> Schedule Constraint </option>
-                            <option value="5" className="2"> Budget And Schedule Constraint </option>
-                            <option value="6" className="2"> Not Known</option>
+                          <select name="RiskIndex_Budget" className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleRiskChange} >
+                            <option data-set="0">Please Select</option>
+                            <option data-set="1" value="2" className="2"> Adequate Budget And Schedule  </option>
+                            <option data-set="2" value="3" className="2"> Budget Constraint   </option>
+                            <option data-set="2" value="4" className="2"> Schedule Constraint </option>
+                            <option data-set="6" value="5" className="2"> Budget And Schedule Constraint </option>
+                            <option data-set="8" value="6" className="2"> Not Known</option>
 
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
-                          1
+                          {this.state.RiskIndex_Budget}
                         </td>
                         <td>
                           <textarea rows={2} cols={30} ></textarea>
@@ -4387,17 +4427,17 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           EEEC Utilization (Engineering)
                         </td>
                         <td>
-                          <select className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleInputChange} >
-                            <option>Please Select</option>
-                            <option value="2" className="2">  {"<"}30% </option>
-                            <option value="3" className="2"> {">"}30% And {"<"}35%  </option>
-                            <option value="4" className="2"> {">"}35% And {"<"}50% </option>
-                            <option value="4" className="2"> {">"}50% And {"<"}70% </option>
-                            <option value="5" className="2"> {">"}75% </option>
+                          <select name="RiskIndex_Utilization" className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleRiskChange} >
+                            <option data-set="0" >Please Select</option>
+                            <option data-set="1" value="2" className="2">  {"<"}30% </option>
+                            <option data-set="2" value="3" className="2"> {">"}30% And {"<"}35%  </option>
+                            <option data-set="3" value="4" className="2"> {">"}35% And {"<"}50% </option>
+                            <option data-set="4 " value="4" className="2"> {">"}50% And {"<"}70% </option>
+                            <option data-set="5" value="5" className="2"> {">"}75% </option>
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
-                          1
+                          {this.state.RiskIndex_Utilization}
                         </td>
                         <td>
                           <textarea rows={2} cols={30} ></textarea>
@@ -4406,15 +4446,33 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       </tr>
 
                       <tr>
-                        <td>Time of EEEC Involvement</td>
-                        <td> <select className="ms-Dropdown-select" id="PPEInvolve" onChange={this.handleInputChange} >
-                          <option>Please Select</option>
-                          <option value="2" className="2"> Planned Late Involvement </option>
-                          <option value="3" className="2"> Fast Track  </option>
+                        <td>Execution Duration</td>
+                        <td> <select name="RiskIndex_Duration" className="ms-Dropdown-select" id="PPEInvolve" onChange={this.handleRiskChange} >
+                          <option data-set="0">Please Select</option>
+                          <option data-set="1" value="2" className="2"> Normal</option>
+                          <option data-set="2" value="3" className="2"> Fast Track  </option>
 
                         </select></td>
                         <td style={{ textAlign: "center" }}>
-                          1
+                          {this.state.RiskIndex_Duration}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Time of EEEC Involvement</td>
+                        <td> <select name="RiskIndex_EEECInvolvement" className="ms-Dropdown-select" id="PPEInvolve" onChange={this.handleRiskChange} >
+                          <option data-set="0">Please Select</option>
+                          <option data-set="1" value="2" className="2"> Planned Late Involvement </option>
+                          <option data-set="3" value="3" className="2"> Same as FSO  </option>
+                          <option data-set="5" value="3" className="2"> Unexpected Requirement  </option>
+
+
+                        </select></td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_EEECInvolvement}
                         </td>
                         <td>
                           <textarea rows={2} cols={30} ></textarea>
@@ -4427,16 +4485,16 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           Project Organisation Chart
                         </td>
                         <td>
-                          <select className="ms-Dropdown-select" id="PPEOrgChart" onChange={this.handleInputChange} >
-                            <option>Please Select</option>
-                            <option value="2" className="2"> Well Defined Structure </option>
-                            <option value="3" className="2"> Multiple Roles per resource  </option>
-                            <option value="3" className="2">Resource allocation managed by FSO  </option>
+                          <select name="RiskIndex_ProjectChart" className="ms-Dropdown-select" id="PPEOrgChart" onChange={this.handleRiskChange} >
+                            <option data-set="0">Please Select</option>
+                            <option data-set="1" value="2" className="2"> Well Defined Structure </option>
+                            <option data-set="2" value="3" className="2"> Multiple Roles per resource  </option>
+                            <option data-set="4" value="3" className="2">Resource allocation managed by FSO  </option>
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
-                          1
-                          </td>
+                          {this.state.RiskIndex_ProjectChart}
+                        </td>
                         <td>
                           <textarea rows={2} cols={30}></textarea>
                         </td>
@@ -4446,16 +4504,16 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           Overall Risk Ranking
                        </td>
                         <td>
-                          <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
+                          <select name="OverallRisk" className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleRiskChange} >
                             <option>Please Select</option>
-                            <option value="2" className="2"> Low </option>
-                            <option value="3" className="2"> Medium</option>
-                            <option value="3" className="2">High  </option>
+                            <option data-set="1" value="2" className="2"> Low </option>
+                            <option data-set="4" value="3" className="2"> Medium</option>
+                            <option data-set="6" value="3" className="2">High  </option>
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
-                          1
-                          </td>
+                          {this.state.OverallRisk}
+                        </td>
                         <td>
                           <textarea rows={2} cols={30}></textarea>
                         </td>
@@ -4543,14 +4601,14 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       </tr>
                       <tr>
                         <td>FAT Engagement</td>
-                        <td><select className="ms-Dropdown-select">
-                          <option>Please Select</option>
-                          <option>Remote FAT</option>
-                          <option>Face to Face FAT</option>
+                        <td><select name="RiskIndex_FAT" className="ms-Dropdown-select" onChange={this.handleRiskChange}>
+                          <option data-set="0" >Please Select</option>
+                          <option data-set="1">Remote FAT</option>
+                          <option data-set="2">Face to Face FAT</option>
                         </select></td>
                         <td style={{ textAlign: "center" }}>
-                          1
-                          </td>
+                          {this.state.RiskIndex_FAT}
+                        </td>
                         <td>
                           <textarea rows={2} cols={30}></textarea>
                         </td>
@@ -4560,15 +4618,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                       <tr>
                         <td>Overall PM</td>
-                        <td><select className="ms-Dropdown-select">
-                          <option>Please Select</option>
-                          <option>FSO</option>
-                          <option>EEC</option>
-                          <option>FSO + EEC</option>
+                        <td><select name="RiskIndex_OverallPM" className="ms-Dropdown-select" onChange={this.handleRiskChange}>
+                          <option data-set="0">Please Select</option>
+                          <option data-set="1">FSO</option>
+                          <option data-set="2">EEC</option>
+                          <option data-set="3">FSO + EEC</option>
                         </select></td>
                         <td style={{ textAlign: "center" }}>
-                          1
-                          </td>
+                          {this.state.RiskIndex_OverallPM}
+                        </td>
                         <td>
                           <textarea rows={2} cols={30}></textarea>
                         </td>
@@ -4577,19 +4635,18 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <td>Overall Lead and Other LE's</td>
                         <td>
-                          <select className="ms-Dropdown-select">
-                            <option>Please Select</option>
-                            <option>FSO</option>
-                            <option>EEC</option>
-                            <option>EEC (Local)</option>
-                            <option>EEC(Local+Remote)</option>
-                            <option>FSO + EEC</option>
-                            <option>No Liaison in FSO</option>
+                          <select name="RiskIndex_OverallLead" className="ms-Dropdown-select" onChange={this.handleRiskChange}>
+                            <option data-set="0">Please Select</option>
+                            <option data-set="1">FSO</option>
+                            <option data-set="2">EEC (Local)</option>
+                            <option data-set="3">EEC(Local+Remote)</option>
+                            <option data-set="4">FSO + EEC</option>
+                            <option data-set="5">No Liaison in FSO</option>
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
-                          1
-                          </td>
+                          {this.state.RiskIndex_OverallLead}
+                        </td>
                         <td>
                           <textarea rows={2} cols={30}></textarea>
                         </td>
@@ -4701,12 +4758,12 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td> Resource Skillset</td>
                         <td>
 
-                          <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
+                          <select className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleRiskChange} >
                             <option>Please Select</option>
-                            <option value="2" className="2"> No Special Requirement </option>
-                            <option value="3" className="2"> Blended Mix</option>
-                            <option value="3" className="2">Special Skills  </option>
-                            <option value="3" className="2">Resource with Process background  </option>
+                            <option data-set="1" value="2" className="2"> No Special Requirement </option>
+                            <option data-set="2" value="3" className="2"> Blended Mix</option>
+                            <option data-set="4" value="3" className="2">Special Skills  </option>
+                            <option data-set="6" value="3" className="2">Resource with Process background  </option>
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
