@@ -391,10 +391,48 @@ div#EndUserDesign {
   z-index: 1;
 }
 
+.ms-dropdown-select{
+  width: 200px
+}
+
+
+select#ddlSub {
+  width: 312px;
+}
+
 
 
 table#addClosureEntry {
   width: 1194px !important;
+}
+
+
+.MyClass{
+  border-width: "3px";
+  border-style: solid;
+  border-collapse: collapse;
+  padding: 10px !important;
+  background-color: blanchedalmond;
+  text-align: justify;
+}
+
+
+th {
+  padding: 5px;
+}
+
+.ms-Dropdown-select {
+  width: 250px !important;
+}
+
+
+label {
+  margin-top: 7px;
+  margin-left: 3px;
+}
+
+th{
+  text-align:center;
 }
 
 

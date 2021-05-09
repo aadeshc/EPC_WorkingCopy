@@ -208,6 +208,43 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
     this.state = {
+      TotalRiskIndex: 0,
+      FSO_Success: 0,
+      Non_Std: 0,
+      EEEInvScope: 0,
+      EEEScope: 2,
+      RiskIndex_ProjectCT: 0,
+      RiskIndex_ProjectLD: 0,
+      RiskIndex_ProjectGP: 0,
+      RiskIndex_ExecutionFSO: 0,
+      RiskIndex_Execution: 0,
+      RiskIndex_ExecutionMulti: 0,
+      RiskIndex_EmersonHours: 0,
+      RiskIndex_EEECHours: 0,
+      RiskIndex_Budget: 0,
+      RiskIndex_Utilization: 0,
+      RiskIndex_Duration: 0,
+      RiskIndex_EEECInvolvement: 0,
+      RiskIndex_ProjectChart: 0,
+      RiskIndex_EEECScope: 0,
+      RiskIndex_EEECInvolvementScope: 0,
+      RiskIndex_FAT: 0,
+      RiskIndex_OverallPM: 0,
+      RiskIndex_OverallRisk: 0,
+      RiskIndex_OverallLead: 0,
+      RiskIndex_FSOLead: 0,
+      RiskIndex_ResourceSkill: 0,
+      RiskIndex_FSOSuccess: 0,
+      RiskIndex_NonStandard: 0,
+      RiskIndex_ResourcePlan: 0,
+      FSO_OPEN: 0,
+      FSO_Tech: 0,
+      FSO_Oth: 0,
+      FSO_EEC: 0,
+      FSO: 0,
+      WA: 0,
+      FSO_WA: 0,
+
       projectDetails: [],
       deltav: [],
       period: [],
@@ -220,6 +257,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
       finyear: [],
       showResults: true,
       year: 0,
+      ProjectPlatformValue: "",
       unit: "",
       prjpltfrmunit: "",
       counter: 0,
@@ -393,7 +431,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
     let shortyear: any = year.toString().substring(2); // 19
     var today = new Date();
     var currmonth = today.getMonth();
-    if (currmonth >= 8) {
+    if (currmonth > 8) {
       shortyear = parseInt(shortyear) + 1;
       this.setState({
         year: shortyear
@@ -820,7 +858,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         setTimeout(func, 700);
         function func() {
-          window.open("https://emerson.sharepoint.com/sites/process-dev2/EEEC/EProjectControl/SiteAssets/ViewReport.aspx", "_self");
+          window.open("https://emerson.sharepoint.com/sites/autosolpss/EEEC/EProjectControl/SiteAssets/ViewReport.aspx", "_self");
         }
 
 
@@ -907,7 +945,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
     var shortyearint = parseInt(shortyear);
     var year = shortyearint;
     var month = entereddate.getMonth();
-    if (month >= 8) {
+    if (month > 8) {
       year = year + 1
     }
     var FY = 'FY' + year
@@ -1017,7 +1055,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
       var projStartDate = new Date(valueOfInput).toISOString();
 
-      this.getCurrentFY(shortyear, prjdate, "end")
+      // this.getCurrentFY(shortyear, prjdate, "end")
 
       agreedendate = projStartDate
 
@@ -1402,7 +1440,11 @@ export class eProjectNewForm extends React.Component<{}, any>{
   public handleInputChange = (event) => {
     let ddltype = event.target.id;
 
-
+    if (ddltype == "ddlType") {
+      this.setState({
+        ProjectPlatformValue: event.target.value
+      })
+    }
     if (ddltype == "ddlProjectRiskStatus") {
       this.setState({
         ProjectRiskStatus: event.target.value
@@ -1821,6 +1863,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
     if (ddltype == "ddlEBU") {
       let name = event.target.value
       let keyval;
+      this.setState({
+        ProjectPlatformValue: "",
+      })
       if (name == "ASCO")
         keyval = "H99"
       if (name == "DMC")
@@ -1838,7 +1883,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
       if (name == "RAS")
         keyval = "G99"
       if (name == "RPC")
-        keyval = "H99"
+        keyval = "F99"
       if (name == "RTG")
         keyval = "J99"
       if (name == "SBG")
@@ -1873,7 +1918,165 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
   };
 
+  public handleRiskChange = (event) => {
 
+    if ((event.target.name == "FSOMPMOpen") || (event.target.name == "FSOPMTechnical") || (event.target.name == "FSOPMOther") || (event.target.name == "FSOEEEC") || (event.target.name == "WA") || (event.target.name == "FSO") || (event.target.name == "FSOWA") || (event.target.name == "EEECInvScope") || (event.target.name == "EEEScope") || (event.target.name == "EEECInvScope") || (event.target.name == "FSOSuccess")) {
+
+
+      if (event.target.name == "FSOSuccess") {
+
+        if (event.target.checked) {
+
+
+          if (event.target.id == "chkSales") {
+            this.setState({
+              FSO_Success: this.state.FSO_Success + 2
+            })
+          } else {
+            this.setState({
+              FSO_Success: this.state.FSO_Success + 1
+            })
+          }
+
+        } else {
+
+          if (event.target.id == "chkSales") {
+            this.setState({
+              FSO_Success: this.state.FSO_Success - 2
+            })
+          } else {
+            this.setState({
+              FSO_Success: this.state.FSO_Success - 1
+            })
+          }
+
+        }
+      }
+      if (event.target.name == "EEECInvScope") {
+        if (event.target.checked) {
+          this.setState({
+            EEEInvScope: this.state.EEEInvScope + 1
+          })
+        } else {
+          this.setState({
+            EEEInvScope: this.state.EEEInvScope - 1
+          })
+        }
+      }
+
+
+
+      if (event.target.name == "EEEScope") {
+
+        if (event.target.checked) {
+
+          if (event.target.id == "ChkFat") {
+            this.setState({
+              EEEScope: this.state.EEEScope - 1
+            })
+
+          } else {
+            this.setState({
+              EEEScope: this.state.EEEScope + 1
+            })
+          }
+
+
+
+        } else {
+
+          if (event.target.id == "ChkFat") {
+            this.setState({
+              EEEScope: this.state.EEEScope + 1
+            })
+          } else {
+
+            this.setState({
+              EEEScope: this.state.EEEScope - 1
+            })
+          }
+
+        }
+      }
+
+      if (event.target.name == "EEECInvScope") {
+        this.setState({
+          EEEInvScope: this.state.EEEInvScope + 1
+        })
+      }
+
+      if (event.target.name == "FSOWA") {
+
+
+        if (event.target.checked) {
+
+          if (event.target.id == "additional") {
+            this.setState({
+              FSO_WA: this.state.FSO_WA + 3
+            })
+          } else {
+            this.setState({
+              FSO_WA: this.state.FSO_WA + 2
+            })
+          }
+        } else {
+
+          if (event.target.id == "additional") {
+            this.setState({
+              FSO_WA: this.state.FSO_WA - 3
+            })
+          } else {
+            this.setState({
+              FSO_WA: this.state.FSO_WA - 2
+            })
+          }
+
+        }
+      }
+      if (event.target.name == "FSO") {
+        this.setState({
+          FSO: parseInt(event.target.dataset.set)
+        })
+      }
+      if (event.target.name == "WA") {
+        this.setState({
+          WA: parseInt(event.target.dataset.set)
+        })
+      }
+
+      if (event.target.name == "FSOMPMOpen") {
+        this.setState({
+          FSO_OPEN: parseInt(event.target.dataset.set)
+        })
+      }
+      if (event.target.name == "FSOPMTechnical") {
+        this.setState({
+          FSO_Tech: parseInt(event.target.dataset.set)
+        })
+      }
+      if (event.target.name == "FSOPMOther") {
+        this.setState({
+          FSO_Oth: parseInt(event.target.dataset.set)
+        })
+      }
+      if (event.target.name == "FSOEEEC") {
+        this.setState({
+          FSO_EEC: parseInt(event.target.dataset.set)
+        })
+      }
+
+
+    } else {
+
+      var index = event.target.selectedIndex;
+      var optionElement = event.target.childNodes[index]
+      var option = optionElement.getAttribute('data-set');
+      this.setState({
+        [event.target.name]: parseInt(option)
+      })
+    }
+
+  }
 
 
 
@@ -2028,10 +2231,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td>
                             <Stack tokens={stackTokens}>
                               <input type="text" className="AR-Select" id="ddldelta" ref={this.DeltaV} required />
-
                             </Stack>
-
-
                           </td>
                           <td style={{ paddingLeft: '50px' }}>
                             Project Type  <span style={{ color: 'red' }}><b>*</b></span>
@@ -2046,7 +2246,6 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <option>Non-PSG BU</option>
                               <option>Services Only</option>
                               <option>Site Support Only</option>
-
                             </select>
                           </td>
                         </tr>
@@ -2103,7 +2302,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td >
                             <i className="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown" id="addProjectPlatform"></i>
                             <Stack tokens={stackTokens}>
-                              <select className="AR-Select" id="ddlType" ref={this.ProjPlatform} onChange={this.handleInputChange} required>
+                              <select className="AR-Select" id="ddlType" ref={this.ProjPlatform} value={this.state.ProjectPlatformValue} onChange={this.handleInputChange} required>
                                 <option value=""> Please Select</option>
                                 {ProjectOptionsTemplate}</select>
                             </Stack>
@@ -2724,6 +2923,601 @@ export class eProjectNewForm extends React.Component<{}, any>{
                   </Card.Body>
                 </Accordion.Collapse>
               </Accordion>
+              <Accordion defaultActiveKey="1">
+                <Card.Header>
+                  <Accordion.Toggle onClick={this.AnalysisCloseArrow} as={Card.Header} eventKey="1" className="header">
+                    <span className={this.state.AnalysisCloseDown === "Yes" ? "glyphicon glyphicon-menu-up" : "glyphicon glyphicon-menu-down"}></span>&nbsp;
+                              PPE Categorization <br></br>
+                  </Accordion.Toggle>
+                </Card.Header>
+
+              </Accordion>
+              <Accordion defaultActiveKey="1">
+                <Card.Header>
+                  <Accordion.Toggle onClick={this.AnalysisCloseArrow} as={Card.Header} eventKey="1" className="header">
+                    <span className={this.state.AnalysisCloseDown === "Yes" ? "glyphicon glyphicon-menu-up" : "glyphicon glyphicon-menu-down"}></span>&nbsp;
+                              Project EE Categorization <br></br>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="1">
+                  <Card.Body>
+                    <table>
+                      <tr className="MyClass">
+                        <th style={{ border: "1px solid black;" }}>Parameters</th>
+                        <th style={{ border: "1px solid black;" }}>Selection</th>
+                        <th style={{ border: "1px solid black;" }}>Risk Index</th>
+                        <th style={{ border: "1px solid black;" }}>Remarks</th>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <th style={{ textAlign: "right" }}> Total Risk Index</th>
+                        <th>10</th>
+                      </tr>
+                      <tr>
+                        <td style={{ border: "1px solid black;" }} ></td>
+                      </tr>
+                      <tr>
+                        <td style={{ width: '20%' }}>
+                          Project Contract Type (Emerson)
+                                           </td>
+                        <td style={{ width: '55%' }}>
+                          <select name="RiskIndex_ProjectCT" className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleRiskChange}>
+                            <option data-set="0">Please Select</option>
+                            <option data-set="1" value="1" className="1">Workpack</option>
+                            <option data-set="2" value="2" className="2">T And M</option>
+                            <option data-set="3" value="3" className="3">Fixed Price</option>
+                            <option data-set="4" value="4" className="4">MIB/L1</option>
+                            <option data-set="5" value="5" className="5">Other</option>
+
+                          </select>
+                        </td>
+                        <td style={{ width: '5%', textAlign: "center" }}>{this.state.RiskIndex_ProjectCT}</td>
+                        <td><textarea rows={2} cols={30} ></textarea></td>
+                      </tr>
+                      <tr>
+                        <td style={{ width: '20%' }}>
+                          Project LD  (Emerson)
+                                           </td>
+                        <td style={{ width: '45%' }}>
+                          <select name="RiskIndex_ProjectLD" className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleRiskChange}>
+                            <option data-set="0">Please Select</option>
+                            <option data-set="1" value="1" className="1">Applicable</option>
+                            <option data-set="2" value="2" className="2">Not Applicable</option>
+
+
+                          </select>
+                        </td>
+                        <td style={{ width: '10%', textAlign: "center" }}>{this.state.RiskIndex_ProjectLD}</td>
+                        <td><textarea rows={2} cols={30}></textarea></td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          Project GP
+                          </td>
+                        <td>
+                          <select name="RiskIndex_ProjectGP" className="ms-Dropdown-select" id="PPEProjectContractType" onChange={this.handleRiskChange}>
+                            <option>Please Select</option>
+                            <option data-set="1" value="2" className="2">Regular GP</option>
+                            <option data-set="4" value="1" className="1">Low GP</option>
+                            <option data-set="6" value="2" className="2">Negative GP</option>
+                          </select>
+                        </td>
+                        <td style={{ width: '10%', textAlign: "center" }}>{this.state.RiskIndex_ProjectGP}</td>
+                        <td><textarea rows={2} cols={30}></textarea></td>
+                      </tr>
+
+
+                      <tr>
+                        <td >
+                          Execution Strategy and Model
+                      </td>
+                        <td colSpan={1} style={{ width: '45%' }}>
+                          <table style={{ borderCollapse: "collapse", borderStyle: "thin", borderWidth: "1px", border: "1px solid darkgray;", width: "95%" }}>
+                            <tr>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}><u> Execution</u></th>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>FSO</u></th>
+                            </tr>
+                            <tr>
+
+                              <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", borderColor: "darkgray" }}> <input type="radio" id="FSO" name="FSO" value="0" data-set="0" onChange={this.handleRiskChange} /> &nbsp;
+                          <label>FSO/EEEC Split : Same as defined in the Proposal</label> <br></br>
+                                <input type="radio" name="FSO" value="3" data-set="2" onChange={this.handleRiskChange} /> &nbsp;
+                          <label>FSO/EEEC Split:Decreased EEEC Utilization/Scope</label> <br></br>
+                                <input type="radio" name="FSO" value="3" data-set="4" onChange={this.handleRiskChange} /> &nbsp;
+                          <label>FSO/EEEC Split:Increased EEEC Utilization/Scope</label> <br></br>
+                                <input type="radio" name="FSO" value="3" data-set="6" onChange={this.handleRiskChange} />&nbsp;
+                                <label>Additional/Change in EEEC roles after Project Initiation</label>
+                              </td>
+                              <td style={{ borderStyle: "Solid", borderWidth: "1px", borderColor: 'grey' }}>
+                                <span >
+                                  <input type="radio" id="" name="WA" value="0" data-set="0" onChange={this.handleRiskChange} />&nbsp;
+                                     <label>One World Area</label> <br></br>
+                                  <input type="radio" name="WA" value="3" data-set="3" onChange={this.handleRiskChange} /> &nbsp;
+
+                                    <label>Multiple World Area</label>
+                                </span>
+                              </td>
+                            </tr>
+
+
+                            <tr>
+                              <td colSpan={2} style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                <td>  <input type="checkbox" name="FSOWA" id="PAS" onChange={this.handleRiskChange} ></input>&nbsp;<label>Multi EPC</label></td>
+
+                                <td>  <input type="checkbox" name="FSOWA" id="ChkSIS" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Engg Center</label></td>
+
+                                <td> <input type="checkbox" name="FSOWA" id="EI" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Phased Execution</label></td>
+
+                                <td > <input type="checkbox" name="FSOWA" id="ICSS" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Parallal Execution</label></td>
+                                <br></br>
+                                <td ><input type="checkbox" name="FSOWA" id="additional" onChange={this.handleRiskChange}></input>&nbsp;<label>Additional Roles</label></td>
+
+                              </td>
+                            </tr>
+
+
+                          </table>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.FSO + this.state.WA + this.state.FSO_WA}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          Emerson Budgeted Engineering hour </td>
+                        <td>
+                          <select name="RiskIndex_EmersonHours" className="ms-Dropdown-select" id="PPEmersonBudgeted" onChange={this.handleRiskChange} >
+                            <option data-set="0">Please Select</option>
+                            <option data-set="2" value="2" className="2"> {">"}1,000 And {"<"}5,000   </option>
+                            <option data-set="3" value="3" className="2"> {">"}5,000 and {"<"}10,000   </option>
+                            <option data-set="4" value="4" className="2"> {">"}10,000 and {"<"}25,000 </option>
+                            <option data-set="5" value="5" className="2"> {">"}25,000 and {"<"}50,000 </option>
+                            <option data-set="6 " value="6" className="2"> {">"}50,000 and {"<"}75,000 </option>
+                            <option data-set="7" value="7" className="2"> {">"}75,000 and {"<"}100,000 </option>
+                            <option data-set="8" value="8" className="2"> {">"}100,000  </option>
+                            <option data-set="9" value="9" className="2">Not Available</option>
+                          </select>
+
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_EmersonHours}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          EEEC Budgeted Engineering hours </td>
+                        <td>
+                          <select name="RiskIndex_EEECHours" className="ms-Dropdown-select" id="PPEEECBudgeted" onChange={this.handleRiskChange} >
+                            <option>Please Select</option>
+                            <option data-set="2" value="2" className="2"> {">"}1,000 and {"<"}5,000   </option>
+                            <option data-set="3" value="3" className="2"> {">"}5,000 and {"<"}10,000   </option>
+                            <option data-set="4" value="4" className="2"> {">"}10,000 and {"<"}25,000 </option>
+                            <option data-set="5" value="5" className="2"> {">"}25,000 and {"<"}50,000 </option>
+                            <option data-set="6" value="6" className="2"> {">"}50,000 and {"<"}75,000 </option>
+                            <option data-set="7" value="7" className="2"> {">"}75,000 and {"<"}100,000 </option>
+                            <option data-set="8" value="8" className="2"> {">"}100,000  </option>
+                            <option data-set="9" value="9" className="2">Not Available</option>
+                          </select>
+
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_EEECHours}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td> Adequacy of Budget & Schedule</td>
+                        <td>
+                          <select name="RiskIndex_Budget" className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleRiskChange} >
+                            <option data-set="0">Please Select</option>
+                            <option data-set="1" value="2" className="2"> Adequate Budget And Schedule  </option>
+                            <option data-set="2" value="3" className="2"> Budget Constraint   </option>
+                            <option data-set="2" value="4" className="2"> Schedule Constraint </option>
+                            <option data-set="6" value="5" className="2"> Budget And Schedule Constraint </option>
+                            <option data-set="8" value="6" className="2"> Not Known</option>
+
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_Budget}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          EEEC Utilization (Engineering)
+                        </td>
+                        <td>
+                          <select name="RiskIndex_Utilization" className="ms-Dropdown-select" id="PPEBudget" onChange={this.handleRiskChange} >
+                            <option data-set="0" >Please Select</option>
+                            <option data-set="1" value="2" className="2">  {"<"}30% </option>
+                            <option data-set="2" value="3" className="2"> {">"}30% And {"<"}35%  </option>
+                            <option data-set="3" value="4" className="2"> {">"}35% And {"<"}50% </option>
+                            <option data-set="4 " value="4" className="2"> {">"}50% And {"<"}70% </option>
+                            <option data-set="5" value="5" className="2"> {">"}75% </option>
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_Utilization}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+
+                      </tr>
+
+                      <tr>
+                        <td>Execution Duration</td>
+                        <td> <select name="RiskIndex_Duration" className="ms-Dropdown-select" id="PPEInvolve" onChange={this.handleRiskChange} >
+                          <option data-set="0">Please Select</option>
+                          <option data-set="1" value="2" className="2"> Normal</option>
+                          <option data-set="2" value="3" className="2"> Fast Track  </option>
+
+                        </select></td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_Duration}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Time of EEEC Involvement</td>
+                        <td> <select name="RiskIndex_EEECInvolvement" className="ms-Dropdown-select" id="PPEInvolve" onChange={this.handleRiskChange} >
+                          <option data-set="0">Please Select</option>
+                          <option data-set="1" value="2" className="2"> Planned Late Involvement </option>
+                          <option data-set="3" value="3" className="2"> Same as FSO  </option>
+                          <option data-set="5" value="3" className="2"> Unexpected Requirement  </option>
+
+
+                        </select></td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_EEECInvolvement}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30} ></textarea>
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          Project Organisation Chart
+                        </td>
+                        <td>
+                          <select name="RiskIndex_ProjectChart" className="ms-Dropdown-select" id="PPEOrgChart" onChange={this.handleRiskChange} >
+                            <option data-set="0">Please Select</option>
+                            <option data-set="1" value="2" className="2"> Well Defined Structure </option>
+                            <option data-set="2" value="3" className="2"> Multiple Roles per resource  </option>
+                            <option data-set="4" value="3" className="2">Resource allocation managed by FSO  </option>
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_ProjectChart}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Overall Risk Ranking
+                       </td>
+                        <td>
+                          <select name="OverallRisk" className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleRiskChange} >
+                            <option>Please Select</option>
+                            <option data-set="1" value="2" className="2"> Low </option>
+                            <option data-set="4" value="3" className="2"> Medium</option>
+                            <option data-set="6" value="3" className="2">High  </option>
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.OverallRisk}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          EEEC Scope
+                       </td>
+                        <td>
+
+                          <input type="checkbox" name="EEEScope" id="ChkPPEFeed" onChange={this.handleRiskChange}></input> &nbsp; Feed  <br></br>
+                          <input type="checkbox" name="EEEScope" id="ChkPPEFeed" onChange={this.handleRiskChange}></input> &nbsp;Execute  <br></br>
+                          <input type="checkbox" name="EEEScope" id="ChkFat" onChange={this.handleRiskChange}></input>&nbsp; FAT  <br></br>
+                          <input type="checkbox" name="EEEScope" id="ChkPPEFeed" onChange={this.handleRiskChange}></input>&nbsp; SAT  <br></br>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.EEEScope}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          EEEC Involvement and Project Scope
+                          </td>
+                        <td>
+                          <div id="EEECInvolvement" style={{ width: "95%", border: "1px solid darkgray", padding: "10px", marginTop: "7px" }}>
+                            <table style={{ width: "100%" }} >
+                              <tr>
+                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" id="ChkPASBase" onChange={this.handleRiskChange} /></td><td>PAS Base DB,Interlocks,Graphics  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" id="ChkPASCustom" onChange={this.handleRiskChange} /></td><td>PAS Custom Logic,Sequences </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" id="ChkPASComplex" onChange={this.handleRiskChange} /></td><td>PAS Complex Logic  </td>
+                              </tr>
+                              <tr>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ChkPASBatch" /></td><td>PAS Batch  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ChkOtherPAS" /></td><td>PAS Third Party Integration </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ChkOtherPAS" /></td><td>Other PAS  </td>
+                              </tr>
+
+                              <tr>
+                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ChkSISESD" /></td><td>SIS ESD  </td>
+                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ChkSISFGS" /></td><td>SIS FGS </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ChkSISBMS" /></td><td>SIS BMS   </td>
+                              </tr>
+                              <tr>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="chkSIS" /> </td><td>SIS/PAS Integration </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ChkSISOther" /></td><td>Other SIS Integration </td>
+                              </tr>
+                              <tr>
+                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="chkPASCab" /></td><td>PAS Cabinets  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ChkSISCab" /></td><td>SIS Cabinets  </td>
+
+                              </tr>
+
+                              <tr>
+                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="chkPASCab" /> </td><td>Other BU's and Engg Support</td>
+                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="chkInterface" /></td><td>Interface Lead  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ChkDocument" /></td><td>Document Controller  </td>
+                              </tr>
+                              <tr>
+                                <td style={{ width: "20px" }} >  <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ChkWriter" /></td><td>Technical Writer  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ChkOTS" /></td><td>OTS   </td>
+
+                              </tr>
+                              <tr>
+                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" onChange={this.handleRiskChange} id="ChkWireless" /></td><td>Wireless  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" onChange={this.handleRiskChange} id="ChkAgile" /> </td><td>Agile OPS  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkOther" onChange={this.handleRiskChange} name="EEECInvScope" /></td><td>Other </td>
+                              </tr>
+
+
+
+                            </table>
+                          </div>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.EEEInvScope}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>FAT Engagement</td>
+                        <td><select name="RiskIndex_FAT" className="ms-Dropdown-select" onChange={this.handleRiskChange}>
+                          <option data-set="0" >Please Select</option>
+                          <option data-set="1">Remote FAT</option>
+                          <option data-set="2">Face to Face FAT</option>
+                        </select></td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_FAT}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+
+
+                      </tr>
+
+                      <tr>
+                        <td>Overall PM</td>
+                        <td><select name="RiskIndex_OverallPM" className="ms-Dropdown-select" onChange={this.handleRiskChange}>
+                          <option data-set="0">Please Select</option>
+                          <option data-set="1">FSO</option>
+                          <option data-set="2">EEC</option>
+                          <option data-set="3">FSO + EEC</option>
+                        </select></td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_OverallPM}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>Overall Lead and Other LE's</td>
+                        <td>
+                          <select name="RiskIndex_OverallLead" className="ms-Dropdown-select" onChange={this.handleRiskChange}>
+                            <option data-set="0">Please Select</option>
+                            <option data-set="1">FSO</option>
+                            <option data-set="2">EEC (Local)</option>
+                            <option data-set="3">EEC(Local+Remote)</option>
+                            <option data-set="4">FSO + EEC</option>
+                            <option data-set="5">No Liaison in FSO</option>
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_OverallLead}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td> FSO PM and Leads</td>
+                        <td>
+                          <table style={{ border: "1px solid lightgray" }}>
+
+                            <tr>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}><u> Open</u></th>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>Technical</u></th>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>Other</th>
+                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>EEEC Experience</th>
+                            </tr>
+                            <tr>
+                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOMPMOpen" onChange={this.handleRiskChange} value="0" /> <label>Accomodative</label> </td>
+                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOPMTechnical" onChange={this.handleRiskChange} /> <label>Technical</label> </td>
+                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOPMOther" value="0" onChange={this.handleRiskChange} /> <label>Proactive</label> </td>
+                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOEEEC" value="0" onChange={this.handleRiskChange} /> <label>Worked With EEEC</label> </td>
+                            </tr>
+                            <tr>
+                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOMPMOpen" value="0" onChange={this.handleRiskChange} /> <label>Non Accomodative</label> </td>
+                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOPMTechnical" value="0" onChange={this.handleRiskChange} /> <label>Non Technical</label> </td>
+                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOPMOther" value="0" onChange={this.handleRiskChange} /> <label>Reactive</label> </td>
+                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOEEEC" value="0" onChange={this.handleRiskChange} /> <label>New to EEEC</label> </td>
+                            </tr>
+                            <tr>
+                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOMPMOpen" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOPMTechnical" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOPMOther" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOEEEC" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
+                            </tr>
+
+
+                          </table>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.FSO_OPEN + this.state.FSO_Tech + this.state.FSO_Oth + this.state.FSO_EEC}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>What FSO Considers As a Success</td>
+                        <td><input type="checkbox" id="chkPASCab" name="FSOSuccess" onClick={this.handleRiskChange} /> &nbsp;Timely Delivery <br></br>
+                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" onClick={this.handleRiskChange} /> &nbsp;No Budget Overrun<br></br>
+                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" onClick={this.handleRiskChange} /> &nbsp;FAT Ready Deliverables<br></br>
+                          <input type="checkbox" id="chkPASCab" name="FSOSuccess" onClick={this.handleRiskChange} /> &nbsp;Minimal Rework after FAT {"<"}1% of Budget
+<br></br>
+                          <input type="checkbox" id="chkSales" name="FSOSuccess" onClick={this.handleRiskChange} /> &nbsp;Maintain or Improve Sales GP<br></br>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.FSO_Success}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+                      </tr>
+
+                      <tr>
+
+                        <td> Non Standard Requirements</td>
+                        <div id="EEECInvolvement" style={{ width: "95%", border: "1px solid darkgray", padding: "10px", marginTop: "7px" }}>
+                          <table style={{ width: "100%" }}>
+                            <tr>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Implement Batch without using Batch Licences </td> <br></br>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Use of SIS Blocks in PAS Control Module</td> <br></br>
+
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /></td><td>Use of Non-PCSD Library</td> <br></br>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /></td><td>Graphics for custom resolutions</td> <br></br>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>New Product/Technology</td> <br></br>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Odd Shifts  </td><br></br>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>IP/Clause</td><br></br>
+                              <td> <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Customer Demos</td><br></br>
+                            </tr>
+                            <tr>
+                              <td> <input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Develope Details FS based on limited information</td><br></br>
+                              <td><input type="checkbox" id="chkPASCab" name="ChkNonStandardRequirements" /> </td><td>Other</td> <br></br>
+
+                            </tr>
+                          </table>
+                        </div>
+                        <td style={{ textAlign: "center" }}>
+                          1
+                          </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <br></br>
+                          <br></br>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td> Resource Skillset</td>
+                        <td>
+
+                          <select name="RiskIndex_ResourceSkill" className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleRiskChange} >
+                            <option>Please Select</option>
+                            <option data-set="1" value="2" className="2"> No Special Requirement </option>
+                            <option data-set="2" value="3" className="2"> Blended Mix</option>
+                            <option data-set="4" value="3" className="2">Special Skills  </option>
+                            <option data-set="6" value="3" className="2">Resource with Process background  </option>
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_ResourceSkill}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>Resource Plan and Project Loading Chart</td>
+                        <select name="RiskIndex_ResourcePlan" className="ms-Dropdown-select" id="PPERiskRanking" onChange={this.handleInputChange} >
+                          <option>Please Select</option>
+                          <option value="2" className="2"> Yes </option>
+                          <option value="3" className="2"> No</option>
+                          <option value="3" className="2">To Be Defined Later  </option>
+
+                        </select>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_ResourcePlan}
+                        </td>
+                        <td>
+                          <textarea rows={2} cols={30}></textarea>
+                        </td>
+                      </tr>
+
+
+
+                    </table>
+
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Accordion>
+
               <Accordion defaultActiveKey="0">
                 <Card.Header>
                   <Accordion.Toggle onClick={this.AnalysisTrackArrow} as={Card.Header} eventKey="0" className="header">
@@ -2961,7 +3755,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <td> <select className="ms-Dropdown-select" id="addDeliv" ref={this.delivery}>
                               <option>Yes</option>
                               <option selected>No</option>
-                              <option>N/A</option>
+
                             </select> </td>
 
                             <td> <textarea rows={3} cols={30} id="DeliveryComments" ref={this.deliverycomments} /> </td>
@@ -2972,7 +3766,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <td> <select className="ms-Dropdown-select" id="AddITSS" ref={this.ITSS}>
                               <option>Yes</option>
                               <option selected> No</option>
-                              <option>N/A</option>
+
 
                             </select> </td>
                             <td>
@@ -2994,11 +3788,11 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </td>
                           </tr>
                           <tr>
-                            <td><li>Has the PM logged ITSS call for release of project hardware?</li></td>
+                            <td><li>Has the PM/LE logged ITSS call for release of RVO2 Resources?</li></td>
                             <td><select className="ms-Dropdown-select" id="ITSS2" ref={this.ITSS2}>
                               <option>Yes</option>
                               <option selected>No</option>
-                              <option>N/A</option>
+
 
                             </select> </td>
                             <td>
@@ -3011,7 +3805,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <td> <select className="ms-Dropdown-select" id="DongleReturn" ref={this.donglereturn}>
                               <option>Yes</option>
                               <option selected>No</option>
-                              <option>N/A</option>
+
 
                             </select> </td>
                             <td>
@@ -3024,7 +3818,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <td> <select className="ms-Dropdown-select" id="ProjectCorrect" ref={this.projectcorrect}>
                               <option>Yes</option>
                               <option selected>No</option>
-                              <option>N/A</option>
+
 
                             </select> </td>
                             <td>
@@ -3038,7 +3832,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <td> <select className="ms-Dropdown-select" id="PostDelivery" ref={this.postdelivery}>
                               <option>Yes</option>
                               <option selected>No</option>
-                              <option>N/A</option>
+
 
                             </select> </td>
                             <td>
@@ -3054,7 +3848,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <td> <select className="ms-Dropdown-select" id="AddITSS" ref={this.FHX}>
                               <option>Yes</option>
                               <option selected> No</option>
-                              <option>N/A</option>
+
 
                             </select> </td>
                             <td>
@@ -3072,7 +3866,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td> <select className="ms-Dropdown-select" id="CSS" ref={this.CSS}>
                             <option>Yes</option>
                             <option selected>No</option>
-                            <option>N/A</option>
+
 
                           </select> </td>
                           <td>
@@ -3088,7 +3882,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td><select className="ms-Dropdown-select" id="Close" ref={this.close}>
                             <option >Yes</option>
                             <option selected>No</option>
-                            <option>N/A</option>
+
 
                           </select></td>
                           <td>
@@ -3103,7 +3897,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td><select className="ms-Dropdown-select" id="ResourceSkill" ref={this.resourceskill}>
                             <option >Yes</option>
                             <option selected>No</option>
-                            <option>N/A</option>
+
 
                           </select> </td>
                           <td>
