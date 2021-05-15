@@ -283,11 +283,19 @@ export class eProjectNewForm extends React.Component<{}, any>{
       ISMultiAreaPhased: "No",
       ISMultiEPC: "No",
       ISMultiEngg: "No",
+      ExecutionStrategyandModelExecution: "",
+      ExecutionStrategyandModelFSO: "",
+      FSOPMLeadsOpen: "",
+
+      FSOPMLeadsTechnical: "",
+      FSOPMLeadsOther: "",
+      FSOPMLeadsEEECExp: "",
 
 
 
 
 
+      OverallRisk: 0,
       TotalRiskIndex: 0,
       FSO_Success: 0,
       Non_Std: 0,
@@ -830,6 +838,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
       {
         '__metadata': { 'type': 'SP.Data.' + listTitle + 'ListItem' },
         Title: "new MMID2",
+        TotalRiskIndex: parseInt(this.state.RiskIndex_ProjectCT) + parseInt(this.state.RiskIndex_ProjectLD) + parseInt(this.state.RiskIndex_ProjectGP) + parseInt(this.state.RiskIndex_ExecutionFSO) + parseInt(this.state.RiskIndex_Execution) + parseInt(this.state.RiskIndex_ExecutionMulti) + parseInt(this.state.RiskIndex_EmersonHours) + parseInt(this.state.RiskIndex_EEECHours) + parseInt(this.state.RiskIndex_Budget) + parseInt(this.state.RiskIndex_Utilization) + parseInt(this.state.RiskIndex_Duration) + parseInt(this.state.RiskIndex_EEECInvolvement) + parseInt(this.state.RiskIndex_ProjectChart) + parseInt(this.state.RiskIndex_EEECScope) + parseInt(this.state.RiskIndex_EEECInvolvementScope) + parseInt(this.state.RiskIndex_FAT) + parseInt(this.state.RiskIndex_OverallPM) + parseInt(this.state.RiskIndex_OverallRisk) + parseInt(this.state.RiskIndex_OverallLead) + parseInt(this.state.RiskIndex_FSOLead) + parseInt(this.state.RiskIndex_ResourceSkill) + parseInt(this.state.RiskIndex_FSOSuccess) + parseInt(this.state.RiskIndex_NonStandard) + parseInt(this.state.RiskIndex_ResourcePlan) + parseInt(this.state.Non_Std) + parseInt(this.state.FSO_Success) + parseInt(this.state.EEEInvScope) + parseInt(this.state.EEEScope) + parseInt(this.state.OverallRisk) + parseInt(this.state.FSO) + parseInt(this.state.WA) + parseInt(this.state.FSO_WA),
         EPC: EPC,
         HWIO: HWIO,
         SWIO: SWIO,
@@ -1088,6 +1097,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
         ISOth: this.state.ISOth,
         ISIP: this.state.ISIP,
         ISDev: this.state.ISDev,
+        ExecutionStrategyandModelExecuti: this.state.ExecutionStrategyandModelExecution,
+        ExecutionStrategyandModelFSO: this.state.ExecutionStrategyandModelFSO,
+        FSOPMLeadsOpen: this.state.FSOPMLeadsOpen,
+        FSOPMLeadsTechnical: this.state.FSOPMLeadsTechnical,
+        FSOPMLeadsOther: this.state.FSOPMLeadsOther,
+        FSOPMLeadsEEECExp: this.state.FSOPMLeadsEEECExp
+
+
+
 
 
 
@@ -2220,61 +2238,72 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
     if ((event.target.name == "FSOMPMOpen") || (event.target.name == "FSOPMTechnical") || (event.target.name == "FSOPMOther") || (event.target.name == "FSOEEEC") || (event.target.name == "WA") || (event.target.name == "FSO") || (event.target.name == "FSOWA") || (event.target.name == "EEECInvScope") || (event.target.name == "EEEScope") || (event.target.name == "EEECInvScope") || (event.target.name == "FSOSuccess") || (event.target.name == "ChkNonStandardRequirements")) {
 
-      if (event.target.checked) {
+      if ((event.target.name == "WA") || (event.target.name == "FSO") || (event.target.name == "FSOMPMOpen") || (event.target.name == "FSOPMTechnical") || (event.target.name == "FSOPMOther") || (event.target.name == "FSOEEEC")) {
+
         this.setState({
-          [event.target.id]: "Yes"
+          [event.target.id]: event.target.value
         })
-      } else {
-        this.setState({
-          [event.target.id]: "No"
-        })
+
       }
-      if (event.target.name == "ChkNonStandardRequirements") {
+      else {
 
         if (event.target.checked) {
-
-          if ((event.target.id == "chkOther") || (event.target.id == "chkKDev")) {
-            this.setState({
-              Non_Std: this.state.Non_Std + 4
-            })
-          } else if (event.target.id == "chkImplement") {
-            this.setState({
-              Non_Std: this.state.Non_Std + 3
-            })
-          } else if ((event.target.id == "chkSIS") || (event.target.id == "chkPCSD") || (event.target.id == "chkProd")) {
-            this.setState({
-              Non_Std: this.state.Non_Std + 2
-            })
-          } else {
-            this.setState({
-              Non_Std: this.state.Non_Std + 1
-            })
-          }
-
-
-
+          this.setState({
+            [event.target.id]: "Yes"
+          })
         } else {
-          if ((event.target.id == "chkOther") || (event.target.id == "chkKDev")) {
-            this.setState({
-              Non_Std: this.state.Non_Std - 4
-            })
-          } else if (event.target.id == "chkImplement") {
-            this.setState({
-              Non_Std: this.state.Non_Std - 3
-            })
-          } else if ((event.target.id == "chkSIS") || (event.target.id == "chkPCSD") || (event.target.id == "chkProd")) {
-            this.setState({
-              Non_Std: this.state.Non_Std - 2
-            })
+          this.setState({
+            [event.target.id]: "No"
+          })
+        }
+
+        if (event.target.name == "ChkNonStandardRequirements") {
+
+          if (event.target.checked) {
+
+            if ((event.target.id == "chkOther") || (event.target.id == "chkKDev")) {
+              this.setState({
+                Non_Std: this.state.Non_Std + 4
+              })
+            } else if (event.target.id == "chkImplement") {
+              this.setState({
+                Non_Std: this.state.Non_Std + 3
+              })
+            } else if ((event.target.id == "chkSIS") || (event.target.id == "chkPCSD") || (event.target.id == "chkProd")) {
+              this.setState({
+                Non_Std: this.state.Non_Std + 2
+              })
+            } else {
+              this.setState({
+                Non_Std: this.state.Non_Std + 1
+              })
+            }
+
+
+
           } else {
-            this.setState({
-              Non_Std: this.state.Non_Std - 1
-            })
+            if ((event.target.id == "chkOther") || (event.target.id == "chkKDev")) {
+              this.setState({
+                Non_Std: this.state.Non_Std - 4
+              })
+            } else if (event.target.id == "chkImplement") {
+              this.setState({
+                Non_Std: this.state.Non_Std - 3
+              })
+            } else if ((event.target.id == "chkSIS") || (event.target.id == "chkPCSD") || (event.target.id == "chkProd")) {
+              this.setState({
+                Non_Std: this.state.Non_Std - 2
+              })
+            } else {
+              this.setState({
+                Non_Std: this.state.Non_Std - 1
+              })
+            }
+
+
+
+
           }
-
-
-
-
         }
       }
 
@@ -2376,7 +2405,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         if (event.target.checked) {
 
-          if (event.target.id == "additional") {
+          if (event.target.dataset.set == "6") {
             this.setState({
               FSO_WA: this.state.FSO_WA + 3
             })
@@ -3307,7 +3336,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <th ></th>
                         <th  ></th>
-                        <th colSpan={2} style={{ textAlign: 'left', border: "1px solid black;" }}><span className="RiskIndex">Total Risk Index : &nbsp;&nbsp; 10</span></th>
+                        <th colSpan={2} style={{ textAlign: 'left', border: "1px solid black;" }}><span className="RiskIndex">Total Risk Index : &nbsp;&nbsp; {parseInt(this.state.RiskIndex_ProjectCT) + parseInt(this.state.RiskIndex_ProjectLD) + parseInt(this.state.RiskIndex_ProjectGP) + parseInt(this.state.RiskIndex_ExecutionFSO) + parseInt(this.state.RiskIndex_Execution) + parseInt(this.state.RiskIndex_ExecutionMulti) + parseInt(this.state.RiskIndex_EmersonHours) + parseInt(this.state.RiskIndex_EEECHours) + parseInt(this.state.RiskIndex_Budget) + parseInt(this.state.RiskIndex_Utilization) + parseInt(this.state.RiskIndex_Duration) + parseInt(this.state.RiskIndex_EEECInvolvement) + parseInt(this.state.RiskIndex_ProjectChart) + parseInt(this.state.RiskIndex_EEECScope) + parseInt(this.state.RiskIndex_EEECInvolvementScope) + parseInt(this.state.RiskIndex_FAT) + parseInt(this.state.RiskIndex_OverallPM) + parseInt(this.state.RiskIndex_OverallRisk) + parseInt(this.state.RiskIndex_OverallLead) + parseInt(this.state.RiskIndex_FSOLead) + parseInt(this.state.RiskIndex_ResourceSkill) + parseInt(this.state.RiskIndex_FSOSuccess) + parseInt(this.state.RiskIndex_NonStandard) + parseInt(this.state.RiskIndex_ResourcePlan) + parseInt(this.state.Non_Std) + parseInt(this.state.FSO_Success) + parseInt(this.state.EEEInvScope) + parseInt(this.state.EEEScope) + parseInt(this.state.OverallRisk) + this.state.FSO + this.state.WA + this.state.FSO_WA}</span></th>
 
 
                       </tr>
@@ -3382,20 +3411,21 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </tr>
                             <tr>
 
-                              <td style={{ width: "50%", borderStyle: "Solid", borderWidth: "1px", padding: "5px", borderColor: "darkgray" }}> <input type="radio" id="FSO" name="FSO" value="0" data-set="0" onChange={this.handleRiskChange} /> &nbsp;
+                              <td style={{ width: "50%", borderStyle: "Solid", borderWidth: "1px", padding: "5px", borderColor: "darkgray" }}>
+                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Same" data-set="0" onChange={this.handleRiskChange} /> &nbsp;
                           <label>FSO/EEEC Split : Same as defined in the Proposal</label> <br></br>
-                                <input type="radio" name="FSO" value="3" data-set="2" onChange={this.handleRiskChange} /> &nbsp;
+                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Increase" data-set="2" onChange={this.handleRiskChange} /> &nbsp;
                           <label>FSO/EEEC Split:Decreased EEEC Utilization/Scope</label> <br></br>
-                                <input type="radio" name="FSO" value="3" data-set="4" onChange={this.handleRiskChange} /> &nbsp;
+                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Decrease" data-set="4" onChange={this.handleRiskChange} /> &nbsp;
                           <label>FSO/EEEC Split:Increased EEEC Utilization/Scope</label> <br></br>
-                                <input type="radio" name="FSO" value="3" data-set="6" onChange={this.handleRiskChange} />&nbsp;
+                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Additional" data-set="6" onChange={this.handleRiskChange} />&nbsp;
                                 <label>Additional/Change in EEEC roles after Project Initiation</label>
                               </td>
                               <td style={{ width: "50%", borderStyle: "Solid", borderWidth: "1px", borderColor: 'grey' }}>
                                 <span >
-                                  &nbsp;  <input type="radio" id="" name="WA" value="0" data-set="0" onChange={this.handleRiskChange} />&nbsp;
+                                  &nbsp;  <input type="radio" id="ExecutionStrategyandModelFSO" name="WA" value="One World Area" data-set="0" onChange={this.handleRiskChange} />&nbsp;
                                      <label>One World Area</label> <br></br>
-                                     &nbsp;  <input type="radio" name="WA" value="3" data-set="3" onChange={this.handleRiskChange} /> &nbsp;
+                                     &nbsp;  <input type="radio" name="WA" id="ExecutionStrategyandModelFSO" value="Multiple World Area" data-set="3" onChange={this.handleRiskChange} /> &nbsp;
 
                               <label>Multiple World Area</label>
                                 </span>
@@ -3413,7 +3443,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                                 <td > <input type="checkbox" name="FSOWA" id="ISMultiAreaParallal" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Parallal Execution</label></td>
                                 <br></br>
-                                <td ><input type="checkbox" name="FSOWA" id="ISMultiEPC" onChange={this.handleRiskChange}></input>&nbsp;<label>Additional Roles</label></td>
+                                <td ><input type="checkbox" name="FSOWA" id="ISAdditional" onChange={this.handleRiskChange}></input>&nbsp;<label>Additional Roles</label></td>
 
                               </td>
                             </tr>
@@ -3748,22 +3778,22 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>EEEC Experience</th>
                             </tr>
                             <tr>
-                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOMPMOpen" onChange={this.handleRiskChange} value="0" /> <label>Accomodative</label> </td>
-                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOPMTechnical" onChange={this.handleRiskChange} /> <label>Technical</label> </td>
-                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOPMOther" value="0" onChange={this.handleRiskChange} /> <label>Proactive</label> </td>
-                              <td><input type="radio" data-set="0" id="FSOMPMOpen" name="FSOEEEC" value="0" onChange={this.handleRiskChange} /> <label>Worked With EEEC</label> </td>
+                              <td><input type="radio" data-set="0" id="FSOPMLeadsOpen" name="FSOMPMOpen" onChange={this.handleRiskChange} value="Accomodative" /> <label>Accomodative</label> </td>
+                              <td><input type="radio" data-set="0" id="FSOPMLeadsTechnical" name="FSOPMTechnical" onChange={this.handleRiskChange} value="Technical" /> <label>Technical</label> </td>
+                              <td><input type="radio" data-set="0" id="FSOPMLeadsOther" name="FSOPMOther" onChange={this.handleRiskChange} value="Proactive" /> <label>Proactive</label> </td>
+                              <td><input type="radio" data-set="0" id="FSOPMLeadsEEECExp" name="FSOEEEC" onChange={this.handleRiskChange} value="Worked With EEEC" /> <label>Worked With EEEC</label> </td>
                             </tr>
                             <tr>
-                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOMPMOpen" value="0" onChange={this.handleRiskChange} /> <label>Non Accomodative</label> </td>
-                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOPMTechnical" value="0" onChange={this.handleRiskChange} /> <label>Non Technical</label> </td>
-                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOPMOther" value="0" onChange={this.handleRiskChange} /> <label>Reactive</label> </td>
-                              <td><input type="radio" data-set="3" id="FSOMPMOpen" name="FSOEEEC" value="0" onChange={this.handleRiskChange} /> <label>New to EEEC</label> </td>
+                              <td><input type="radio" data-set="3" id="FSOPMLeadsOpen" name="FSOMPMOpen" value="Non-Accommodative" onChange={this.handleRiskChange} /> <label>Non-Accommodative</label> </td>
+                              <td><input type="radio" data-set="3" id="FSOPMLeadsTechnical" name="FSOPMTechnical" value="Non Technical" onChange={this.handleRiskChange} /> <label>Non Technical</label> </td>
+                              <td><input type="radio" data-set="3" id="FSOPMLeadsOther" name="FSOPMOther" value="Reactive" onChange={this.handleRiskChange} /> <label>Reactive</label> </td>
+                              <td><input type="radio" data-set="3" id="FSOPMLeadsEEECExp" name="FSOEEEC" value="New to EEEC" onChange={this.handleRiskChange} /> <label>New to EEEC</label> </td>
                             </tr>
                             <tr>
-                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOMPMOpen" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOPMTechnical" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOPMOther" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" data-set="6" id="FSOMPMOpen" name="FSOEEEC" value="0" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" data-set="6" id="FSOPMLeadsOpen" name="FSOMPMOpen" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" data-set="6" id="FSOPMLeadsTechnical" name="FSOPMTechnical" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" data-set="6" id="FSOPMLeadsOther" name="FSOPMOther" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
+                              <td><input type="radio" data-set="6" id="FSOPMLeadsEEECExp" name="FSOEEEC" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
                             </tr>
 
 
@@ -3817,8 +3847,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <td> <input type="checkbox" id="ISCust" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>Customer Demos</td><br></br>
                             </tr>
                             <tr>
-                              <td> <input type="checkbox" id="chkOther" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>Develope Details FS based on limited information</td><br></br>
-                              <td><input type="checkbox" id="chkKDev" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>Other</td> <br></br>
+                              <td> <input type="checkbox" id="ISDev" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>Develope Details FS based on limited information</td><br></br>
+                              <td><input type="checkbox" id="ISOth" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>Other</td> <br></br>
 
                             </tr>
                           </table>
@@ -3861,7 +3891,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       </tr>
                       <tr>
                         <td>Resource Plan and Project Loading Chart</td>
-                        <select name="RiskIndex_ResourcePlan" id="PEEProjectLoading" className="ms-Dropdown-select" onChange={this.handleInputChange} >
+                        <select name="RiskIndex_ResourcePlan" id="PEEProjectLoading" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
                           <option>Please Select</option>
                           <option data-set="1" value="2" className="2"> Yes </option>
                           <option data-set="2" value="3" className="2"> No</option>
