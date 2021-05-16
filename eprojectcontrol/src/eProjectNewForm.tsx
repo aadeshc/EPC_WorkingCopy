@@ -838,7 +838,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
       {
         '__metadata': { 'type': 'SP.Data.' + listTitle + 'ListItem' },
         Title: "new MMID2",
-        TotalRiskIndex: parseInt(this.state.RiskIndex_ProjectCT) + parseInt(this.state.RiskIndex_ProjectLD) + parseInt(this.state.RiskIndex_ProjectGP) + parseInt(this.state.RiskIndex_ExecutionFSO) + parseInt(this.state.RiskIndex_Execution) + parseInt(this.state.RiskIndex_ExecutionMulti) + parseInt(this.state.RiskIndex_EmersonHours) + parseInt(this.state.RiskIndex_EEECHours) + parseInt(this.state.RiskIndex_Budget) + parseInt(this.state.RiskIndex_Utilization) + parseInt(this.state.RiskIndex_Duration) + parseInt(this.state.RiskIndex_EEECInvolvement) + parseInt(this.state.RiskIndex_ProjectChart) + parseInt(this.state.RiskIndex_EEECScope) + parseInt(this.state.RiskIndex_EEECInvolvementScope) + parseInt(this.state.RiskIndex_FAT) + parseInt(this.state.RiskIndex_OverallPM) + parseInt(this.state.RiskIndex_OverallRisk) + parseInt(this.state.RiskIndex_OverallLead) + parseInt(this.state.RiskIndex_FSOLead) + parseInt(this.state.RiskIndex_ResourceSkill) + parseInt(this.state.RiskIndex_FSOSuccess) + parseInt(this.state.RiskIndex_NonStandard) + parseInt(this.state.RiskIndex_ResourcePlan) + parseInt(this.state.Non_Std) + parseInt(this.state.FSO_Success) + parseInt(this.state.EEEInvScope) + parseInt(this.state.EEEScope) + parseInt(this.state.OverallRisk) + parseInt(this.state.FSO) + parseInt(this.state.WA) + parseInt(this.state.FSO_WA),
+        TotalRiskIndex: parseInt(this.state.RiskIndex_ProjectCT) + parseInt(this.state.RiskIndex_ProjectLD) + parseInt(this.state.RiskIndex_ProjectGP) + parseInt(this.state.RiskIndex_ExecutionFSO) + parseInt(this.state.RiskIndex_Execution) + parseInt(this.state.RiskIndex_ExecutionMulti) + parseInt(this.state.RiskIndex_EmersonHours) + parseInt(this.state.RiskIndex_EEECHours) + parseInt(this.state.RiskIndex_Budget) + parseInt(this.state.RiskIndex_Utilization) + parseInt(this.state.RiskIndex_Duration) + parseInt(this.state.RiskIndex_EEECInvolvement) + parseInt(this.state.RiskIndex_ProjectChart) + parseInt(this.state.RiskIndex_EEECScope) + parseInt(this.state.RiskIndex_EEECInvolvementScope) + parseInt(this.state.RiskIndex_FAT) + parseInt(this.state.RiskIndex_OverallPM) + parseInt(this.state.RiskIndex_OverallRisk) + parseInt(this.state.RiskIndex_OverallLead) + parseInt(this.state.RiskIndex_FSOLead) + parseInt(this.state.RiskIndex_ResourceSkill) + parseInt(this.state.RiskIndex_FSOSuccess) + parseInt(this.state.RiskIndex_NonStandard) + parseInt(this.state.RiskIndex_ResourcePlan) + parseInt(this.state.Non_Std) + parseInt(this.state.FSO_Success) + parseInt(this.state.EEEInvScope) + parseInt(this.state.EEEScope) + parseInt(this.state.OverallRisk) + parseInt(this.state.FSO) + parseInt(this.state.WA) + parseInt(this.state.FSO_WA) + parseInt(this.state.FSO_OPEN) + parseInt(this.state.FSO_Tech) + parseInt(this.state.FSO_Oth) + parseInt(this.state.FSO_EEC),
         EPC: EPC,
         HWIO: HWIO,
         SWIO: SWIO,
@@ -2261,15 +2261,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
           if (event.target.checked) {
 
-            if ((event.target.id == "chkOther") || (event.target.id == "chkKDev")) {
+            if ((event.target.id == "ISOth") || (event.target.id == "ISDev")) {
               this.setState({
                 Non_Std: this.state.Non_Std + 4
               })
-            } else if (event.target.id == "chkImplement") {
+            } else if (event.target.id == "ISImplement") {
               this.setState({
                 Non_Std: this.state.Non_Std + 3
               })
-            } else if ((event.target.id == "chkSIS") || (event.target.id == "chkPCSD") || (event.target.id == "chkProd")) {
+            } else if ((event.target.id == "ISUSESIS") || (event.target.id == "ISNonPCSD") || (event.target.id == "ISNewProd")) {
               this.setState({
                 Non_Std: this.state.Non_Std + 2
               })
@@ -2282,15 +2282,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
           } else {
-            if ((event.target.id == "chkOther") || (event.target.id == "chkKDev")) {
+            if ((event.target.id == "ISOth") || (event.target.id == "ISDev")) {
               this.setState({
                 Non_Std: this.state.Non_Std - 4
               })
-            } else if (event.target.id == "chkImplement") {
+            } else if (event.target.id == "ISImplement") {
               this.setState({
                 Non_Std: this.state.Non_Std - 3
               })
-            } else if ((event.target.id == "chkSIS") || (event.target.id == "chkPCSD") || (event.target.id == "chkProd")) {
+            } else if ((event.target.id == "ISUSESIS") || (event.target.id == "ISNonPCSD") || (event.target.id == "ISNewProd")) {
               this.setState({
                 Non_Std: this.state.Non_Std - 2
               })
@@ -2323,7 +2323,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
         if (event.target.checked) {
 
 
-          if (event.target.id == "chkSales") {
+          if (event.target.id == "ISMaintain") {
             this.setState({
               FSO_Success: this.state.FSO_Success + 2
             })
@@ -2335,7 +2335,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         } else {
 
-          if (event.target.id == "chkSales") {
+          if (event.target.id == "ISMaintain") {
             this.setState({
               FSO_Success: this.state.FSO_Success - 2
             })
@@ -2365,7 +2365,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         if (event.target.checked) {
 
-          if (event.target.id == "ChkFat") {
+          if (event.target.id == "ISFAT") {
             this.setState({
               EEEScope: this.state.EEEScope - 1
             })
@@ -2380,7 +2380,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         } else {
 
-          if (event.target.id == "ChkFat") {
+          if (event.target.id == "ISFAT") {
             this.setState({
               EEEScope: this.state.EEEScope + 1
             })
@@ -2405,7 +2405,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         if (event.target.checked) {
 
-          if (event.target.dataset.set == "6") {
+          if (event.target.id == "ISAdditional") {
             this.setState({
               FSO_WA: this.state.FSO_WA + 3
             })
@@ -2416,7 +2416,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
           }
         } else {
 
-          if (event.target.id == "additional") {
+          if (event.target.id == "ISAdditional") {
             this.setState({
               FSO_WA: this.state.FSO_WA - 3
             })
@@ -3336,7 +3336,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <th ></th>
                         <th  ></th>
-                        <th colSpan={2} style={{ textAlign: 'left', border: "1px solid black;" }}><span className="RiskIndex">Total Risk Index : &nbsp;&nbsp; {parseInt(this.state.RiskIndex_ProjectCT) + parseInt(this.state.RiskIndex_ProjectLD) + parseInt(this.state.RiskIndex_ProjectGP) + parseInt(this.state.RiskIndex_ExecutionFSO) + parseInt(this.state.RiskIndex_Execution) + parseInt(this.state.RiskIndex_ExecutionMulti) + parseInt(this.state.RiskIndex_EmersonHours) + parseInt(this.state.RiskIndex_EEECHours) + parseInt(this.state.RiskIndex_Budget) + parseInt(this.state.RiskIndex_Utilization) + parseInt(this.state.RiskIndex_Duration) + parseInt(this.state.RiskIndex_EEECInvolvement) + parseInt(this.state.RiskIndex_ProjectChart) + parseInt(this.state.RiskIndex_EEECScope) + parseInt(this.state.RiskIndex_EEECInvolvementScope) + parseInt(this.state.RiskIndex_FAT) + parseInt(this.state.RiskIndex_OverallPM) + parseInt(this.state.RiskIndex_OverallRisk) + parseInt(this.state.RiskIndex_OverallLead) + parseInt(this.state.RiskIndex_FSOLead) + parseInt(this.state.RiskIndex_ResourceSkill) + parseInt(this.state.RiskIndex_FSOSuccess) + parseInt(this.state.RiskIndex_NonStandard) + parseInt(this.state.RiskIndex_ResourcePlan) + parseInt(this.state.Non_Std) + parseInt(this.state.FSO_Success) + parseInt(this.state.EEEInvScope) + parseInt(this.state.EEEScope) + parseInt(this.state.OverallRisk) + this.state.FSO + this.state.WA + this.state.FSO_WA}</span></th>
+                        <th colSpan={2} style={{ textAlign: 'left', border: "1px solid black;" }}><span className="RiskIndex">Total Risk Index : &nbsp;&nbsp; {parseInt(this.state.RiskIndex_ProjectCT) + parseInt(this.state.RiskIndex_ProjectLD) + parseInt(this.state.RiskIndex_ProjectGP) + parseInt(this.state.RiskIndex_ExecutionFSO) + parseInt(this.state.RiskIndex_Execution) + parseInt(this.state.RiskIndex_ExecutionMulti) + parseInt(this.state.RiskIndex_EmersonHours) + parseInt(this.state.RiskIndex_EEECHours) + parseInt(this.state.RiskIndex_Budget) + parseInt(this.state.RiskIndex_Utilization) + parseInt(this.state.RiskIndex_Duration) + parseInt(this.state.RiskIndex_EEECInvolvement) + parseInt(this.state.RiskIndex_ProjectChart) + parseInt(this.state.RiskIndex_EEECScope) + parseInt(this.state.RiskIndex_EEECInvolvementScope) + parseInt(this.state.RiskIndex_FAT) + parseInt(this.state.RiskIndex_OverallPM) + parseInt(this.state.RiskIndex_OverallRisk) + parseInt(this.state.RiskIndex_OverallLead) + parseInt(this.state.RiskIndex_FSOLead) + parseInt(this.state.RiskIndex_ResourceSkill) + parseInt(this.state.RiskIndex_FSOSuccess) + parseInt(this.state.RiskIndex_NonStandard) + parseInt(this.state.RiskIndex_ResourcePlan) + parseInt(this.state.Non_Std) + parseInt(this.state.FSO_Success) + parseInt(this.state.EEEInvScope) + parseInt(this.state.EEEScope) + parseInt(this.state.OverallRisk) + this.state.FSO + this.state.WA + this.state.FSO_WA + this.state.FSO_OPEN + this.state.FSO_Tech + this.state.FSO_Oth + this.state.FSO_EEC}</span></th>
 
 
                       </tr>
@@ -3697,7 +3697,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <tr>
 
                                 <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" onChange={this.handleRiskChange} id="ISAgile" /> </td><td>Agile OPS  </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" id="ChkOther" onChange={this.handleRiskChange} name="ISOther" /></td><td>Other </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="EEECInvScope" onChange={this.handleRiskChange} name="ISOther" /></td><td>Other </td>
                               </tr>
 
 
