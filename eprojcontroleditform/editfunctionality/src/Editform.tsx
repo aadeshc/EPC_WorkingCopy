@@ -236,57 +236,57 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
 
-      ISDev: "No",
+      // ISDev: "No",
 
-      ISIP: "No",
-      ISOth: "No",
+      // ISIP: "No",
+      // ISOth: "No",
 
-      ISOdd: "No",
-      ISNewProd: "No",
-      ISGraphics: "No",
-      ISNonPCSD: "No",
-      ISUSESIS: "No",
-      ISImplement: "No",
-      ISMaintain: "No",
-      ISRework: "No",
-      ISFATReady: "No",
-      ISNoBudget: "No",
-      ISTimely: "No",
-      ISOther: "No",
-      ISAgile: "No",
-      ISDemo: "No",
-      ISCust: "No",
-      ISWireless: "No",
-      ISOTS: "No",
-      ISTechWriter: "No",
-      ISDocControl: "No",
-      ISInterface: "No",
-      ISOtherBU: "No",
-      ISPASCAB: "No",
-      ISOTHERSISINT: "No",
-      ISSISPASINT: "No",
-      ISSISBMS: "No",
-      ISSISFGS: "No",
-      ISSISESD: "No",
-      ISOtherPAS: "No",
-      ISPASThird: "No",
-      ISPASBatch: "No",
-      ISPASComplex: "No",
-      ISPASCustom: "No",
-      ISSISCAB: "No",
+      // ISOdd: "No",
+      // ISNewProd: "No",
+      // ISGraphics: "No",
+      // ISNonPCSD: "No",
+      // ISUSESIS: "No",
+      // ISImplement: "No",
+      // ISMaintain: "No",
+      // ISRework: "No",
+      // ISFATReady: "No",
+      // ISNoBudget: "No",
+      // ISTimely: "No",
+      // ISOther: "No",
+      // ISAgile: "No",
+      // ISDemo: "No",
+      // ISCust: "No",
+      // ISWireless: "No",
+      // ISOTS: "No",
+      // ISTechWriter: "No",
+      // ISDocControl: "No",
+      // ISInterface: "No",
+      // ISOtherBU: "No",
+      // ISPASCAB: "No",
+      // ISOTHERSISINT: "No",
+      // ISSISPASINT: "No",
+      // ISSISBMS: "No",
+      // ISSISFGS: "No",
+      // ISSISESD: "No",
+      // ISOtherPAS: "No",
+      // ISPASThird: "No",
+      // ISPASBatch: "No",
+      // ISPASComplex: "No",
+      // ISPASCustom: "No",
+      // ISSISCAB: "No",
 
 
-      ISPASBase: "No",
-      ISSAT: "No",
-      ISFAT: "No",
-      ISExecute: "No",
-      ISFEED: "No",
+      // ISPASBase: "No",
+      // ISSAT: "No",
+      // ISFAT: "No",
+      // ISExecute: "No",
+      // ISFEED: "No",
 
-      ISAdditional: "No",
-      ISMultiAreaParallal: "No",
-      ISMultiAreaPhased: "No",
-      ISMultiEPC: "No",
-      ISMultiEngg: "No",
+
+      // ISMultiAreaParallal: "No",
+      // ISMultiAreaPhased: "No",
+      // ISMultiEPC: "No",
+      // ISMultiEngg: "No",
       ExecutionStrategyandModelExecution: "",
       ExecutionStrategyandModelFSO: "",
       FSOPMLeadsOpen: "",
@@ -330,39 +330,6 @@ export class eProjectNewForm extends React.Component<{}, any>{
       RiskIndex_NonStandard: 0,
       RiskIndex_ResourcePlan: 0,
 
-      RiskIndex_ResourcePlanLoading: "",
-      ResourceSkill_Remarks: "",
-
-      NonStd_Remarks: "",
-      FSOSuccess_Remarks: "",
-
-      FSOPM_Remarks: "",
-      LeadRemarks: "",
-
-      OverallPM_Remarks: "",
-      FAT_Remarks: "",
-
-
-      EECInvolvScope_Remarks: "",
-      EEECScope_Remarks: "",
-
-      OverallRisk_Remarks: "",
-      ProjectOrg_Remarks: "",
-
-      EEECInvolve_Remarks: "",
-      Duration_Remarks: "",
-
-      Utilization_Remarks: "",
-      Budget_Remarks: "",
-
-      EEECHours_Remarks: "",
-      Emerson_Remarks: "",
-
-      Strategy_Remarks: "",
-      ProjectGP_Remarks: "",
-
-      ProjectLD_Remarks: "",
-      ProjectCT_Remarks: "",
 
 
 
@@ -691,6 +658,108 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
   public handleTextChange(e) {
+
+    if (e.target.name == "ProjectCT_Remarks") {
+      this.setState({
+        ProjectCT_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "ProjectLD_Remarks") {
+      this.setState({
+        ProjectLD_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "ProjectGP_Remarks") {
+      this.setState({
+        ProjectGP_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "Strategy_Remarks") {
+      this.setState({
+        Strategy_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "Emerson_Remarks") {
+      this.setState({
+        Emerson_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "EEECHours_Remarks") {
+      this.setState({
+        EEECHours_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "Budget_Remarks") {
+      this.setState({
+        Budget_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "Utilization_Remarks") {
+      this.setState({
+        Utilization_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "Duration_Remarks") {
+      this.setState({
+        Duration_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "EEECInvolve_Remarks") {
+      this.setState({
+        EEECInvolve_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "ProjectOrg_Remarks") {
+      this.setState({
+        ProjectOrg_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "OverallRisk_Remarks") {
+      this.setState({
+        OverallRisk_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "EEECScope_Remarks") {
+      this.setState({
+        EEECScope_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "EECInvolvScope_Remarks") {
+      this.setState({
+        EECInvolvScope_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "FSOPM_Remarks") {
+      this.setState({
+        FSOPM_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "FSOSuccess_Remarks") {
+      this.setState({
+        FSOSuccess_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "NonStd_Remarks") {
+      this.setState({
+        NonStd_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "FAT_Remarks") {
+      this.setState({
+        FAT_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "OverallPM_Remarks") {
+      this.setState({
+        OverallPM_Remarks: e.target.value
+      })
+    }
+    if (e.target.name == "LeadRemarks") {
+      this.setState({
+        LeadRemarks: e.target.value
+      })
+    }
+
 
 
     if (e.target.id == "DCSAI") {
@@ -1550,6 +1619,153 @@ export class eProjectNewForm extends React.Component<{}, any>{
             RiskIndex_ResourcePlanLoading: response.d.results[0].ResourcePlanRemarks,
             RiskIndex_ResourcePlan: response.d.results[0].ResourcePlanRiskIndex,
 
+
+            PEEProjectContractType: response.d.results[0].ProjectContractType,
+            PEEProjectLD: response.d.results[0].ProjectLD,
+            PEEProjectGP: response.d.results[0].ProjectGP,
+            PEEEmersonHours: response.d.results[0].EmersonHours,
+            PEEEEECHours: response.d.results[0].EEECHours,
+            PEEBudget: response.d.results[0].AdequacyofBudgetSchedule,
+            PEEUtilization: response.d.results[0].EEECUtilization,
+            PEEDuration: response.d.results[0].ExecutionDuration,
+            PEEInvolve: response.d.results[0].TimeofEEECInvolvement,
+            PEEOrgChart: response.d.results[0].ProjectOrganisationChart,
+            PEERiskRanking: response.d.results[0].Overall_x0020_Risk_x0020_Ranking,
+            PEEFAT: response.d.results[0].FAT_x0020_Engagement,
+            PEEOverall: response.d.results[0].OverallPM,
+            PEELead: response.d.results[0].OverallLead,
+            PEEResource: response.d.results[0].Resource_x0020_Skillset,
+            PEEProjectLoading: response.d.results[0].ResourcePlanProjectLoadingChart,
+
+
+            ISMultiEngg: response.d.results[0].ISMultiEngg,
+            ISMultiEnggChecked: (response.d.results[0].ISMultiEngg == "Yes"),
+            ISMultiEPC: response.d.results[0].ISMultiEPC,
+            ISMultiEPCChecked: (response.d.results[0].ISMultiEPC == "Yes"),
+            ISMultiAreaPhased: response.d.results[0].ISMultiAreaPhased,
+            ISMultiAreaPhasedChecked: (response.d.results[0].ISMultiAreaPhased == "Yes"),
+            ISMultiAreaParallal: response.d.results[0].ISMultiAreaParallal,
+            ISMultiAreaParallalChecked: (response.d.results[0].ISMultiAreaParallal == "Yes"),
+            ISAdditional: response.d.results[0].ISAdditional,
+            ISAdditionalChecked: (response.d.results[0].ISAdditional == "Yes"),
+            ISExecute: response.d.results[0].ISExecute,
+            ISExecuteChecked: (response.d.results[0].ISExecute == "Yes"),
+            ISFAT: response.d.results[0].ISFAT,
+            ISFATChecked: (response.d.results[0].ISFAT == "Yes"),
+            ISSAT: response.d.results[0].ISSAT,
+            ISSATChecked: (response.d.results[0].ISSAT == "Yes"),
+            ISPASBase: response.d.results[0].ISPASBase,
+            ISPASBaseChecked: (response.d.results[0].ISPASBase == "Yes"),
+            ISFEED: response.d.results[0].ISFEED,
+            ISFEEDChecked: (response.d.results[0].ISFEED == "Yes"),
+
+            ISSISCAB: response.d.results[0].ISSISCAB,
+            ISSISCABChecked: (response.d.results[0].ISSISCAB == "Yes"),
+            ISPASCustom: response.d.results[0].ISPASCustom,
+            ISPASCustomChecked: (response.d.results[0].ISPASCustom == "Yes"),
+            ISPASComplex: response.d.results[0].ISPASComplex,
+            ISPASComplexChecked: (response.d.results[0].ISPASComplex == "Yes"),
+            ISPASBatch: response.d.results[0].ISPASBatch,
+            ISPASBatchChecked: (response.d.results[0].ISPASBatch == "Yes"),
+            ISPASThird: response.d.results[0].ISPASThird,
+            ISPASThirdChecked: (response.d.results[0].ISPASThird == "Yes"),
+
+            ISOtherPAS: response.d.results[0].ISOtherPAS,
+            ISOtherPASChecked: (response.d.results[0].ISOtherPAS == "Yes"),
+            ISSISESD: response.d.results[0].ISSISESD,
+            ISSISESDChecked: (response.d.results[0].ISSISESD == "Yes"),
+            ISSISFGS: response.d.results[0].ISSISFGS,
+            ISSISFGSChecked: (response.d.results[0].ISSISFGS == "Yes"),
+            ISSISBMS: response.d.results[0].ISSISBMS,
+            ISSISBMSChecked: (response.d.results[0].ISSISBMS == "Yes"),
+            ISSISPASINT: response.d.results[0].ISSISPASINT,
+            ISSISPASINTChecked: (response.d.results[0].ISSISPASINT == "Yes"),
+
+            ISOTHERSISINT: response.d.results[0].ISOTHERSISINT,
+            ISOTHERSISINTChecked: (response.d.results[0].ISOTHERSISINT == "Yes"),
+
+
+            ISPASCAB: response.d.results[0].ISPASCAB,
+            ISPASCABChecked: (response.d.results[0].ISPASCAB == "Yes"),
+            ISOtherBU: response.d.results[0].ISOtherBU,
+            ISOtherBUChecked: (response.d.results[0].ISOtherBU == "Yes"),
+            ISInterface: response.d.results[0].ISInterface,
+            ISInterfaceChecked: (response.d.results[0].ISInterface == "Yes"),
+            ISDocControl: response.d.results[0].ISDocControl,
+            ISDocControlChecked: (response.d.results[0].ISDocControl == "Yes"),
+            ISTechWriter: response.d.results[0].ISTechWriter,
+            ISTechWriterChecked: (response.d.results[0].ISTechWriter == "Yes"),
+            ISOTS: response.d.results[0].ISOTS,
+            ISOTSChecked: (response.d.results[0].ISOTS == "Yes"),
+
+
+
+
+
+
+            ISWireless: response.d.results[0].ISWireless,
+            ISWirelessChecked: (response.d.results[0].ISWireless == "Yes"),
+            ISCust: response.d.results[0].ISCust,
+            ISCustChecked: (response.d.results[0].ISCust == "Yes"),
+            ISAgile: response.d.results[0].ISAgile,
+            ISAgileChecked: (response.d.results[0].ISAgile == "Yes"),
+            ISOther: response.d.results[0].ISOther,
+            ISOtherChecked: (response.d.results[0].ISOther == "Yes"),
+            ISTimely: response.d.results[0].ISTimely,
+            ISTimelyChecked: (response.d.results[0].ISTimely == "Yes"),
+            ISNoBudget: response.d.results[0].ISNoBudget,
+            ISNoBudgetChecked: (response.d.results[0].ISNoBudget == "Yes"),
+            ISFATReady: response.d.results[0].ISFATReady,
+            ISFATReadyChecked: (response.d.results[0].ISFATReady == "Yes"),
+
+            ISRework: response.d.results[0].ISRework,
+            ISReworkChecked: (response.d.results[0].ISRework == "Yes"),
+            ISMaintain: response.d.results[0].ISMaintain,
+            ISMaintainChecked: (response.d.results[0].ISMaintain == "Yes"),
+            ISImplement: response.d.results[0].ISImplement,
+            ISImplementChecked: (response.d.results[0].ISImplement == "Yes"),
+            ISUSESIS: response.d.results[0].ISUSESIS,
+            ISUSESISChecked: (response.d.results[0].ISUSESIS == "Yes"),
+
+
+
+            ISGraphics: response.d.results[0].ISGraphics,
+            ISGraphicsChecked: (response.d.results[0].ISGraphics == "Yes"),
+
+            ISNonPCSD: response.d.results[0].ISNonPCSD,
+            ISNonPCSDChecked: (response.d.results[0].ISNonPCSD == "Yes"),
+
+
+
+            ISNewProd: response.d.results[0].ISNewProd,
+            ISNewProdChecked: (response.d.results[0].ISNewProd == "Yes"),
+
+            ISOdd: response.d.results[0].ISOdd,
+            ISOddChecked: (response.d.results[0].ISOdd == "Yes"),
+
+            ISOth: response.d.results[0].ISOth,
+            ISOthChecked: (response.d.results[0].ISOth == "Yes"),
+
+            ISIP: response.d.results[0].ISIP,
+            ISIPChecked: (response.d.results[0].ISIP == "Yes"),
+
+            ISDev: response.d.results[0].ISDev,
+            ISDevChecked: (response.d.results[0].ISDev == "Yes"),
+
+
+
+
+
+
+
+            // PEEProjectContractType: response.d.results[0].ProjectContractType
+            // PEEProjectContractType: response.d.results[0].ProjectContractType
+            // PEEProjectContractType: response.d.results[0].ProjectContractType
+            // PEEProjectContractType: response.d.results[0].ProjectContractType
+            // PEEProjectContractType: response.d.results[0].ProjectContractType
+            // PEEProjectContractType: response.d.results[0].ProjectContractType
+            // PEEProjectContractType: response.d.results[0].ProjectContractType
+
             EditForecast: response.d.results[0].ISForecasted,
             EditPDL: response.d.results[0].PDL,
             PDLChecked: (response.d.results[0].PDL == "Yes"),
@@ -2138,64 +2354,66 @@ export class eProjectNewForm extends React.Component<{}, any>{
         ProjectLevelRiskStatus: this.state.ProjectRiskStatus,
         ISProjectFHXComments: this.state.EditFHXComments,
         ISProjectFHX: this.state.EditFHX,
-        NonStandardRequirementsRemarks: this.state.NonStd_Remarks[0],
+
+
+        NonStandardRequirementsRemarks: this.state.NonStd_Remarks,
         NonStandardRequirementsRiskIndex: parseInt(this.state.Non_Std),
-        FSOSuccessRemarks: this.state.FSOSuccess_Remarks[0],
+        FSOSuccessRemarks: this.state.FSOSuccess_Remarks,
         FSOSuccessRiskIndex: parseInt(this.state.FSO_Success),
 
-        FSORemarks: this.state.FSOPM_Remarks[0],
+        FSORemarks: this.state.FSOPM_Remarks,
         FSORiskIndex: parseInt(this.state.FSO_OPEN + this.state.FSO_Tech + this.state.FSO_Oth + this.state.FSO_EEC),
-        OverallLeadRemarks: this.state.LeadRemarks[0],
+        OverallLeadRemarks: this.state.LeadRemarks,
         OverallLeadRiskIndex: parseInt(this.state.RiskIndex_OverallLead),
 
 
-        OverallPMRemarks: this.state.OverallPM_Remarks[0],
+        OverallPMRemarks: this.state.OverallPM_Remarks,
         OverallPMRiskIndex: parseInt(this.state.RiskIndex_OverallPM),
-        FATEngagementRemarks: this.state.FAT_Remarks[0],
+        FATEngagementRemarks: this.state.FAT_Remarks,
         FATEngagementRiskIndex: parseInt(this.state.RiskIndex_FAT),
 
 
-        EEECInvolvementRemarks: this.state.EECInvolvScope_Remarks[0],
+        EEECInvolvementRemarks: this.state.EECInvolvScope_Remarks,
         EEECInvolvementRiskIndex: parseInt(this.state.EEEInvScope),
-        EEECScopeRemarks: this.state.EEECScope_Remarks[0],
+        EEECScopeRemarks: this.state.EEECScope_Remarks,
         EEECScopeRiskIndex: parseInt(this.state.EEEScope),
 
 
-        OverallRiskRankingRemarks: this.state.ProjectOrg_Remarks[0],
+        OverallRiskRankingRemarks: this.state.ProjectOrg_Remarks,
         OverallRiskRankingRiskIndex: parseInt(this.state.RiskIndex_ProjectChart),
-        ProjectOrganisationChartRemarks: this.state.EEECInvolve_Remarks[0],
+        ProjectOrganisationChartRemarks: this.state.EEECInvolve_Remarks,
         ProjectOrganisationChartRiskInde: parseInt(this.state.RiskIndex_EEECInvolvement),
-        TimeofEEECInvolvementRemarks: this.state.Duration_Remarks[0],
+        TimeofEEECInvolvementRemarks: this.state.Duration_Remarks,
         TimeofEEECInvolvementRiskIndex: parseInt(this.state.RiskIndex_Duration),
 
-        ExecutionDurationRemarks: this.state.Duration_Remarks[0],
+        ExecutionDurationRemarks: this.state.Duration_Remarks,
         ExecutionDurationRiskIndex: parseInt(this.state.RiskIndex_Duration),
-        EEECUtilizationRemarks: this.state.Utilization_Remarks[0],
+        EEECUtilizationRemarks: this.state.Utilization_Remarks,
         EEECUtilizationRiskIndex: parseInt(this.state.RiskIndex_Utilization),
 
-        AdequacyofBudgetAndScheduleRemar: this.state.Budget_Remarks[0],
+        AdequacyofBudgetAndScheduleRemar: this.state.Budget_Remarks,
         AdequacyofBudgetAndScheduleRiskI: parseInt(this.state.RiskIndex_Budget),
-        EEECBudgetedEngineeringhoursRema: this.state.EEECHours_Remarks[0],
+        EEECBudgetedEngineeringhoursRema: this.state.EEECHours_Remarks,
         EEECBudgetedEngineeringhoursRisk: parseInt(this.state.RiskIndex_EEECHours),
 
-        Total_x0020_EmersonBudgetedEngin0: this.state.Emerson_Remarks[0],
+        Total_x0020_EmersonBudgetedEngin0: this.state.Emerson_Remarks,
         Total_x0020_EmersonBudgetedEngin: parseInt(this.state.RiskIndex_EmersonHours),
-        ExecutionStrategyandModelRemarks: this.state.Strategy_Remarks[0],
+        ExecutionStrategyandModelRemarks: this.state.Strategy_Remarks,
         ExecutionStrategyandModelRiskInd: parseInt(this.state.FSO + this.state.WA + this.state.FSO_WA),
 
 
-        ProjectGPRemarks: this.state.ProjectGP_Remarks[0],
+        ProjectGPRemarks: this.state.ProjectGP_Remarks,
         ProjectGPRiskIndex: parseInt(this.state.RiskIndex_ProjectGP),
-        ProjectLDRemarks: this.state.ProjectLD_Remarks[0],
+        ProjectLDRemarks: this.state.ProjectLD_Remarks,
         ProjectLDRiskIndex: parseInt(this.state.RiskIndex_ProjectLD),
 
 
-        ProjectContractTypeRemarks: this.state.ProjectCT_Remarks[0],
+        ProjectContractTypeRemarks: this.state.ProjectCT_Remarks,
         ProjectContractTypeRiskIndex: parseInt(this.state.RiskIndex_ProjectCT),
 
-        ResourceSkillsetRemarks: this.state.ResourceSkill_Remarks[0],
+        ResourceSkillsetRemarks: this.state.ResourceSkill_Remarks,
         ResourceSkillsetRiskIndex: parseInt(this.state.RiskIndex_ResourceSkill),
-        ResourcePlanRemarks: this.state.RiskIndex_ResourcePlanLoading[0],
+        ResourcePlanRemarks: this.state.RiskIndex_ResourcePlanLoading,
         ResourcePlanRiskIndex: parseInt(this.state.RiskIndex_ResourcePlan),
 
         ProjectContractType: this.state.PEEProjectContractType,
@@ -2214,6 +2432,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
         OverallLead: this.state.PEELead,
         Resource_x0020_Skillset: this.state.PEEResource,
         ResourcePlanProjectLoadingChart: this.state.PEEProjectLoading,
+
         ISMultiEngg: this.state.ISMultiEngg,
         ISMultiEPC: this.state.ISMultiEPC,
         ISMultiAreaPhased: this.state.ISMultiAreaPhased,
@@ -2955,6 +3174,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         this.setState({
           [event.target.id]: event.target.value
+
         })
 
       }
@@ -2962,11 +3182,13 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         if (event.target.checked) {
           this.setState({
-            [event.target.id]: "Yes"
+            [event.target.id]: "Yes",
+            [event.target.className]: true,
           })
         } else {
           this.setState({
-            [event.target.id]: "No"
+            [event.target.id]: "No",
+            [event.target.className]: false,
           })
         }
 
@@ -3080,6 +3302,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
           if (event.target.id == "ISFAT") {
             this.setState({
+
               EEEScope: this.state.EEEScope - 1
             })
 
@@ -3120,21 +3343,27 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
           if (event.target.id == "ISAdditional") {
             this.setState({
+
+              [event.target.className]: true,
               FSO_WA: this.state.FSO_WA + 3
             })
           } else {
             this.setState({
-              FSO_WA: this.state.FSO_WA + 2
+              [event.target.className]: true,
+              FSO_WA: this.state.FSO_WA + 2,
+
             })
           }
         } else {
 
           if (event.target.id == "ISAdditional") {
             this.setState({
+              [event.target.className]: false,
               FSO_WA: this.state.FSO_WA - 3
             })
           } else {
             this.setState({
+              [event.target.className]: false,
               FSO_WA: this.state.FSO_WA - 2
             })
           }
@@ -3178,7 +3407,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
       var index = event.target.selectedIndex;
       var optionElement = event.target.childNodes[index]
-      var value = optionElement.innerText
+      var value = optionElement.innerText.trim()
       var option = optionElement.getAttribute('data-set');
       this.setState({
         [event.target.name]: parseInt(option),
@@ -3189,11 +3418,10 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
   }
 
-  public onTextAreaChange = (e) => {
+  public HandleTextAreaChange = (e) => {
+    debugger;
 
-    this.setState({
-      [e.target.name]: [e.target.value]
-    })
+
 
   }
 
@@ -4847,34 +5075,34 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           Project Contract Type (Emerson)
                                            </td>
                         <td style={{ width: '65%' }}>
-                          <select name="RiskIndex_ProjectCT" className="ms-Dropdown-select" id="PEEProjectContractType" onChange={this.handleRiskChange}>
+                          <select name="RiskIndex_ProjectCT" value={this.state.PEEProjectContractType} className="ms-Dropdown-select" id="PEEProjectContractType" onChange={this.handleRiskChange}>
                             <option data-set="0">Please Select</option>
                             <option data-set="1" value="Workpack" className="1">Workpack</option>
                             <option data-set="2" value="T And M" className="2">T And M</option>
-                            <option data-set="3" value="3" className="3">Fixed Price</option>
-                            <option data-set="4" value="4" className="4">MIB/L1</option>
-                            <option data-set="5" value="5" className="5">Other</option>
+                            <option data-set="3" value="Fixed Price" className="3">Fixed Price</option>
+                            <option data-set="4" value="MIB/L1" className="4">MIB/L1</option>
+                            <option data-set="5" value="Other" className="5">Other</option>
 
                           </select>
                         </td>
                         <td style={{ width: '5%', textAlign: "center" }}>{this.state.RiskIndex_ProjectCT}</td>
-                        <td><textarea name="ProjectCT_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30} ></textarea></td>
+                        <td><textarea name="ProjectCT_Remarks" id="ProjectCT_Remarks" onChange={this.handleTextChange} rows={2} cols={30} ></textarea></td>
                       </tr>
                       <tr>
                         <td style={{ width: '20%' }}>
                           Project LD  (Emerson)
                                            </td>
                         <td style={{ width: '45%' }}>
-                          <select name="RiskIndex_ProjectLD" className="ms-Dropdown-select" id="PEEProjectLD" onChange={this.handleRiskChange}>
+                          <select name="RiskIndex_ProjectLD" value={this.state.PEEProjectLD} className="ms-Dropdown-select" id="PEEProjectLD" onChange={this.handleRiskChange}>
                             <option data-set="0">Please Select</option>
-                            <option data-set="1" value="1" className="1">Applicable</option>
-                            <option data-set="2" value="2" className="2">Not Applicable</option>
+                            <option data-set="1" value="Applicable" className="1">Applicable</option>
+                            <option data-set="2" value="Not Applicable" className="2">Not Applicable</option>
 
 
                           </select>
                         </td>
                         <td style={{ width: '10%', textAlign: "center" }}>{this.state.RiskIndex_ProjectLD}</td>
-                        <td><textarea name="ProjectLD_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30}></textarea></td>
+                        <td><textarea name="ProjectLD_Remarks" id="ProjectCT_Remarks" value={this.state.ProjectLD_Remarks} onChange={this.handleTextChange} rows={2} cols={30}></textarea></td>
                       </tr>
 
                       <tr>
@@ -4882,15 +5110,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           Project GP
                           </td>
                         <td>
-                          <select name="RiskIndex_ProjectGP" className="ms-Dropdown-select" id="PEEProjectGP" onChange={this.handleRiskChange}>
+                          <select name="RiskIndex_ProjectGP" value={this.state.PEEProjectGP} className="ms-Dropdown-select" id="PEEProjectGP" onChange={this.handleRiskChange}>
                             <option>Please Select</option>
-                            <option data-set="1" value="2" className="2">Regular GP</option>
-                            <option data-set="4" value="1" className="1">Low GP</option>
-                            <option data-set="6" value="2" className="2">Negative GP</option>
+                            <option data-set="1" value="Regular GP" className="2">Regular GP</option>
+                            <option data-set="4" value="Low GP" className="1">Low GP</option>
+                            <option data-set="6" value="Negative GP" className="2">Negative GP</option>
                           </select>
                         </td>
                         <td style={{ width: '10%', textAlign: "center" }}>{this.state.RiskIndex_ProjectGP}</td>
-                        <td><textarea name="ProjectGP_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30}></textarea></td>
+                        <td><textarea value={this.state.ProjectGP_Remarks} name="ProjectGP_Remarks" onChange={this.handleTextChange} rows={2} cols={30}></textarea></td>
                       </tr>
 
 
@@ -4930,15 +5158,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                             <tr>
                               <td colSpan={2} style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
-                                <td>  <input type="checkbox" name="FSOWA" id="ISMultiEPC" onChange={this.handleRiskChange} ></input>&nbsp;<label>Multi EPC</label></td>
+                                <td>  <input type="checkbox" name="FSOWA" className="ISMultiEPCChecked" id="ISMultiEPC" checked={this.state.ISMultiEPCChecked} onChange={this.handleRiskChange} ></input>&nbsp;<label>Multi EPC</label></td>
 
-                                <td>  <input type="checkbox" name="FSOWA" id="ISMultiAreaParallal" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Engg Center</label></td>
+                                <td>  <input type="checkbox" name="FSOWA" id="ISMultiEngg" checked={this.state.ISMultiEnggChecked} className="ISMultiEnggChecked" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Engg Center</label></td>
 
-                                <td> <input type="checkbox" name="FSOWA" id="ISMultiAreaPhased" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Phased Execution</label></td>
+                                <td> <input type="checkbox" name="FSOWA" id="ISMultiAreaPhased" checked={this.state.ISMultiAreaPhasedChecked} className="ISMultiAreaPhasedChecked" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Phased Execution</label></td>
 
-                                <td > <input type="checkbox" name="FSOWA" id="ISMultiAreaParallal" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Parallal Execution</label></td>
+                                <td > <input type="checkbox" name="FSOWA" id="ISMultiAreaParallal" checked={this.state.ISMultiAreaParallalChecked} className="ISMultiAreaParallalChecked" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Parallal Execution</label></td>
                                 <br></br>
-                                <td ><input type="checkbox" name="FSOWA" id="ISAdditional" onChange={this.handleRiskChange}></input>&nbsp;<label>Additional Roles</label></td>
+                                <td ><input type="checkbox" name="FSOWA" id="ISAdditional" checked={this.state.ISAdditionalChecked} className="ISAdditionalChecked" onChange={this.handleRiskChange}></input>&nbsp;<label>Additional Roles</label></td>
 
                               </td>
                             </tr>
@@ -4950,7 +5178,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           {this.state.FSO + this.state.WA + this.state.FSO_WA}
                         </td>
                         <td>
-                          <textarea name="Strategy_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30} ></textarea>
+                          <textarea value={this.state.Strategy_Remarks} name="Strategy_Remarks" onChange={this.handleTextChange} rows={2} cols={30} ></textarea>
                         </td>
                       </tr>
 
@@ -4959,16 +5187,16 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td>
                           Emerson Budgeted Engineering hour </td>
                         <td>
-                          <select name="RiskIndex_EmersonHours" className="ms-Dropdown-select" id="PEEEmersonHours" onChange={this.handleRiskChange} >
-                            <option data-set="0">Please Select</option>
-                            <option data-set="2" value="2" className="2"> {">"}1,000 And {"<"}5,000   </option>
-                            <option data-set="3" value="3" className="2"> {">"}5,000 and {"<"}10,000   </option>
-                            <option data-set="4" value="4" className="2"> {">"}10,000 and {"<"}25,000 </option>
-                            <option data-set="5" value="5" className="2"> {">"}25,000 and {"<"}50,000 </option>
-                            <option data-set="6 " value="6" className="2"> {">"}50,000 and {"<"}75,000 </option>
-                            <option data-set="7" value="7" className="2"> {">"}75,000 and {"<"}100,000 </option>
-                            <option data-set="8" value="8" className="2"> {">"}100,000  </option>
-                            <option data-set="9" value="9" className="2">Not Available</option>
+                          <select value={this.state.PEEEmersonHours} name="RiskIndex_EmersonHours" className="ms-Dropdown-select" id="PEEEmersonHours" onChange={this.handleRiskChange} >
+                            <option>Please Select</option>
+                            <option data-set="2" value=">1,000 and <5,000" className="2"> {">"}1,000 and {"<"}5,000   </option>
+                            <option data-set="3" value=">5,000 and <10,000" className="2"> {">"}5,000 and {"<"}10,000   </option>
+                            <option data-set="4" value=">10,000 and <25,000" className="2"> {">"}10,000 and {"<"}25,000 </option>
+                            <option data-set="5" value=">25,000 and <50,000" className="2"> {">"}25,000 and {"<"}50,000 </option>
+                            <option data-set="6" value=">50,000 and <75,000" className="2"> {">"}50,000 and {"<"}75,000 </option>
+                            <option data-set="7" value=">75,000 and <100,000" className="2"> {">"}75,000 and {"<"}100,000 </option>
+                            <option data-set="8" value=">100,000" className="2"> {">"}100,000  </option>
+                            <option data-set="9" value="Not Available" className="2">Not Available</option>
                           </select>
 
                         </td>
@@ -4976,7 +5204,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           {this.state.RiskIndex_EmersonHours}
                         </td>
                         <td>
-                          <textarea name="Emerson_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30} ></textarea>
+                          <textarea value={this.state.Emerson_Remarks} name="Emerson_Remarks" onChange={this.handleTextChange} rows={2} cols={30} ></textarea>
                         </td>
                       </tr>
 
@@ -4984,16 +5212,16 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td>
                           EEEC Budgeted Engineering hours </td>
                         <td>
-                          <select name="RiskIndex_EEECHours" id="PEEEEECHours" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
+                          <select value={this.state.PEEEEECHours} name="RiskIndex_EEECHours" id="PEEEEECHours" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
                             <option>Please Select</option>
-                            <option data-set="2" value="2" className="2"> {">"}1,000 and {"<"}5,000   </option>
-                            <option data-set="3" value="3" className="2"> {">"}5,000 and {"<"}10,000   </option>
-                            <option data-set="4" value="4" className="2"> {">"}10,000 and {"<"}25,000 </option>
-                            <option data-set="5" value="5" className="2"> {">"}25,000 and {"<"}50,000 </option>
-                            <option data-set="6" value="6" className="2"> {">"}50,000 and {"<"}75,000 </option>
-                            <option data-set="7" value="7" className="2"> {">"}75,000 and {"<"}100,000 </option>
-                            <option data-set="8" value="8" className="2"> {">"}100,000  </option>
-                            <option data-set="9" value="9" className="2">Not Available</option>
+                            <option data-set="2" value=">1,000 and <5,000" className="2"> {">"}1,000 and {"<"}5,000   </option>
+                            <option data-set="3" value=">5,000 and <10,000" className="2"> {">"}5,000 and {"<"}10,000   </option>
+                            <option data-set="4" value=">10,000 and <25,000" className="2"> {">"}10,000 and {"<"}25,000 </option>
+                            <option data-set="5" value=">25,000 and <50,000" className="2"> {">"}25,000 and {"<"}50,000 </option>
+                            <option data-set="6" value=">50,000 and <75,000" className="2"> {">"}50,000 and {"<"}75,000 </option>
+                            <option data-set="7" value=">75,000 and <100,000" className="2"> {">"}75,000 and {"<"}100,000 </option>
+                            <option data-set="8" value=">100,000" className="2"> {">"}100,000  </option>
+                            <option data-set="9" value="Not Available" className="2">Not Available</option>
                           </select>
 
                         </td>
@@ -5001,20 +5229,20 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           {this.state.RiskIndex_EEECHours}
                         </td>
                         <td>
-                          <textarea name="EEECHours_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30} ></textarea>
+                          <textarea value={this.state.EEECHours_Remarks} name="EEECHours_Remarks" onChange={this.handleTextChange} rows={2} cols={30} ></textarea>
                         </td>
                       </tr>
 
                       <tr>
                         <td> Adequacy of Budget & Schedule</td>
                         <td>
-                          <select name="RiskIndex_Budget" className="ms-Dropdown-select" id="PEEBudget" onChange={this.handleRiskChange} >
+                          <select value={this.state.PEEBudget} name="RiskIndex_Budget" className="ms-Dropdown-select" id="PEEBudget" onChange={this.handleRiskChange} >
                             <option data-set="0">Please Select</option>
-                            <option data-set="1" value="2" className="2"> Adequate Budget And Schedule  </option>
-                            <option data-set="2" value="3" className="2"> Budget Constraint   </option>
-                            <option data-set="2" value="4" className="2"> Schedule Constraint </option>
-                            <option data-set="6" value="5" className="2"> Budget And Schedule Constraint </option>
-                            <option data-set="8" value="6" className="2"> Not Known</option>
+                            <option data-set="1" value="Adequate Budget and Schedule" className="2"> Adequate Budget and Schedule</option>
+                            <option data-set="2" value="Budget Constraint" className="2">Budget Constraint</option>
+                            <option data-set="2" value="Schedule Constraint" className="2">Schedule Constraint</option>
+                            <option data-set="6" value="Budget and Schedule Constraint" className="2">Budget and Schedule Constraint</option>
+                            <option data-set="8" value="Not Known" className="2"> Not Known</option>
 
                           </select>
                         </td>
@@ -5022,7 +5250,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           {this.state.RiskIndex_Budget}
                         </td>
                         <td>
-                          <textarea value={this.state.Budget_Remarks} name="Budget_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30} ></textarea>
+                          <textarea value={this.state.Budget_Remarks} name="Budget_Remarks" onChange={this.handleTextChange} rows={2} cols={30} ></textarea>
                         </td>
                       </tr>
 
@@ -5032,47 +5260,47 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           EEEC Utilization (Engineering)
                         </td>
                         <td>
-                          <select name="RiskIndex_Utilization" className="ms-Dropdown-select" id="PEEUtilization" onChange={this.handleRiskChange} >
+                          <select name="RiskIndex_Utilization" value={this.state.PEEUtilization} className="ms-Dropdown-select" id="PEEUtilization" onChange={this.handleRiskChange} >
                             <option data-set="0" >Please Select</option>
-                            <option data-set="1" value="2" className="2">  {"<"}30% </option>
-                            <option data-set="2" value="3" className="2"> {">"}30% And {"<"}35%  </option>
-                            <option data-set="3" value="4" className="2"> {">"}35% And {"<"}50% </option>
-                            <option data-set="4 " value="4" className="2"> {">"}50% And {"<"}70% </option>
-                            <option data-set="5" value="5" className="2"> {">"}75% </option>
+                            <option data-set="1" value="<30%" className="2">  {"<"}30% </option>
+                            <option data-set="2" value=">30% And <35%" className="2"> {">"}30% And {"<"}35%  </option>
+                            <option data-set="3" value=">35% And <50%" className="2"> {">"}35% And {"<"}50% </option>
+                            <option data-set="4 " value=">50% And <70%" className="2"> {">"}50% And {"<"}70% </option>
+                            <option data-set="5" value=">75%" className="2"> {">"}75% </option>
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.RiskIndex_Utilization}
                         </td>
                         <td>
-                          <textarea value={this.state.Utilization_Remarks} name="Utilization_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30} ></textarea>
+                          <textarea value={this.state.Utilization_Remarks} name="Utilization_Remarks" onChange={this.handleTextChange} rows={2} cols={30} ></textarea>
                         </td>
 
                       </tr>
 
                       <tr>
                         <td>Execution Duration</td>
-                        <td> <select name="RiskIndex_Duration" className="ms-Dropdown-select" id="PEEDuration" onChange={this.handleRiskChange} >
+                        <td> <select value={this.state.PEEDuration} name="RiskIndex_Duration" className="ms-Dropdown-select" id="PEEDuration" onChange={this.handleRiskChange} >
                           <option data-set="0">Please Select</option>
-                          <option data-set="1" value="2" className="2"> Normal</option>
-                          <option data-set="2" value="3" className="2"> Fast Track  </option>
+                          <option data-set="1" value="Normal" className="2">Normal</option>
+                          <option data-set="2" value="Fast Track" className="2">Fast Track</option>
 
                         </select></td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.RiskIndex_Duration}
                         </td>
                         <td>
-                          <textarea value={this.state.Duration_Remarks} name="Duration_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30} ></textarea>
+                          <textarea value={this.state.Duration_Remarks} name="Duration_Remarks" onChange={this.handleTextChange} rows={2} cols={30} ></textarea>
                         </td>
                       </tr>
 
                       <tr>
                         <td>Time of EEEC Involvement</td>
-                        <td> <select name="RiskIndex_EEECInvolvement" className="ms-Dropdown-select" id="PEEInvolve" onChange={this.handleRiskChange} >
+                        <td> <select value={this.state.PEEInvolve} name="RiskIndex_EEECInvolvement" className="ms-Dropdown-select" id="PEEInvolve" onChange={this.handleRiskChange} >
                           <option data-set="0">Please Select</option>
-                          <option data-set="1" value="2" className="2"> Planned Late Involvement </option>
-                          <option data-set="3" value="3" className="2"> Same as FSO  </option>
-                          <option data-set="5" value="3" className="2"> Unexpected Requirement  </option>
+                          <option data-set="1" value="Planned Late Involvement" className="2">Planned Late Involvement</option>
+                          <option data-set="3" value="Same as FSO" className="2">Same as FSO</option>
+                          <option data-set="5" value="Unexpected Requirement" className="2">Unexpected Requirement</option>
 
 
                         </select></td>
@@ -5080,7 +5308,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           {this.state.RiskIndex_EEECInvolvement}
                         </td>
                         <td>
-                          <textarea value={this.state.EEECInvolve_Remarks} name="EEECInvolve_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30} ></textarea>
+                          <textarea value={this.state.EEECInvolve_Remarks} name="EEECInvolve_Remarks" onChange={this.handleTextChange} rows={2} cols={30} ></textarea>
                         </td>
                       </tr>
 
@@ -5090,18 +5318,18 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           Project Organisation Chart
                         </td>
                         <td>
-                          <select name="RiskIndex_ProjectChart" className="ms-Dropdown-select" id="PEEOrgChart" onChange={this.handleRiskChange} >
+                          <select value={this.state.PEEOrgChart} name="RiskIndex_ProjectChart" className="ms-Dropdown-select" id="PEEOrgChart" onChange={this.handleRiskChange} >
                             <option data-set="0">Please Select</option>
-                            <option data-set="1" value="2" className="2"> Well Defined Structure </option>
-                            <option data-set="2" value="3" className="2"> Multiple Roles per resource  </option>
-                            <option data-set="4" value="3" className="2">Resource allocation managed by FSO  </option>
+                            <option data-set="1" value="Well Defined Structure" className="2">Well Defined Structure</option>
+                            <option data-set="2" value="Multiple Roles per resource" className="2">Multiple Roles per resource</option>
+                            <option data-set="4" value="Resource allocation managed by FSO" className="2">Resource allocation managed by FSO</option>
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.RiskIndex_ProjectChart}
                         </td>
                         <td>
-                          <textarea value={this.state.ProjectOrg_Remarks} name="ProjectOrg_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30}></textarea>
+                          <textarea value={this.state.ProjectOrg_Remarks} name="ProjectOrg_Remarks" onChange={this.handleTextChange} rows={2} cols={30}></textarea>
                         </td>
                       </tr>
                       <tr>
@@ -5109,18 +5337,18 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           Overall Risk Ranking
                        </td>
                         <td>
-                          <select name="OverallRisk" className="ms-Dropdown-select" id="PEERiskRanking" onChange={this.handleRiskChange} >
+                          <select value={this.state.PEERiskRanking} name="OverallRisk" className="ms-Dropdown-select" id="PEERiskRanking" onChange={this.handleRiskChange} >
                             <option>Please Select</option>
-                            <option data-set="1" value="2" className="2"> Low </option>
-                            <option data-set="4" value="3" className="2"> Medium</option>
-                            <option data-set="6" value="3" className="2">High  </option>
+                            <option data-set="1" value="Low" className="2"> Low </option>
+                            <option data-set="4" value="Medium" className="2"> Medium</option>
+                            <option data-set="6" value="High" className="2">High  </option>
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.OverallRisk}
                         </td>
                         <td>
-                          <textarea value={this.state.OverallRisk_Remarks} name="OverallRisk_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30}></textarea>
+                          <textarea value={this.state.OverallRisk_Remarks} name="OverallRisk_Remarks" onChange={this.handleTextChange} rows={2} cols={30}></textarea>
                         </td>
                       </tr>
                       <tr>
@@ -5129,16 +5357,16 @@ export class eProjectNewForm extends React.Component<{}, any>{
                        </td>
                         <td>
 
-                          <input type="checkbox" name="EEEScope" id="ISFEED" onChange={this.handleRiskChange}></input> &nbsp; Feed  <br></br>
-                          <input type="checkbox" name="EEEScope" id="ISExecute" onChange={this.handleRiskChange}></input> &nbsp;Execute  <br></br>
-                          <input type="checkbox" name="EEEScope" id="ISFAT" onChange={this.handleRiskChange}></input>&nbsp; FAT  <br></br>
-                          <input type="checkbox" name="EEEScope" id="ISSAT" onChange={this.handleRiskChange}></input>&nbsp; SAT  <br></br>
+                          <input type="checkbox" name="EEEScope" id="ISFEED" checked={this.state.ISFEEDChecked} className="ISFEEDChecked" onChange={this.handleRiskChange}></input> &nbsp; Feed  <br></br>
+                          <input type="checkbox" name="EEEScope" id="ISExecute" checked={this.state.ISExecuteChecked} className="ISExecuteChecked" onChange={this.handleRiskChange}></input> &nbsp;Execute  <br></br>
+                          <input type="checkbox" name="EEEScope" id="ISFAT" checked={this.state.ISFATChecked} className="ISFATChecked" onChange={this.handleRiskChange}></input>&nbsp; FAT  <br></br>
+                          <input type="checkbox" name="EEEScope" id="ISSAT" checked={this.state.ISSATChecked} className="ISSATChecked" onChange={this.handleRiskChange}></input>&nbsp; SAT  <br></br>
                         </td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.EEEScope}
                         </td>
                         <td>
-                          <textarea value={this.state.EEECScope_Remarks} name="EEECScope_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30}></textarea>
+                          <textarea value={this.state.EEECScope_Remarks} name="EEECScope_Remarks" onChange={this.handleTextChange} rows={2} cols={30}></textarea>
                         </td>
                       </tr>
 
@@ -5151,48 +5379,48 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <div id="EEECInvolvement" style={{ width: "100%", border: "1px solid darkgray", padding: "10px", marginTop: "7px" }}>
                             <table style={{ width: "100%" }} >
                               <tr>
-                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" id="ISPASBase" onChange={this.handleRiskChange} /></td><td>PAS Base DB,Interlocks,Graphics  </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" id="ISPASCustom" onChange={this.handleRiskChange} /></td><td>PAS Custom Logic,Sequences </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" id="ISPASComplex" onChange={this.handleRiskChange} /></td><td>PAS Complex Logic  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" id="ISPASBase" checked={this.state.ISPASBaseChecked} className="ISPASBaseChecked" onChange={this.handleRiskChange} /></td><td>PAS Base DB,Interlocks,Graphics  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" id="ISPASCustom" checked={this.state.ISPASCustomChecked} className="ISPASCustomChecked" onChange={this.handleRiskChange} /></td><td>PAS Custom Logic,Sequences </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" id="ISPASComplex" checked={this.state.ISPASComplexChecked} className="ISPASComplexChecked" onChange={this.handleRiskChange} /></td><td>PAS Complex Logic  </td>
                               </tr>
 
                               <tr>
-                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISPASBatch" /></td><td>PAS Batch  </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISPASThird" /></td><td>PAS Third Party Integration </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISOtherPAS" /></td><td>Other PAS  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISPASBatch" checked={this.state.ISPASBatchChecked} className="ISPASBatchChecked" /></td><td>PAS Batch  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISPASThird" checked={this.state.ISPASThirdChecked} className="ISPASThirdChecked" /></td><td>PAS Third Party Integration </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISOtherPAS" checked={this.state.ISOtherPASChecked} className="ISOtherPASChecked" /></td><td>Other PAS  </td>
                               </tr>
 
                               <tr>
-                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISSISESD" /></td><td>SIS ESD  </td>
-                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISSISFGS" /></td><td>SIS FGS </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISSISBMS" /></td><td>SIS BMS   </td>
+                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISSISESD" checked={this.state.ISSISESDChecked} className="ISSISESDChecked" /></td><td>SIS ESD  </td>
+                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISSISFGS" checked={this.state.ISSISFGSChecked} className="ISSISFGSChecked" /></td><td>SIS FGS </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISSISBMS" checked={this.state.ISSISBMSChecked} className="ISSISBMSChecked" /></td><td>SIS BMS   </td>
                               </tr>
                               <tr>
-                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISSISPASINT" /> </td><td>SIS/PAS Integration </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISOTHERSISINT" /></td><td>Other SIS Integration </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISSISPASINT" checked={this.state.ISSISPASINTChecked} className="ISSISPASINTChecked" /> </td><td>SIS/PAS Integration </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISOTHERSISINT" checked={this.state.ISOTHERSISINTChecked} className="ISOTHERSISINTChecked" /></td><td>Other SIS Integration </td>
                               </tr>
 
                               <tr>
-                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISPASCAB" /></td><td>PAS Cabinets  </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISSISCAB" /></td><td>SIS Cabinets  </td>
+                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISPASCAB" checked={this.state.ISPASCABChecked} className="ISPASCABChecked" /></td><td>PAS Cabinets  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISSISCAB" checked={this.state.ISSISCABChecked} className="ISSISCABChecked" /></td><td>SIS Cabinets  </td>
 
                               </tr>
 
 
                               <tr>
-                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISOtherBU" /> </td><td>Other BU's and Engg Support</td>
-                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISInterface" /></td><td>Interface Lead  </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISDocControl" /></td><td>Document Controller  </td>
+                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISOtherBU" checked={this.state.ISOtherBUChecked} className="ISOtherBUChecked" /> </td><td>Other BU's and Engg Support</td>
+                                <td style={{ width: "20px" }}> <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISInterface" checked={this.state.ISInterfaceChecked} className="ISInterfaceChecked" /></td><td>Interface Lead  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISDocControl" checked={this.state.ISDocControlChecked} className="ISDocControlChecked" /></td><td>Document Controller  </td>
                               </tr>
                               <tr>
-                                <td style={{ width: "20px" }} >  <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISTechWriter" /></td><td>Technical Writer  </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISOTS" /></td><td>OTS   </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" onChange={this.handleRiskChange} id="ISWireless" /></td><td>Wireless  </td>
+                                <td style={{ width: "20px" }} >  <input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISTechWriter" checked={this.state.ISTechWriterChecked} className="ISTechWriterChecked" /></td><td>Technical Writer  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" onChange={this.handleRiskChange} name="EEECInvScope" id="ISOTS" checked={this.state.ISOTSChecked} className="ISOTSChecked" /></td><td>OTS   </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" onChange={this.handleRiskChange} id="ISWireless" checked={this.state.ISWirelessChecked} className="ISWirelessChecked" /></td><td>Wireless  </td>
                               </tr>
                               <tr>
 
-                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" onChange={this.handleRiskChange} id="ISAgile" /> </td><td>Agile OPS  </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" id="EEECInvScope" onChange={this.handleRiskChange} name="ISOther" /></td><td>Other </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" onChange={this.handleRiskChange} id="ISAgile" checked={this.state.ISAgileChecked} className="ISAgileChecked" /> </td><td>Agile OPS  </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="EEECInvScope" onChange={this.handleRiskChange} name="ISOther" checked={this.state.ISOtherChecked} className="ISOtherChecked" /></td><td>Other </td>
                               </tr>
 
 
@@ -5204,22 +5432,22 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           {this.state.EEEInvScope}
                         </td>
                         <td>
-                          <textarea value={this.state.EECInvolvScope_Remarks} name="EECInvolvScope_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30}></textarea>
+                          <textarea value={this.state.EECInvolvScope_Remarks} name="EECInvolvScope_Remarks" onChange={this.handleTextChange} rows={2} cols={30}></textarea>
                         </td>
 
                       </tr>
                       <tr>
                         <td>FAT Engagement</td>
-                        <td><select name="RiskIndex_FAT" className="ms-Dropdown-select" id="PEEFAT" onChange={this.handleRiskChange}>
-                          <option data-set="0" >Please Select</option>
-                          <option data-set="1">Remote FAT</option>
-                          <option data-set="2">Face to Face FAT</option>
+                        <td><select value={this.state.PEEFAT} name="RiskIndex_FAT" className="ms-Dropdown-select" id="PEEFAT" onChange={this.handleRiskChange}>
+                          <option data-set="0" value="" >Please Select</option>
+                          <option data-set="1" value="Remote FAT">Remote FAT</option>
+                          <option data-set="2" value="Face to Face FAT">Face to Face FAT</option>
                         </select></td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.RiskIndex_FAT}
                         </td>
                         <td>
-                          <textarea name="FAT_Remarks" value={this.state.FAT_Remarks} onChange={this.onTextAreaChange} rows={2} cols={30}></textarea>
+                          <textarea name="FAT_Remarks" value={this.state.FAT_Remarks} onChange={this.handleTextChange} rows={2} cols={30}></textarea>
                         </td>
 
 
@@ -5227,37 +5455,37 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                       <tr>
                         <td>Overall PM</td>
-                        <td><select name="RiskIndex_OverallPM" id="PEEOverall" className="ms-Dropdown-select" onChange={this.handleRiskChange}>
+                        <td><select value={this.state.PEEOverall} name="RiskIndex_OverallPM" id="PEEOverall" className="ms-Dropdown-select" onChange={this.handleRiskChange}>
                           <option data-set="0">Please Select</option>
-                          <option data-set="1">FSO</option>
-                          <option data-set="2">EEC</option>
-                          <option data-set="3">FSO + EEC</option>
+                          <option value="FSO" data-set="1">FSO</option>
+                          <option value="EEEC" data-set="2">EEEC</option>
+                          <option value="EEEC + FSO" data-set="3">EEEC + FSO</option>
                         </select></td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.RiskIndex_OverallPM}
                         </td>
                         <td>
-                          <textarea value={this.state.OverallPM_Remarks} name="OverallPM_Remarks" onChange={this.onTextAreaChange} rows={2} cols={30}></textarea>
+                          <textarea value={this.state.OverallPM_Remarks} name="OverallPM_Remarks" onChange={this.handleTextChange} rows={2} cols={30}></textarea>
                         </td>
 
                       </tr>
                       <tr>
                         <td>Overall Lead and Other LE's</td>
                         <td>
-                          <select name="RiskIndex_OverallLead" id="PEELead" className="ms-Dropdown-select" onChange={this.handleRiskChange}>
-                            <option data-set="0">Please Select</option>
-                            <option data-set="1">FSO</option>
-                            <option data-set="2">EEC (Local)</option>
-                            <option data-set="3">EEC(Local+Remote)</option>
-                            <option data-set="4">FSO + EEC</option>
-                            <option data-set="5">No Liaison in FSO</option>
+                          <select value={this.state.PEELead} name="RiskIndex_OverallLead" id="PEELead" className="ms-Dropdown-select" onChange={this.handleRiskChange}>
+                            <option value="" data-set="0">Please Select</option>
+                            <option value="FSO" data-set="1">FSO</option>
+                            <option value="EEEC (Local)">EEEC (Local)</option>
+                            <option value="EEEC(Local+Remote)" data-set="3">EEEC(Local+Remote)</option>
+                            <option value="FSO + EEC" data-set="4">FSO + EEC</option>
+                            <option value="No Liaison in FSO" data-set="5">No Liaison in FSO</option>
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.RiskIndex_OverallLead}
                         </td>
                         <td>
-                          <textarea value={this.state.LeadRemarks} onChange={this.onTextAreaChange} name="LeadRemarks" rows={2} cols={30}></textarea>
+                          <textarea value={this.state.LeadRemarks} onChange={this.handleTextChange} name="LeadRemarks" rows={2} cols={30}></textarea>
                         </td>
                       </tr>
 
@@ -5298,25 +5526,25 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           {this.state.FSO_OPEN + this.state.FSO_Tech + this.state.FSO_Oth + this.state.FSO_EEC}
                         </td>
                         <td>
-                          <textarea value={this.state.FSOPM_Remarks} onChange={this.onTextAreaChange} name="FSOPM_Remarks" rows={2} cols={30}></textarea>
+                          <textarea value={this.state.FSOPM_Remarks} onChange={this.handleTextChange} name="FSOPM_Remarks" rows={2} cols={30}></textarea>
                         </td>
                       </tr>
 
 
                       <tr>
                         <td>What FSO Considers As a Success</td>
-                        <td><input type="checkbox" id="ISTimely" name="FSOSuccess" onClick={this.handleRiskChange} /> &nbsp;Timely Delivery <br></br>
-                          <input type="checkbox" id="ISNoBudget" name="FSOSuccess" onClick={this.handleRiskChange} /> &nbsp;No Budget Overrun<br></br>
-                          <input type="checkbox" id="ISFATReady" name="FSOSuccess" onClick={this.handleRiskChange} /> &nbsp;FAT Ready Deliverables<br></br>
-                          <input type="checkbox" id="ISRework" name="FSOSuccess" onClick={this.handleRiskChange} /> &nbsp;Minimal Rework after FAT {"<"}1% of Budget
+                        <td><input type="checkbox" id="ISTimely" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISTimelyChecked} className="ISTimelyChecked" /> &nbsp;Timely Delivery <br></br>
+                          <input type="checkbox" id="ISNoBudget" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISNoBudgetChecked} className="ISNoBudgetChecked" /> &nbsp;No Budget Overrun<br></br>
+                          <input type="checkbox" id="ISFATReady" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISFATReadyChecked} className="ISFATReadyChecked" /> &nbsp;FAT Ready Deliverables<br></br>
+                          <input type="checkbox" id="ISRework" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISMultiAreaPhasedChecked} className="ISMultiAreaPhasedChecked" /> &nbsp;Minimal Rework after FAT {"<"}1% of Budget
 <br></br>
-                          <input type="checkbox" id="ISMaintain" name="FSOSuccess" onClick={this.handleRiskChange} /> &nbsp;Maintain or Improve Sales GP<br></br>
+                          <input type="checkbox" id="ISMaintain" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISMaintainChecked} className="ISMaintainChecked" /> &nbsp;Maintain or Improve Sales GP<br></br>
                         </td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.FSO_Success}
                         </td>
                         <td>
-                          <textarea value={this.state.FSOSuccess_Remarks} onChange={this.onTextAreaChange} name="FSOSuccess_Remarks" rows={2} cols={30}></textarea>
+                          <textarea value={this.state.FSOSuccess_Remarks} onChange={this.handleTextChange} name="FSOSuccess_Remarks" rows={2} cols={30}></textarea>
                         </td>
                       </tr>
 
@@ -5326,24 +5554,24 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <div id="EEECInvolvement" style={{ width: "95%", border: "1px solid darkgray", padding: "10px", marginTop: "7px" }}>
                           <table style={{ width: "100%" }}>
                             <tr>
-                              <td><input type="checkbox" id="ISImplement" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>Implement Batch without using Batch Licences </td> <br></br>
-                              <td><input type="checkbox" id="ISUSESIS" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>Use of SIS Blocks in PAS Control Module</td> <br></br>
+                              <td><input type="checkbox" id="ISImplement" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} checked={this.state.ISImplementChecked} className="ISImplementChecked" /> </td><td>Implement Batch without using Batch Licences </td> <br></br>
+                              <td><input type="checkbox" id="ISUSESIS" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} checked={this.state.ISUSESISChecked} className="ISUSESISChecked" /> </td><td>Use of SIS Blocks in PAS Control Module</td> <br></br>
 
-                              <td><input type="checkbox" id="ISNonPCSD" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /></td><td>Use of Non-PCSD Library</td> <br></br>
+                              <td><input type="checkbox" id="ISNonPCSD" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} checked={this.state.ISNonPCSDChecked} className="ISNonPCSDChecked" /></td><td>Use of Non-PCSD Library</td> <br></br>
                             </tr>
                             <tr>
-                              <td><input type="checkbox" id="ISGraphics" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /></td><td>Graphics for custom resolutions</td> <br></br>
-                              <td><input type="checkbox" id="ISNewProd" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>New Product/Technology</td> <br></br>
-                              <td><input type="checkbox" id="ISOdd" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>Odd Shifts  </td><br></br>
+                              <td><input type="checkbox" id="ISGraphics" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} checked={this.state.ISGraphicsChecked} className="ISGraphicsChecked" /></td><td>Graphics for custom resolutions</td> <br></br>
+                              <td><input type="checkbox" id="ISNewProd" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} checked={this.state.ISNewProdChecked} className="ISNewProdChecked" /> </td><td>New Product/Technology</td> <br></br>
+                              <td><input type="checkbox" id="ISOdd" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} checked={this.state.ISOddChecked} className="ISOddChecked" /> </td><td>Odd Shifts  </td><br></br>
                             </tr>
                             <tr>
 
-                              <td><input type="checkbox" id="ISIP" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>IP/Clause</td><br></br>
-                              <td> <input type="checkbox" id="ISCust" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>Customer Demos</td><br></br>
+                              <td><input type="checkbox" id="ISIP" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} checked={this.state.ISIPChecked} className="ISIPChecked" /> </td><td>IP/Clause</td><br></br>
+                              <td> <input type="checkbox" id="ISCust" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} checked={this.state.ISCustChecked} className="ISCustChecked" /> </td><td>Customer Demos</td><br></br>
                             </tr>
                             <tr>
-                              <td> <input type="checkbox" id="ISDev" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>Develope Details FS based on limited information</td><br></br>
-                              <td><input type="checkbox" id="ISOth" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} /> </td><td>Other</td> <br></br>
+                              <td> <input type="checkbox" id="ISDev" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} checked={this.state.ISDevChecked} className="ISDevChecked" /> </td><td>Develope Details FS based on limited information</td><br></br>
+                              <td><input type="checkbox" id="ISOth" name="ChkNonStandardRequirements" onClick={this.handleRiskChange} checked={this.state.ISOthChecked} className="ISOthChecked" /> </td><td>Other</td> <br></br>
 
                             </tr>
                           </table>
@@ -5352,7 +5580,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           {this.state.Non_Std}
                         </td>
                         <td>
-                          <textarea onChange={this.onTextAreaChange} value={this.state.NonStd_Remarks} name="NonStd_Remarks" rows={2} cols={30}></textarea>
+                          <textarea onChange={this.handleTextChange} value={this.state.NonStd_Remarks} name="NonStd_Remarks" rows={2} cols={30}></textarea>
                         </td>
 
                       </tr>
@@ -5368,36 +5596,36 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td> Resource Skillset</td>
                         <td>
 
-                          <select name="RiskIndex_ResourceSkill" id="PEEResource" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
+                          <select value={this.state.PEEResource} name="RiskIndex_ResourceSkill" id="PEEResource" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
                             <option>Please Select</option>
-                            <option data-set="1" value="2" className="2"> No Special Requirement </option>
-                            <option data-set="2" value="3" className="2"> Blended Mix</option>
-                            <option data-set="4" value="3" className="2">Special Skills  </option>
-                            <option data-set="6" value="3" className="2">Resource with Process background  </option>
+                            <option data-set="1" value="No Special Requirement" className="2"> No Special Requirement </option>
+                            <option data-set="2" value="Blended Mix" className="2"> Blended Mix</option>
+                            <option data-set="4" value="Special Skills" className="2">Special Skills  </option>
+                            <option data-set="6" value="Resource with Process background" className="2">Resource with Process background  </option>
                           </select>
                         </td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.RiskIndex_ResourceSkill}
                         </td>
                         <td>
-                          <textarea value={this.state.ResourceSkill_Remarks} name="ResourceSkill_Remarks" rows={2} cols={30}></textarea>
+                          <textarea onChange={this.handleTextChange} value={this.state.ResourceSkill_Remarks} name="ResourceSkill_Remarks" rows={2} cols={30}></textarea>
                         </td>
 
                       </tr>
                       <tr>
                         <td>Resource Plan and Project Loading Chart</td>
-                        <select name="RiskIndex_ResourcePlan" id="PEEProjectLoading" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
+                        <select value={this.state.PEEProjectLoading} name="RiskIndex_ResourcePlan" id="PEEProjectLoading" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
                           <option>Please Select</option>
-                          <option data-set="1" value="2" className="2"> Yes </option>
-                          <option data-set="2" value="3" className="2"> No</option>
-                          <option data-set="3" value="3" className="2">To Be Defined Later  </option>
+                          <option data-set="1" value="Yes" className="2"> Yes </option>
+                          <option data-set="2" value="No" className="2"> No</option>
+                          <option data-set="3" value="To Be Defined Later" className="2">To Be Defined Later  </option>
 
                         </select>
                         <td style={{ textAlign: "center" }}>
                           {this.state.RiskIndex_ResourcePlan}
                         </td>
                         <td>
-                          <textarea value={this.state.RiskIndex_ResourcePlanLoading} name="RiskIndex_ResourcePlanLoading" rows={2} cols={30}></textarea>
+                          <textarea value={this.state.handleTextChange} name="RiskIndex_ResourcePlanLoading" rows={2} cols={30}></textarea>
                         </td>
                       </tr>
 
