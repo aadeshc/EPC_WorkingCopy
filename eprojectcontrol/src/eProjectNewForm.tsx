@@ -1052,6 +1052,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
         OverallLead: this.state.PEELead,
         Resource_x0020_Skillset: this.state.PEEResource,
         ResourcePlanProjectLoadingChart: this.state.PEEProjectLoading,
+
+
         ISMultiEngg: this.state.ISMultiEngg,
         ISMultiEPC: this.state.ISMultiEPC,
         ISMultiAreaPhased: this.state.ISMultiAreaPhased,
@@ -1071,6 +1073,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
         ISSISESD: this.state.ISSISESD,
         ISSISFGS: this.state.ISSISFGS,
         ISSISBMS: this.state.ISSISBMS,
+
         ISSISPASINT: this.state.ISSISPASINT,
         ISOTHERSISINT: this.state.ISOTHERSISINT,
         ISPASCAB: this.state.ISPASCAB,
@@ -1097,8 +1100,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
         ISOth: this.state.ISOth,
         ISIP: this.state.ISIP,
         ISDev: this.state.ISDev,
-        ExecutionStrategyandModelExecuti: this.state.ExecutionStrategyandModelExecution,
-        ExecutionStrategyandModelFSO: this.state.ExecutionStrategyandModelFSO,
+        ExecutionStrategyandModelExecuti: this.state.ExecutionFSOValue,
+        ExecutionStrategyandModelFSO: this.state.ExecutionFSOValueWA,
         FSOPMLeadsOpen: this.state.FSOPMLeadsOpen,
         FSOPMLeadsTechnical: this.state.FSOPMLeadsTechnical,
         FSOPMLeadsOther: this.state.FSOPMLeadsOther,
@@ -2232,13 +2235,48 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
   };
 
+
+
+  handleRisk_Change = (event) => {
+
+
+    if (event.target.id == "ExecutionFSOValue") {
+      var index = event.target.selectedIndex;
+      var optionElement = event.target.childNodes[index]
+      var value = optionElement.innerText.trim()
+      var option = optionElement.getAttribute('data-set');
+
+      this.setState({
+        [event.target.id]: event.target.value,
+        [event.target.name]: parseInt(option),
+      })
+
+    } else {
+
+
+      var index = event.target.selectedIndex;
+      var optionElement = event.target.childNodes[index]
+      var value = optionElement.innerText.trim()
+      var option = optionElement.getAttribute('data-set');
+
+
+      this.setState({
+        [event.target.name]: parseInt(option),
+        [event.target.id]: value
+
+      })
+    }
+
+  }
   public handleRiskChange = (event) => {
 
-
+    var ChoiceVal;
 
     if ((event.target.name == "FSOMPMOpen") || (event.target.name == "FSOPMTechnical") || (event.target.name == "FSOPMOther") || (event.target.name == "FSOEEEC") || (event.target.name == "WA") || (event.target.name == "FSO") || (event.target.name == "FSOWA") || (event.target.name == "EEECInvScope") || (event.target.name == "EEEScope") || (event.target.name == "EEECInvScope") || (event.target.name == "FSOSuccess") || (event.target.name == "ChkNonStandardRequirements")) {
 
-      if ((event.target.name == "WA") || (event.target.name == "FSO") || (event.target.name == "FSOMPMOpen") || (event.target.name == "FSOPMTechnical") || (event.target.name == "FSOPMOther") || (event.target.name == "FSOEEEC")) {
+
+
+      if ((event.target.name == "FSOMPMOpen") || (event.target.name == "FSOPMTechnical") || (event.target.name == "FSOPMOther") || (event.target.name == "FSOEEEC")) {
 
         this.setState({
           [event.target.id]: event.target.value
@@ -2394,11 +2432,6 @@ export class eProjectNewForm extends React.Component<{}, any>{
         }
       }
 
-      if (event.target.name == "EEECInvScope") {
-        this.setState({
-          EEEInvScope: this.state.EEEInvScope + 1
-        })
-      }
 
       if (event.target.name == "FSOWA") {
 
@@ -2465,7 +2498,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
       var index = event.target.selectedIndex;
       var optionElement = event.target.childNodes[index]
-      var value = optionElement.innerText
+      var value = optionElement.innerText.trim()
       var option = optionElement.getAttribute('data-set');
       this.setState({
         [event.target.name]: parseInt(option),
@@ -3410,25 +3443,22 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>FSO</u></th>
                             </tr>
                             <tr>
-
-                              <td style={{ width: "50%", borderStyle: "Solid", borderWidth: "1px", padding: "5px", borderColor: "darkgray" }}>
-                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Same" data-set="0" onChange={this.handleRiskChange} /> &nbsp;
-                          <label>FSO/EEEC Split : Same as defined in the Proposal</label> <br></br>
-                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Increase" data-set="2" onChange={this.handleRiskChange} /> &nbsp;
-                          <label>FSO/EEEC Split:Decreased EEEC Utilization/Scope</label> <br></br>
-                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Decrease" data-set="4" onChange={this.handleRiskChange} /> &nbsp;
-                          <label>FSO/EEEC Split:Increased EEEC Utilization/Scope</label> <br></br>
-                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Additional" data-set="6" onChange={this.handleRiskChange} />&nbsp;
-                                <label>Additional/Change in EEEC roles after Project Initiation</label>
+                              <td>
+                                <select name="FSO" id="ExecutionFSOValue" onChange={this.handleRisk_Change}>
+                                  <option data-set="0" value="Same"> FSO/EEEC Split:Same as defined in the Proposal</option>
+                                  <option data-set="2" value="Increase"> FSO/EEEC Split:Decreased EEEC Utilization/Scope</option>
+                                  <option data-set="4" value="Decrease"> FSO/EEEC Split:Increased EEEC Utilization/Scope</option>
+                                  <option data-set="6" value="Additional"> Additional/Change in EEEC roles after Project Initiation</option>
+                                </select>
                               </td>
-                              <td style={{ width: "50%", borderStyle: "Solid", borderWidth: "1px", borderColor: 'grey' }}>
-                                <span >
-                                  &nbsp;  <input type="radio" id="ExecutionStrategyandModelFSO" name="WA" value="One World Area" data-set="0" onChange={this.handleRiskChange} />&nbsp;
-                                     <label>One World Area</label> <br></br>
-                                     &nbsp;  <input type="radio" name="WA" id="ExecutionStrategyandModelFSO" value="Multiple World Area" data-set="3" onChange={this.handleRiskChange} /> &nbsp;
 
-                              <label>Multiple World Area</label>
-                                </span>
+                              <td style={{ width: "50%", borderStyle: "Solid", borderWidth: "1px", borderColor: 'grey' }}>
+                                <select name="WA" id="ExecutionFSOValueWA" onChange={this.handleRisk_Change}>
+                                  <option data-set="0" value="One World Area">One World Area</option>
+                                  <option data-set="3" value="Multiple World Area"> Multiple World Area</option>
+
+
+                                </select>
                               </td>
                             </tr>
 
@@ -3437,7 +3467,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <td colSpan={2} style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
                                 <td>  <input type="checkbox" name="FSOWA" id="ISMultiEPC" onChange={this.handleRiskChange} ></input>&nbsp;<label>Multi EPC</label></td>
 
-                                <td>  <input type="checkbox" name="FSOWA" id="ISMultiAreaParallal" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Engg Center</label></td>
+                                <td>  <input type="checkbox" name="FSOWA" id="ISMultiEngg" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Engg Center</label></td>
 
                                 <td> <input type="checkbox" name="FSOWA" id="ISMultiAreaPhased" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Phased Execution</label></td>
 
@@ -3697,7 +3727,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <tr>
 
                                 <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" onChange={this.handleRiskChange} id="ISAgile" /> </td><td>Agile OPS  </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" id="EEECInvScope" onChange={this.handleRiskChange} name="ISOther" /></td><td>Other </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" onChange={this.handleRiskChange} id="ISOther" /></td><td>Other </td>
                               </tr>
 
 
@@ -3771,31 +3801,45 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td>
                           <table style={{ width: "100%", border: "1px solid lightgray" }}>
 
-                            <tr>
-                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}><u> Open</u></th>
-                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>Technical</u></th>
-                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>Other</th>
-                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>EEEC Experience</th>
-                            </tr>
-                            <tr>
-                              <td><input type="radio" data-set="0" id="FSOPMLeadsOpen" name="FSOMPMOpen" onChange={this.handleRiskChange} value="Accomodative" /> <label>Accomodative</label> </td>
-                              <td><input type="radio" data-set="0" id="FSOPMLeadsTechnical" name="FSOPMTechnical" onChange={this.handleRiskChange} value="Technical" /> <label>Technical</label> </td>
-                              <td><input type="radio" data-set="0" id="FSOPMLeadsOther" name="FSOPMOther" onChange={this.handleRiskChange} value="Proactive" /> <label>Proactive</label> </td>
-                              <td><input type="radio" data-set="0" id="FSOPMLeadsEEECExp" name="FSOEEEC" onChange={this.handleRiskChange} value="Worked With EEEC" /> <label>Worked With EEEC</label> </td>
-                            </tr>
-                            <tr>
-                              <td><input type="radio" data-set="3" id="FSOPMLeadsOpen" name="FSOMPMOpen" value="Non-Accommodative" onChange={this.handleRiskChange} /> <label>Non-Accommodative</label> </td>
-                              <td><input type="radio" data-set="3" id="FSOPMLeadsTechnical" name="FSOPMTechnical" value="Non Technical" onChange={this.handleRiskChange} /> <label>Non Technical</label> </td>
-                              <td><input type="radio" data-set="3" id="FSOPMLeadsOther" name="FSOPMOther" value="Reactive" onChange={this.handleRiskChange} /> <label>Reactive</label> </td>
-                              <td><input type="radio" data-set="3" id="FSOPMLeadsEEECExp" name="FSOEEEC" value="New to EEEC" onChange={this.handleRiskChange} /> <label>New to EEEC</label> </td>
-                            </tr>
-                            <tr>
-                              <td><input type="radio" data-set="6" id="FSOPMLeadsOpen" name="FSOMPMOpen" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" data-set="6" id="FSOPMLeadsTechnical" name="FSOPMTechnical" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" data-set="6" id="FSOPMLeadsOther" name="FSOPMOther" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" data-set="6" id="FSOPMLeadsEEECExp" name="FSOEEEC" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
-                            </tr>
+                            <tr style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                              <tr>
+                                <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}><u> Open</u></th>
+                                <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>Technical</u></th>
+                                <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>Other</th>
+                                <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>EEEC Experience</th>
+                              </tr>
+                              <tr>
+                                <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                  <select id="FSOPMLeadsOpen" name="FSO_OPEN" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Accommodative</option>
+                                    <option data-set="3">Non-Accommodative</option>
+                                    <option data-set="6">Difficult to classify</option>
 
+                                  </select>
+                                </td>
+                                <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                  <select id="FSOPMLeadsTechnical" name="FSO_Tech" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Technical</option>
+                                    <option data-set="3">Non-Technical</option>
+                                    <option data-set="6">Difficult to classify</option>
+                                  </select>
+                                </td>
+                                <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                  <select id="FSOPMLeadsOther" name="FSO_Oth" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Proactive</option>
+                                    <option data-set="3">Reactive</option>
+                                    <option data-set="6">Difficult to classify</option>
+                                  </select>
+                                </td>
+                                <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                  <select id="FSOPMLeadsEEECExp" name="FSO_EEC" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Worked with EEEC</option>
+                                    <option data-set="3">New to EEEC </option>
+                                    <option data-set="6">Difficult to classify</option>
+                                  </select>
+                                </td>
+                              </tr>
+                            </tr>
 
                           </table>
                         </td>
