@@ -84,6 +84,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
   constructor(props: IeProjectState) {
 
     super(props);
+
     this.EPC = React.createRef();
     this.PDBCabinet = React.createRef();
     this.RiskRegister = React.createRef();
@@ -214,6 +215,13 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
     this.state = {
+      ISSame: false,
+      ISIncrease: false,
+      ISDecrease: false,
+      ISAdd: false,
+      ISOneWorld: false,
+      ISMultipleWorld: false,
+
       PEEProjectContractType: "",
       PEEProjectLD: "",
       PEEProjectGP: "",
@@ -1680,6 +1688,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
             ISSISBMSChecked: (response.d.results[0].ISSISBMS == "Yes"),
             ISSISPASINT: response.d.results[0].ISSISPASINT,
             ISSISPASINTChecked: (response.d.results[0].ISSISPASINT == "Yes"),
+            ExecutionModel: response.d.results[0].ExecutionStrategyandModelExecuti,
+            ExecutionWorldArea: response.d.results[0].ExecutionStrategyandModelFSO,
 
             ISOTHERSISINT: response.d.results[0].ISOTHERSISINT,
             ISOTHERSISINTChecked: (response.d.results[0].ISOTHERSISINT == "Yes"),
@@ -1753,8 +1763,22 @@ export class eProjectNewForm extends React.Component<{}, any>{
             ISDevChecked: (response.d.results[0].ISDev == "Yes"),
 
 
+            FSO: response.d.results[0].RiskIndex_FSO,
+            WA: response.d.results[0].RiskIndex_WA,
+            FSO_WA: response.d.results[0].RiskIndexFW,
 
+            FSO_OPEN: response.d.results[0].RiskIndex_LeadOpen,
+            FSO_Tech: response.d.results[0].RiskIndex_LeadTech,
+            FSO_Oth: response.d.results[0].RiskIndex_LeadOth,
+            FSO_EEC: response.d.results[0].RiskIndex_LeadEEEC,
 
+            FSOPMLeadsOpen: response.d.results[0].FSOPMLeadsOpen,
+            FSOPMLeadsTechnical: response.d.results[0].FSOPMLeadsTechnical,
+            FSOPMLeadsOther: response.d.results[0].FSOPMLeadsOther,
+            FSOPMLeadsEEECExp: response.d.results[0].FSOPMLeadsEEECExp,
+            ExecutionFSOValue: response.d.results[0].ExecutionStrategyandModelExecuti,
+            ExecutionFSOValueWA: response.d.results[0].ExecutionStrategyandModelFSO,
+            //ExecutionStrategyandModelFSO
 
 
 
@@ -1969,6 +1993,40 @@ export class eProjectNewForm extends React.Component<{}, any>{
             EditDongleReturnedComments: response.d.results[0].DongleReturnedComments,
 
           }, () => {
+
+            //
+
+            if (this.state.ExecutionWorldArea == "One World Area") {
+              this.setState({
+                ISOneWorld: true
+              })
+            }
+            if (this.state.ExecutionWorldArea == "Multiple World Area") {
+              this.setState({
+                ISMultipleWorld: true
+              })
+            }
+            if (this.state.ExecutionStrategyandModelExecution == "Same") {
+
+              this.setState({
+                ISSame: true
+              })
+            }
+            if (this.state.ExecutionStrategyandModelExecution == "Increase") {
+              this.setState({
+                ISIncrease: true
+              })
+            }
+            if (this.state.ExecutionStrategyandModelExecution == "Decrease") {
+              this.setState({
+                ISDecrease: true
+              })
+            }
+            if (this.state.ExecutionStrategyandModelExecution == "Additional") {
+              this.setState({
+                ISAdd: true
+              })
+            }
             this.getProjectTypeID();
             this.getcurrentcsergroup()
             resolve();
@@ -1986,7 +2044,37 @@ export class eProjectNewForm extends React.Component<{}, any>{
     });
   }
 
+  handleRisk_Change = (event) => {
 
+
+    if (event.target.id == "ExecutionFSOValue") {
+      var index = event.target.selectedIndex;
+      var optionElement = event.target.childNodes[index]
+      var value = optionElement.innerText.trim()
+      var option = optionElement.getAttribute('data-set');
+
+      this.setState({
+        [event.target.id]: event.target.value,
+        [event.target.name]: parseInt(option),
+      })
+
+    } else {
+
+
+      var index = event.target.selectedIndex;
+      var optionElement = event.target.childNodes[index]
+      var value = optionElement.innerText.trim()
+      var option = optionElement.getAttribute('data-set');
+
+
+      this.setState({
+        [event.target.name]: parseInt(option),
+        [event.target.id]: value
+
+      })
+    }
+
+  }
   public getProjectTypeID() {
     let deltavversion = []
     debugger;
@@ -2223,6 +2311,13 @@ export class eProjectNewForm extends React.Component<{}, any>{
         '__metadata': { 'type': 'SP.Data.' + listTitle + 'ListItem' },
         Title: "new MMID2",
         TotalRiskIndex: parseInt(this.state.RiskIndex_ProjectCT) + parseInt(this.state.RiskIndex_ProjectLD) + parseInt(this.state.RiskIndex_ProjectGP) + parseInt(this.state.RiskIndex_ExecutionFSO) + parseInt(this.state.RiskIndex_Execution) + parseInt(this.state.RiskIndex_ExecutionMulti) + parseInt(this.state.RiskIndex_EmersonHours) + parseInt(this.state.RiskIndex_EEECHours) + parseInt(this.state.RiskIndex_Budget) + parseInt(this.state.RiskIndex_Utilization) + parseInt(this.state.RiskIndex_Duration) + parseInt(this.state.RiskIndex_EEECInvolvement) + parseInt(this.state.RiskIndex_ProjectChart) + parseInt(this.state.RiskIndex_EEECScope) + parseInt(this.state.RiskIndex_EEECInvolvementScope) + parseInt(this.state.RiskIndex_FAT) + parseInt(this.state.RiskIndex_OverallPM) + parseInt(this.state.RiskIndex_OverallRisk) + parseInt(this.state.RiskIndex_OverallLead) + parseInt(this.state.RiskIndex_FSOLead) + parseInt(this.state.RiskIndex_ResourceSkill) + parseInt(this.state.RiskIndex_FSOSuccess) + parseInt(this.state.RiskIndex_NonStandard) + parseInt(this.state.RiskIndex_ResourcePlan) + parseInt(this.state.Non_Std) + parseInt(this.state.FSO_Success) + parseInt(this.state.EEEInvScope) + parseInt(this.state.EEEScope) + parseInt(this.state.OverallRisk) + parseInt(this.state.FSO) + parseInt(this.state.WA) + parseInt(this.state.FSO_WA) + parseInt(this.state.FSO_OPEN) + parseInt(this.state.FSO_Tech) + parseInt(this.state.FSO_Oth) + parseInt(this.state.FSO_EEC),
+        RiskIndex_FSO: parseInt(this.state.FSO),
+        RiskIndex_WA: parseInt(this.state.WA),
+        RiskIndexFW: parseInt(this.state.FSO_WA),
+        RiskIndex_LeadOpen: parseInt(this.state.FSO_OPEN),
+        RiskIndex_LeadTech: parseInt(this.state.FSO_Tech),
+        RiskIndex_LeadOth: parseInt(this.state.FSO_Oth),
+        RiskIndex_LeadEEEC: parseInt(this.state.FSO_EEC),
         EPC: EPC,
         HWIO: HWIO,
         SWIO: SWIO,
@@ -2478,12 +2573,13 @@ export class eProjectNewForm extends React.Component<{}, any>{
         ISOth: this.state.ISOth,
         ISIP: this.state.ISIP,
         ISDev: this.state.ISDev,
-        ExecutionStrategyandModelExecuti: this.state.ExecutionStrategyandModelExecution,
-        ExecutionStrategyandModelFSO: this.state.ExecutionStrategyandModelFSO,
         FSOPMLeadsOpen: this.state.FSOPMLeadsOpen,
         FSOPMLeadsTechnical: this.state.FSOPMLeadsTechnical,
         FSOPMLeadsOther: this.state.FSOPMLeadsOther,
-        FSOPMLeadsEEECExp: this.state.FSOPMLeadsEEECExp
+        FSOPMLeadsEEECExp: this.state.FSOPMLeadsEEECExp,
+
+        ExecutionStrategyandModelExecuti: this.state.ExecutionFSOValue,
+        ExecutionStrategyandModelFSO: this.state.ExecutionFSOValueWA,
 
 
 
@@ -3164,6 +3260,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
     })
   }
 
+
+  handleScopeChange = (event) => {
+    if (event.target.checked) {
+      this.setState({
+        EEECInvScope: this.state.EEECInvScope + 1
+      })
+    }
+  }
+
   public handleRiskChange = (event) => {
 
 
@@ -3171,11 +3276,18 @@ export class eProjectNewForm extends React.Component<{}, any>{
     if ((event.target.name == "FSOMPMOpen") || (event.target.name == "FSOPMTechnical") || (event.target.name == "FSOPMOther") || (event.target.name == "FSOEEEC") || (event.target.name == "WA") || (event.target.name == "FSO") || (event.target.name == "FSOWA") || (event.target.name == "EEECInvScope") || (event.target.name == "EEEScope") || (event.target.name == "EEECInvScope") || (event.target.name == "FSOSuccess") || (event.target.name == "ChkNonStandardRequirements")) {
 
       if ((event.target.name == "WA") || (event.target.name == "FSO") || (event.target.name == "FSOMPMOpen") || (event.target.name == "FSOPMTechnical") || (event.target.name == "FSOPMOther") || (event.target.name == "FSOEEEC")) {
+        if (event.target.checked) {
+          this.setState({
+            [event.target.id]: event.target.value,
+            [event.target.className]: true
+          })
+        } else {
+          this.setState({
+            [event.target.id]: event.target.value,
+            [event.target.className]: false
+          })
 
-        this.setState({
-          [event.target.id]: event.target.value
-
-        })
+        }
 
       }
       else {
@@ -3330,11 +3442,6 @@ export class eProjectNewForm extends React.Component<{}, any>{
         }
       }
 
-      if (event.target.name == "EEECInvScope") {
-        this.setState({
-          EEEInvScope: this.state.EEEInvScope + 1
-        })
-      }
 
       if (event.target.name == "FSOWA") {
 
@@ -5133,27 +5240,26 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>FSO</u></th>
                             </tr>
                             <tr>
-
-                              <td style={{ width: "50%", borderStyle: "Solid", borderWidth: "1px", padding: "5px", borderColor: "darkgray" }}>
-                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Same" data-set="0" onChange={this.handleRiskChange} /> &nbsp;
-                          <label>FSO/EEEC Split : Same as defined in the Proposal</label> <br></br>
-                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Increase" data-set="2" onChange={this.handleRiskChange} /> &nbsp;
-                          <label>FSO/EEEC Split:Decreased EEEC Utilization/Scope</label> <br></br>
-                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Decrease" data-set="4" onChange={this.handleRiskChange} /> &nbsp;
-                          <label>FSO/EEEC Split:Increased EEEC Utilization/Scope</label> <br></br>
-                                <input type="radio" id="ExecutionStrategyandModelExecution" name="FSO" value="Additional" data-set="6" onChange={this.handleRiskChange} />&nbsp;
-                                <label>Additional/Change in EEEC roles after Project Initiation</label>
+                              <td>
+                                <select name="FSO" value={this.state.ExecutionFSOValue} id="ExecutionFSOValue" onChange={this.handleRisk_Change}>
+                                  <option data-set="0" value="Same"> FSO/EEEC Split:Same as defined in the Proposal</option>
+                                  <option data-set="2" value="Increase"> FSO/EEEC Split:Decreased EEEC Utilization/Scope</option>
+                                  <option data-set="4" value="Decrease"> FSO/EEEC Split:Increased EEEC Utilization/Scope</option>
+                                  <option data-set="6" value="Additional"> Additional/Change in EEEC roles after Project Initiation</option>
+                                </select>
                               </td>
-                              <td style={{ width: "50%", borderStyle: "Solid", borderWidth: "1px", borderColor: 'grey' }}>
-                                <span >
-                                  &nbsp;  <input type="radio" id="ExecutionStrategyandModelFSO" name="WA" value="One World Area" data-set="0" onChange={this.handleRiskChange} />&nbsp;
-                                     <label>One World Area</label> <br></br>
-                                     &nbsp;  <input type="radio" name="WA" id="ExecutionStrategyandModelFSO" value="Multiple World Area" data-set="3" onChange={this.handleRiskChange} /> &nbsp;
 
-                              <label>Multiple World Area</label>
-                                </span>
+                              <td style={{ width: "50%", borderStyle: "Solid", borderWidth: "1px", borderColor: 'grey' }}>
+                                <select name="WA" value={this.state.ExecutionFSOValueWA} id="ExecutionFSOValueWA" onChange={this.handleRisk_Change}>
+                                  <option data-set="0" value="One World Area">One World Area</option>
+                                  <option data-set="3" value="Multiple World Area"> Multiple World Area</option>
+
+
+                                </select>
                               </td>
                             </tr>
+
+
 
 
                             <tr>
@@ -5175,6 +5281,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </table>
                         </td>
                         <td style={{ textAlign: "center" }}>
+
                           {this.state.FSO + this.state.WA + this.state.FSO_WA}
                         </td>
                         <td>
@@ -5420,7 +5527,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <tr>
 
                                 <td style={{ width: "20px" }}><input type="checkbox" name="EEECInvScope" onChange={this.handleRiskChange} id="ISAgile" checked={this.state.ISAgileChecked} className="ISAgileChecked" /> </td><td>Agile OPS  </td>
-                                <td style={{ width: "20px" }}><input type="checkbox" id="EEECInvScope" onChange={this.handleRiskChange} name="ISOther" checked={this.state.ISOtherChecked} className="ISOtherChecked" /></td><td>Other </td>
+                                <td style={{ width: "20px" }}><input type="checkbox" id="ISOther" onChange={this.handleRiskChange} name="EEECInvScope" checked={this.state.ISOtherChecked} className="ISOtherChecked" /></td><td>Other </td>
                               </tr>
 
 
@@ -5494,33 +5601,48 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td>
                           <table style={{ width: "100%", border: "1px solid lightgray" }}>
 
-                            <tr>
-                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}><u> Open</u></th>
-                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>Technical</u></th>
-                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>Other</th>
-                              <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>EEEC Experience</th>
-                            </tr>
-                            <tr>
-                              <td><input type="radio" data-set="0" id="FSOPMLeadsOpen" name="FSOMPMOpen" onChange={this.handleRiskChange} value="Accomodative" /> <label>Accomodative</label> </td>
-                              <td><input type="radio" data-set="0" id="FSOPMLeadsTechnical" name="FSOPMTechnical" onChange={this.handleRiskChange} value="Technical" /> <label>Technical</label> </td>
-                              <td><input type="radio" data-set="0" id="FSOPMLeadsOther" name="FSOPMOther" onChange={this.handleRiskChange} value="Proactive" /> <label>Proactive</label> </td>
-                              <td><input type="radio" data-set="0" id="FSOPMLeadsEEECExp" name="FSOEEEC" onChange={this.handleRiskChange} value="Worked With EEEC" /> <label>Worked With EEEC</label> </td>
-                            </tr>
-                            <tr>
-                              <td><input type="radio" data-set="3" id="FSOPMLeadsOpen" name="FSOMPMOpen" value="Non-Accommodative" onChange={this.handleRiskChange} /> <label>Non-Accommodative</label> </td>
-                              <td><input type="radio" data-set="3" id="FSOPMLeadsTechnical" name="FSOPMTechnical" value="Non Technical" onChange={this.handleRiskChange} /> <label>Non Technical</label> </td>
-                              <td><input type="radio" data-set="3" id="FSOPMLeadsOther" name="FSOPMOther" value="Reactive" onChange={this.handleRiskChange} /> <label>Reactive</label> </td>
-                              <td><input type="radio" data-set="3" id="FSOPMLeadsEEECExp" name="FSOEEEC" value="New to EEEC" onChange={this.handleRiskChange} /> <label>New to EEEC</label> </td>
-                            </tr>
-                            <tr>
-                              <td><input type="radio" data-set="6" id="FSOPMLeadsOpen" name="FSOMPMOpen" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" data-set="6" id="FSOPMLeadsTechnical" name="FSOPMTechnical" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" data-set="6" id="FSOPMLeadsOther" name="FSOPMOther" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
-                              <td><input type="radio" data-set="6" id="FSOPMLeadsEEECExp" name="FSOEEEC" value="Difficult to Classify" onChange={this.handleRiskChange} /> <label>Difficult to Classify</label> </td>
-                            </tr>
+                            <tr style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                              <tr>
+                                <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}><u> Open</u></th>
+                                <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>Technical</u></th>
+                                <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>Other</th>
+                                <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>EEEC Experience</th>
+                              </tr>
+                              <tr>
+                                <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                  <select value={this.state.FSOPMLeadsOpen} id="FSOPMLeadsOpen" name="FSO_OPEN" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Accommodative</option>
+                                    <option data-set="3">Non-Accommodative</option>
+                                    <option data-set="6">Difficult to classify</option>
 
-
+                                  </select>
+                                </td>
+                                <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                  <select value={this.state.FSOPMLeadsTechnical} id="FSOPMLeadsTechnical" name="FSO_Tech" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Technical</option>
+                                    <option data-set="3">Non-Technical</option>
+                                    <option data-set="6">Difficult to classify</option>
+                                  </select>
+                                </td>
+                                <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                  <select value={this.state.FSOPMLeadsOther} id="FSOPMLeadsOther" name="FSO_Oth" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Proactive</option>
+                                    <option data-set="3">Reactive</option>
+                                    <option data-set="6">Difficult to classify</option>
+                                  </select>
+                                </td>
+                                <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                  <select value={this.state.FSOPMLeadsEEECExp} id="FSOPMLeadsEEECExp" name="FSO_EEC" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Worked with EEEC</option>
+                                    <option data-set="3">New to EEEC </option>
+                                    <option data-set="6">Difficult to classify</option>
+                                  </select>
+                                </td>
+                              </tr>
+                            </tr>
                           </table>
+
+
                         </td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.FSO_OPEN + this.state.FSO_Tech + this.state.FSO_Oth + this.state.FSO_EEC}
