@@ -238,6 +238,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
       PEELead: "",
       PEEResource: "",
       PEEProjectLoading: "",
+      ResourcePlan_Remarks: "",
 
 
 
@@ -338,10 +339,6 @@ export class eProjectNewForm extends React.Component<{}, any>{
       RiskIndex_NonStandard: 0,
       RiskIndex_ResourcePlan: 0,
 
-
-
-
-
       FSO_OPEN: 0,
       FSO_Tech: 0,
       FSO_Oth: 0,
@@ -349,6 +346,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
       FSO: 0,
       WA: 0,
       FSO_WA: 0,
+
 
       restdata: [],
       projectDetails: [],
@@ -765,6 +763,17 @@ export class eProjectNewForm extends React.Component<{}, any>{
     if (e.target.name == "LeadRemarks") {
       this.setState({
         LeadRemarks: e.target.value
+      })
+    }
+    if (e.target.name == "ResourceSkill_Remarks") {
+      this.setState({
+        ResourceSkill_Remarks: e.target.value
+      })
+    }
+
+    if (e.target.name == "ResourcePlan_Remarks") {
+      this.setState({
+        ResourcePlan_Remarks: e.target.value
       })
     }
 
@@ -1577,55 +1586,55 @@ export class eProjectNewForm extends React.Component<{}, any>{
           this.setState({
 
             NonStd_Remarks: response.d.results[0].NonStandardRequirementsRemarks,
-            Non_Std: response.d.results[0].NonStandardRequirementsRiskIndex,
+            Non_Std: (response.d.results[0].NonStandardRequirementsRiskIndex) ? response.d.results[0].NonStandardRequirementsRiskIndex : 0,
             FSOSuccess_Remarks: response.d.results[0].FSOSuccessRemarks,
-            FSO_Success: response.d.results[0].FSOSuccessRiskIndex,
+            FSO_Success: (response.d.results[0].FSOSuccessRiskIndex) ? response.d.results[0].FSOSuccessRiskIndex : 2,
             FSOPM_Remarks: response.d.results[0].FSORemarks,
-            FSOTotalRiskIndex: response.d.results[0].FSORiskIndex,
+            FSOTotalRiskIndex: (response.d.results[0].FSORiskIndex) ? response.d.results[0].FSORiskIndex : 0,
             LeadRemarks: response.d.results[0].OverallLeadRemarks,
 
 
 
-            RiskIndex_OverallLead: response.d.results[0].OverallLeadRiskIndex,
+            RiskIndex_OverallLead: (response.d.results[0].OverallLeadRiskIndex) ? response.d.results[0].OverallLeadRiskIndex : 0,
             OverallPM_Remarks: response.d.results[0].OverallPMRemarks,
-            RiskIndex_OverallPM: response.d.results[0].OverallPMRiskIndex,
+            RiskIndex_OverallPM: (response.d.results[0].OverallPMRiskIndex) ? response.d.results[0].OverallPMRiskIndex : 0,
             FAT_Remarks: response.d.results[0].FATEngagementRemarks,
-            RiskIndex_FAT: response.d.results[0].FATEngagementRiskIndex,
+            RiskIndex_FAT: (response.d.results[0].FATEngagementRiskIndex) ? response.d.results[0].FATEngagementRiskIndex : 0,
             EECInvolvScope_Remarks: response.d.results[0].EEECInvolvementRemarks,
-            EEEInvScope: response.d.results[0].EEECInvolvementRiskIndex,
+            EEEInvScope: (response.d.results[0].EEECInvolvementRiskIndex) ? response.d.results[0].EEECInvolvementRiskIndex : 0,
             EEECScope_Remarks: response.d.results[0].EEECScopeRemarks,
-            EEECScopeRiskIndex: response.d.results[0].EEECScopeRiskIndex,
+            EEECScopeRiskIndex: (response.d.results[0].EEECScopeRiskIndex) ? response.d.results[0].EEECScopeRiskIndex : 0,
             // // TotalRiskIndex: response.d.results[0].OverallRiskRankingRemarks,
             // OverallRiskRankingRiskIndex: response.d.results[0].OverallRiskRankingRiskIndex,
 
             ProjectOrg_Remarks: response.d.results[0].ProjectOrganisationChartRemarks,
-            RiskIndex_ProjectChart: response.d.results[0].ProjectOrganisationChartRiskInde,
+            RiskIndex_ProjectChart: (response.d.results[0].ProjectOrganisationChartRiskInde) ? response.d.results[0].ProjectOrganisationChartRiskInde : 0,
             EEECInvolve_Remarks: response.d.results[0].TimeofEEECInvolvementRemarks,
-            RiskIndex_EEECInvolvement: response.d.results[0].TimeofEEECInvolvementRiskIndex,
+            RiskIndex_EEECInvolvement: (response.d.results[0].TimeofEEECInvolvementRiskIndex) ? response.d.results[0].TimeofEEECInvolvementRiskIndex : 0,
             Duration_Remarks: response.d.results[0].ExecutionDurationRemarks,
-            RiskIndex_Duration: response.d.results[0].ExecutionDurationRiskIndex,
+            RiskIndex_Duration: (response.d.results[0].ExecutionDurationRiskIndex) ? response.d.results[0].ExecutionDurationRiskIndex : 0,
             Utilization_Remarks: response.d.results[0].EEECUtilizationRemarks,
-            RiskIndex_Utilization: response.d.results[0].EEECUtilizationRiskIndex,
+            RiskIndex_Utilization: (response.d.results[0].EEECUtilizationRiskIndex) ? response.d.results[0].EEECUtilizationRiskIndex : 0,
             Budget_Remarks: response.d.results[0].AdequacyofBudgetAndScheduleRemar,
-            RiskIndex_Budget: response.d.results[0].AdequacyofBudgetAndScheduleRiskI,
+            RiskIndex_Budget: (response.d.results[0].AdequacyofBudgetAndScheduleRiskI) ? response.d.results[0].AdequacyofBudgetAndScheduleRiskI : 0,
 
             EEECHours_Remarks: response.d.results[0].EEECBudgetedEngineeringhoursRema,
-            RiskIndex_EEECHours: response.d.results[0].EEECBudgetedEngineeringhoursRisk,
+            RiskIndex_EEECHours: (response.d.results[0].EEECBudgetedEngineeringhoursRisk) ? response.d.results[0].EEECBudgetedEngineeringhoursRisk : 0,
             Emerson_Remarks: response.d.results[0].Total_x0020_EmersonBudgetedEngin0,
-            RiskIndex_EmersonHours: response.d.results[0].Total_x0020_EmersonBudgetedEngin,
+            RiskIndex_EmersonHours: (response.d.results[0].Total_x0020_EmersonBudgetedEngin) ? response.d.results[0].Total_x0020_EmersonBudgetedEngin : 0,
 
             Strategy_Remarks: response.d.results[0].ExecutionStrategyandModelRemarks,
-            TotalRiskIndexES: response.d.results[0].ExecutionStrategyandModelRiskInd,
+            TotalRiskIndexES: (response.d.results[0].ExecutionStrategyandModelRiskInd) ? response.d.results[0].ExecutionStrategyandModelRiskInd : 0,
             ProjectGP_Remarks: response.d.results[0].ProjectGPRemarks,
-            RiskIndex_ProjectGP: response.d.results[0].ProjectGPRiskIndex,
-            ProjectLD_Remarks: response.d.results[0].ProjectLDRemarks,
-            RiskIndex_ProjectLD: response.d.results[0].ProjectLDRiskIndex,
+            RiskIndex_ProjectGP: (response.d.results[0].ProjectGPRiskIndex) ? response.d.results[0].ProjectGPRiskIndex : 0,
+            ProjectLD_Remarks: (response.d.results[0].ProjectLDRemarks),
+            RiskIndex_ProjectLD: (response.d.results[0].ProjectLDRiskIndex) ? response.d.results[0].ProjectLDRiskIndex : 0,
             ProjectCT_Remarks: response.d.results[0].ProjectContractTypeRemarks,
-            RiskIndex_ProjectCT: response.d.results[0].ProjectContractTypeRiskIndex,
-            ResourceSkill_Remarks: response.d.results[0].ResourceSkillsetRemarks,
-            RiskIndex_ResourceSkill: response.d.results[0].ResourceSkillsetRiskIndex,
-            RiskIndex_ResourcePlanLoading: response.d.results[0].ResourcePlanRemarks,
-            RiskIndex_ResourcePlan: response.d.results[0].ResourcePlanRiskIndex,
+            RiskIndex_ProjectCT: (response.d.results[0].ProjectContractTypeRiskIndex) ? response.d.results[0].ProjectContractTypeRiskIndex : 0,
+            ResourceSkill_Remarks: (response.d.results[0].ResourceSkillsetRemarks),
+            RiskIndex_ResourceSkill: (response.d.results[0].ResourceSkillsetRiskIndex) ? response.d.results[0].ResourceSkillsetRiskIndex : 0,
+            ResourcePlan_Remarks: response.d.results[0].ResourcePlanRemarks,
+            RiskIndex_ResourcePlan: (response.d.results[0].ResourcePlanRiskIndex) ? response.d.results[0].ResourcePlanRiskIndex : 0,
 
 
             PEEProjectContractType: response.d.results[0].ProjectContractType,
@@ -1763,14 +1772,14 @@ export class eProjectNewForm extends React.Component<{}, any>{
             ISDevChecked: (response.d.results[0].ISDev == "Yes"),
 
 
-            FSO: response.d.results[0].RiskIndex_FSO,
-            WA: response.d.results[0].RiskIndex_WA,
-            FSO_WA: response.d.results[0].RiskIndexFW,
+            FSO: (response.d.results[0].RiskIndex_FSO) ? response.d.results[0].RiskIndex_FSO : 0,
+            WA: (response.d.results[0].RiskIndex_WA) ? response.d.results[0].RiskIndex_WA : 0,
+            FSO_WA: (response.d.results[0].RiskIndexFW) ? response.d.results[0].RiskIndexFW : 0,
 
-            FSO_OPEN: response.d.results[0].RiskIndex_LeadOpen,
-            FSO_Tech: response.d.results[0].RiskIndex_LeadTech,
-            FSO_Oth: response.d.results[0].RiskIndex_LeadOth,
-            FSO_EEC: response.d.results[0].RiskIndex_LeadEEEC,
+            FSO_OPEN: (response.d.results[0].RiskIndex_LeadOpen) ? response.d.results[0].RiskIndex_LeadOpen : 0,
+            FSO_Tech: (response.d.results[0].RiskIndex_LeadTech) ? response.d.results[0].RiskIndex_LeadTech : 0,
+            FSO_Oth: (response.d.results[0].RiskIndex_LeadOth) ? response.d.results[0].RiskIndex_LeadOth : 0,
+            FSO_EEC: (response.d.results[0].RiskIndex_LeadEEEC) ? response.d.results[0].RiskIndex_LeadEEEC : 0,
 
             FSOPMLeadsOpen: response.d.results[0].FSOPMLeadsOpen,
             FSOPMLeadsTechnical: response.d.results[0].FSOPMLeadsTechnical,
@@ -1973,6 +1982,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
             EditPDBCabinet: response.d.results[0].Closeoutnotes,
             EditRiskRegister: response.d.results[0].Closeoutnotes,
             ProjectRiskStatus: response.d.results[0].ProjectLevelRiskStatus,
+            // ProjectRiskStatus: response.d.results[0].ResourcePlanRemarks,
 
 
 
@@ -2508,7 +2518,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         ResourceSkillsetRemarks: this.state.ResourceSkill_Remarks,
         ResourceSkillsetRiskIndex: parseInt(this.state.RiskIndex_ResourceSkill),
-        ResourcePlanRemarks: this.state.RiskIndex_ResourcePlanLoading,
+        ResourcePlanRemarks: this.state.ResourcePlan_Remarks,
         ResourcePlanRiskIndex: parseInt(this.state.RiskIndex_ResourcePlan),
 
         ProjectContractType: this.state.PEEProjectContractType,
@@ -5193,7 +5203,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </select>
                         </td>
                         <td style={{ width: '5%', textAlign: "center" }}>{this.state.RiskIndex_ProjectCT}</td>
-                        <td><textarea name="ProjectCT_Remarks" id="ProjectCT_Remarks" onChange={this.handleTextChange} rows={2} cols={30} ></textarea></td>
+                        <td><textarea name="ProjectCT_Remarks" id="ProjectCT_Remarks" value={this.state.ProjectCT_Remarks} onChange={this.handleTextChange} rows={2} cols={30} ></textarea></td>
                       </tr>
                       <tr>
                         <td style={{ width: '20%' }}>
@@ -5658,7 +5668,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td><input type="checkbox" id="ISTimely" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISTimelyChecked} className="ISTimelyChecked" /> &nbsp;Timely Delivery <br></br>
                           <input type="checkbox" id="ISNoBudget" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISNoBudgetChecked} className="ISNoBudgetChecked" /> &nbsp;No Budget Overrun<br></br>
                           <input type="checkbox" id="ISFATReady" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISFATReadyChecked} className="ISFATReadyChecked" /> &nbsp;FAT Ready Deliverables<br></br>
-                          <input type="checkbox" id="ISRework" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISMultiAreaPhasedChecked} className="ISMultiAreaPhasedChecked" /> &nbsp;Minimal Rework after FAT {"<"}1% of Budget
+                          <input type="checkbox" id="ISRework" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISReworkChecked} className="ISReworkChecked" /> &nbsp;Minimal Rework after FAT {"<"}1% of Budget
 <br></br>
                           <input type="checkbox" id="ISMaintain" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISMaintainChecked} className="ISMaintainChecked" /> &nbsp;Maintain or Improve Sales GP<br></br>
                         </td>
@@ -5747,7 +5757,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           {this.state.RiskIndex_ResourcePlan}
                         </td>
                         <td>
-                          <textarea value={this.state.handleTextChange} name="RiskIndex_ResourcePlanLoading" rows={2} cols={30}></textarea>
+                          <textarea name="ResourcePlan_Remarks" value={this.state.ResourcePlan_Remarks} rows={2} cols={30} onChange={this.handleTextChange}> </textarea>
                         </td>
                       </tr>
 
