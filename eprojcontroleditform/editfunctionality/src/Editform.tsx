@@ -1594,7 +1594,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
             NonStd_Remarks: response.d.results[0].NonStandardRequirementsRemarks,
             Non_Std: (response.d.results[0].NonStandardRequirementsRiskIndex) ? response.d.results[0].NonStandardRequirementsRiskIndex : 0,
             FSOSuccess_Remarks: response.d.results[0].FSOSuccessRemarks,
-            FSO_Success: (response.d.results[0].FSOSuccessRiskIndex) ? response.d.results[0].FSOSuccessRiskIndex : 2,
+            FSO_Success: (response.d.results[0].FSOSuccessRiskIndex) ? response.d.results[0].FSOSuccessRiskIndex : 0,
             FSOPM_Remarks: response.d.results[0].FSORemarks,
             FSOTotalRiskIndex: (response.d.results[0].FSORiskIndex) ? response.d.results[0].FSORiskIndex : 0,
             LeadRemarks: response.d.results[0].OverallLeadRemarks,
@@ -2494,10 +2494,10 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         OverallRiskRankingRemarks: this.state.OverallRiskRanking_Remarks,
         OverallRiskRankingRiskIndex: parseInt(this.state.OverallRisk),
-        ProjectOrganisationChartRemarks: this.state.EEECInvolve_Remarks,
+        ProjectOrganisationChartRemarks: this.state.ProjectOrg_Remarks,
         ProjectOrganisationChartRiskInde: parseInt(this.state.RiskIndex_EEECInvolvement),
-        TimeofEEECInvolvementRemarks: this.state.Duration_Remarks,
-        TimeofEEECInvolvementRiskIndex: parseInt(this.state.RiskIndex_Duration),
+        TimeofEEECInvolvementRemarks: this.state.EEECInvolve_Remarks,
+        TimeofEEECInvolvementRiskIndex: parseInt(this.state.RiskIndex_EEECInvolvement),
 
         ExecutionDurationRemarks: this.state.Duration_Remarks,
         ExecutionDurationRiskIndex: parseInt(this.state.RiskIndex_Duration),
@@ -5236,7 +5236,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </td>
                         <td>
                           <select name="RiskIndex_ProjectGP" value={this.state.PEEProjectGP} className="ms-Dropdown-select" id="PEEProjectGP" onChange={this.handleRiskChange}>
-                            <option>Please Select</option>
+                            <option data-set="0">Please Select</option>
                             <option data-set="1" value="Regular GP" className="2">Regular GP</option>
                             <option data-set="4" value="Low GP" className="1">Low GP</option>
                             <option data-set="6" value="Negative GP" className="2">Negative GP</option>
@@ -5260,7 +5260,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             <tr>
                               <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
                                 <select name="FSO" value={this.state.ExecutionFSOValue} id="ExecutionFSOValue" onChange={this.handleRisk_Change}>
-                                  <option> Please Select</option>
+                                  <option data-set="0"> Please Select</option>
                                   <option data-set="0" value="Same"> FSO/EEEC Split:Same as defined in the Proposal</option>
                                   <option data-set="2" value="Increase"> FSO/EEEC Split:Decreased EEEC Utilization/Scope</option>
                                   <option data-set="4" value="Decrease"> FSO/EEEC Split:Increased EEEC Utilization/Scope</option>
@@ -5268,9 +5268,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
                                 </select>
                               </td>
 
-                              <td style={{ width: "50%", borderStyle: "Solid", borderWidth: "1px", borderColor: 'grey' }}>
+                              <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
                                 <select name="WA" value={this.state.ExecutionFSOValueWA} id="ExecutionFSOValueWA" onChange={this.handleRisk_Change}>
-                                  <option> Please Select</option>
+                                  <option data-set="0"> Please Select</option>
                                   <option data-set="0" value="One World Area">One World Area</option>
                                   <option data-set="3" value="Multiple World Area"> Multiple World Area</option>
 
@@ -5315,7 +5315,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           Emerson Budgeted Engineering hour </td>
                         <td>
                           <select value={this.state.PEEEmersonHours} name="RiskIndex_EmersonHours" className="ms-Dropdown-select" id="PEEEmersonHours" onChange={this.handleRiskChange} >
-                            <option>Please Select</option>
+                            <option data-set="0">Please Select</option>
                             <option data-set="2" value=">1,000 and <5,000" className="2"> {">"}1,000 and {"<"}5,000   </option>
                             <option data-set="3" value=">5,000 and <10,000" className="2"> {">"}5,000 and {"<"}10,000   </option>
                             <option data-set="4" value=">10,000 and <25,000" className="2"> {">"}10,000 and {"<"}25,000 </option>
@@ -5340,7 +5340,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           EEEC Budgeted Engineering hours </td>
                         <td>
                           <select value={this.state.PEEEEECHours} name="RiskIndex_EEECHours" id="PEEEEECHours" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
-                            <option>Please Select</option>
+                            <option data-set="0">Please Select</option>
                             <option data-set="2" value=">1,000 and <5,000" className="2"> {">"}1,000 and {"<"}5,000   </option>
                             <option data-set="3" value=">5,000 and <10,000" className="2"> {">"}5,000 and {"<"}10,000   </option>
                             <option data-set="4" value=">10,000 and <25,000" className="2"> {">"}10,000 and {"<"}25,000 </option>
@@ -5465,7 +5465,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                        </td>
                         <td>
                           <select value={this.state.PEERiskRanking} name="OverallRisk" className="ms-Dropdown-select" id="PEERiskRanking" onChange={this.handleRiskChange} >
-                            <option>Please Select</option>
+                            <option data-set="0">Please Select</option>
                             <option data-set="1" value="Low" className="2"> Low </option>
                             <option data-set="4" value="Medium" className="2"> Medium</option>
                             <option data-set="6" value="High" className="2">High  </option>
@@ -5631,7 +5631,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <tr>
                                 <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
                                   <select value={this.state.FSOPMLeadsOpen} id="FSOPMLeadsOpen" name="FSO_OPEN" onChange={this.handleRisk_Change}>
-                                    <option> Please Select</option>
+                                    <option data-set="0"> Please Select</option>
                                     <option data-set="0">Accommodative</option>
                                     <option data-set="3">Non-Accommodative</option>
                                     <option data-set="6">Difficult to classify</option>
@@ -5743,7 +5743,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td>
 
                           <select value={this.state.PEEResource} name="RiskIndex_ResourceSkill" id="PEEResource" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
-                            <option>Please Select</option>
+                            <option data-set="0">Please Select</option>
                             <option data-set="1" value="No Special Requirement" className="2"> No Special Requirement </option>
                             <option data-set="2" value="Blended Mix" className="2"> Blended Mix</option>
                             <option data-set="4" value="Special Skills" className="2">Special Skills  </option>
@@ -5761,7 +5761,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <td>Resource Plan and Project Loading Chart</td>
                         <select value={this.state.PEEProjectLoading} name="RiskIndex_ResourcePlan" id="PEEProjectLoading" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
-                          <option>Please Select</option>
+                          <option data-set="0">Please Select</option>
                           <option data-set="1" value="Yes" className="2"> Yes </option>
                           <option data-set="2" value="No" className="2"> No</option>
                           <option data-set="3" value="To Be Defined Later" className="2">To Be Defined Later  </option>
