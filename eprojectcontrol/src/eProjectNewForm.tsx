@@ -327,7 +327,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
       RiskIndex_ResourcePlan: 0,
 
       RiskIndex_ResourcePlanLoading: [],
-      ResourceSkill_Remarks: [],
+      ResourceSkill_Remarks: "",
 
       NonStd_Remarks: [],
       FSOSuccess_Remarks: [],
@@ -976,6 +976,13 @@ export class eProjectNewForm extends React.Component<{}, any>{
         ISProjectFHX: this.FHX.current.value,
         ISProjectFHXComments: this.FHXComments.current.value,
 
+        RiskIndex_FSO: parseInt(this.state.FSO),
+        RiskIndex_WA: parseInt(this.state.WA),
+        RiskIndexFW: parseInt(this.state.FSO_WA),
+        RiskIndex_LeadOpen: parseInt(this.state.FSO_OPEN),
+        RiskIndex_LeadTech: parseInt(this.state.FSO_Tech),
+        RiskIndex_LeadOth: parseInt(this.state.FSO_Oth),
+        RiskIndex_LeadEEEC: parseInt(this.state.FSO_EEC),
         NonStandardRequirementsRemarks: this.state.NonStd_Remarks[0],
         NonStandardRequirementsRiskIndex: parseInt(this.state.Non_Std),
         FSOSuccessRemarks: this.state.FSOSuccess_Remarks[0],
@@ -1031,9 +1038,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
         ProjectContractTypeRemarks: this.state.ProjectCT_Remarks[0],
         ProjectContractTypeRiskIndex: parseInt(this.state.RiskIndex_ProjectCT),
 
-        ResourceSkillsetRemarks: this.state.ResourceSkill_Remarks[0],
+        ResourceSkillsetRemarks: this.state.ResourceSkill_Remarks,
         ResourceSkillsetRiskIndex: parseInt(this.state.RiskIndex_ResourceSkill),
-        ResourcePlanRemarks: this.state.RiskIndex_ResourcePlanLoading[0],
+        ResourcePlanRemarks: this.state.ResourcePlan_Remarks,
         ResourcePlanRiskIndex: parseInt(this.state.RiskIndex_ResourcePlan),
 
         ProjectContractType: this.state.PEEProjectContractType,
@@ -2268,6 +2275,22 @@ export class eProjectNewForm extends React.Component<{}, any>{
     }
 
   }
+
+  public handleTextChange = (e) => {
+
+    if (e.target.name == "ResourcePlan_Remarks") {
+      this.setState({
+        ResourcePlan_Remarks: e.target.value
+      })
+    }
+
+    if (e.target.name == "OverallRiskRanking_Remarks") {
+      this.setState({
+        OverallRiskRanking_Remarks: e.target.value
+      })
+    }
+
+  }
   public handleRiskChange = (event) => {
 
     var ChoiceVal;
@@ -3443,8 +3466,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>FSO</u></th>
                             </tr>
                             <tr>
-                              <td>
-                                <select name="FSO" id="ExecutionFSOValue" onChange={this.handleRisk_Change}>
+                              <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                <select name="FSO" value={this.state.ExecutionFSOValue} id="ExecutionFSOValue" onChange={this.handleRisk_Change}>
+                                  <option data-set="0"> Please Select</option>
                                   <option data-set="0" value="Same"> FSO/EEEC Split:Same as defined in the Proposal</option>
                                   <option data-set="2" value="Increase"> FSO/EEEC Split:Decreased EEEC Utilization/Scope</option>
                                   <option data-set="4" value="Decrease"> FSO/EEEC Split:Increased EEEC Utilization/Scope</option>
@@ -3452,8 +3476,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
                                 </select>
                               </td>
 
-                              <td style={{ width: "50%", borderStyle: "Solid", borderWidth: "1px", borderColor: 'grey' }}>
-                                <select name="WA" id="ExecutionFSOValueWA" onChange={this.handleRisk_Change}>
+                              <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
+                                <select name="WA" value={this.state.ExecutionFSOValueWA} id="ExecutionFSOValueWA" onChange={this.handleRisk_Change}>
+                                  <option data-set="0"> Please Select</option>
                                   <option data-set="0" value="One World Area">One World Area</option>
                                   <option data-set="3" value="Multiple World Area"> Multiple World Area</option>
 
@@ -3463,17 +3488,19 @@ export class eProjectNewForm extends React.Component<{}, any>{
                             </tr>
 
 
+
+
                             <tr>
                               <td colSpan={2} style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
-                                <td>  <input type="checkbox" name="FSOWA" id="ISMultiEPC" onChange={this.handleRiskChange} ></input>&nbsp;<label>Multi EPC</label></td>
+                                <td>  <input type="checkbox" name="FSOWA" className="ISMultiEPCChecked" id="ISMultiEPC" checked={this.state.ISMultiEPCChecked} onChange={this.handleRiskChange} ></input>&nbsp;<label>Multi EPC</label></td>
 
-                                <td>  <input type="checkbox" name="FSOWA" id="ISMultiEngg" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Engg Center</label></td>
+                                <td>  <input type="checkbox" name="FSOWA" id="ISMultiEngg" checked={this.state.ISMultiEnggChecked} className="ISMultiEnggChecked" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Engg Center</label></td>
 
-                                <td> <input type="checkbox" name="FSOWA" id="ISMultiAreaPhased" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Phased Execution</label></td>
+                                <td> <input type="checkbox" name="FSOWA" id="ISMultiAreaPhased" checked={this.state.ISMultiAreaPhasedChecked} className="ISMultiAreaPhasedChecked" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Phased Execution</label></td>
 
-                                <td > <input type="checkbox" name="FSOWA" id="ISMultiAreaParallal" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Parallal Execution</label></td>
+                                <td > <input type="checkbox" name="FSOWA" id="ISMultiAreaParallal" checked={this.state.ISMultiAreaParallalChecked} className="ISMultiAreaParallalChecked" onChange={this.handleRiskChange}></input>&nbsp;<label>Multi Area Parallal Execution</label></td>
                                 <br></br>
-                                <td ><input type="checkbox" name="FSOWA" id="ISAdditional" onChange={this.handleRiskChange}></input>&nbsp;<label>Additional Roles</label></td>
+                                <td ><input type="checkbox" name="FSOWA" id="ISAdditional" checked={this.state.ISAdditionalChecked} className="ISAdditionalChecked" onChange={this.handleRiskChange}></input>&nbsp;<label>Additional Roles</label></td>
 
                               </td>
                             </tr>
@@ -3803,6 +3830,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                             <tr style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
                               <tr>
+
                                 <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}><u> Open</u></th>
                                 <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}> <u>Technical</u></th>
                                 <th style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>Other</th>
@@ -3811,6 +3839,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                               <tr>
                                 <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
                                   <select id="FSOPMLeadsOpen" name="FSO_OPEN" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Please Select</option>
                                     <option data-set="0">Accommodative</option>
                                     <option data-set="3">Non-Accommodative</option>
                                     <option data-set="6">Difficult to classify</option>
@@ -3819,6 +3848,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                                 </td>
                                 <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
                                   <select id="FSOPMLeadsTechnical" name="FSO_Tech" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Please Select</option>
                                     <option data-set="0">Technical</option>
                                     <option data-set="3">Non-Technical</option>
                                     <option data-set="6">Difficult to classify</option>
@@ -3826,6 +3856,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                                 </td>
                                 <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
                                   <select id="FSOPMLeadsOther" name="FSO_Oth" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Please Select</option>
                                     <option data-set="0">Proactive</option>
                                     <option data-set="3">Reactive</option>
                                     <option data-set="6">Difficult to classify</option>
@@ -3833,6 +3864,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                                 </td>
                                 <td style={{ borderStyle: "Solid", borderWidth: "1px", padding: "5px", textAlign: "center", borderColor: "darkgray" }}>
                                   <select id="FSOPMLeadsEEECExp" name="FSO_EEC" onChange={this.handleRisk_Change}>
+                                    <option data-set="0">Please Select</option>
                                     <option data-set="0">Worked with EEEC</option>
                                     <option data-set="3">New to EEEC </option>
                                     <option data-set="6">Difficult to classify</option>
@@ -3946,7 +3978,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           {this.state.RiskIndex_ResourcePlan}
                         </td>
                         <td>
-                          <textarea name="RiskIndex_ResourcePlanLoading" rows={2} cols={30}></textarea>
+                          <textarea name="ResourcePlan_Remarks" rows={2} cols={30}></textarea>
                         </td>
                       </tr>
 
