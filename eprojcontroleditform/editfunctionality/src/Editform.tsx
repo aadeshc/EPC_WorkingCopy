@@ -215,13 +215,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
     this.state = {
+      ISPASOtherRemarkChecked: false,
+      ISOtherRemarkChecked: false,
       ISSame: false,
       ISIncrease: false,
       ISDecrease: false,
       ISAdd: false,
       ISOneWorld: false,
       ISMultipleWorld: false,
-
+      IsVisibleSectionMsg: false,
       PEEProjectContractType: "",
       PEEProjectLD: "",
       PEEProjectGP: "",
@@ -245,57 +247,57 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
 
-      // ISDev: "No",
+      ISDev: "No",
 
-      // ISIP: "No",
-      // ISOth: "No",
+      ISIP: "No",
+      ISOth: "No",
 
-      // ISOdd: "No",
-      // ISNewProd: "No",
-      // ISGraphics: "No",
-      // ISNonPCSD: "No",
-      // ISUSESIS: "No",
-      // ISImplement: "No",
-      // ISMaintain: "No",
-      // ISRework: "No",
-      // ISFATReady: "No",
-      // ISNoBudget: "No",
-      // ISTimely: "No",
-      // ISOther: "No",
-      // ISAgile: "No",
-      // ISDemo: "No",
-      // ISCust: "No",
-      // ISWireless: "No",
-      // ISOTS: "No",
-      // ISTechWriter: "No",
-      // ISDocControl: "No",
-      // ISInterface: "No",
-      // ISOtherBU: "No",
-      // ISPASCAB: "No",
-      // ISOTHERSISINT: "No",
-      // ISSISPASINT: "No",
-      // ISSISBMS: "No",
-      // ISSISFGS: "No",
-      // ISSISESD: "No",
-      // ISOtherPAS: "No",
-      // ISPASThird: "No",
-      // ISPASBatch: "No",
-      // ISPASComplex: "No",
-      // ISPASCustom: "No",
-      // ISSISCAB: "No",
-
-
-      // ISPASBase: "No",
-      // ISSAT: "No",
-      // ISFAT: "No",
-      // ISExecute: "No",
-      // ISFEED: "No",
+      ISOdd: "No",
+      ISNewProd: "No",
+      ISGraphics: "No",
+      ISNonPCSD: "No",
+      ISUSESIS: "No",
+      ISImplement: "No",
+      ISMaintain: "No",
+      ISRework: "No",
+      ISFATReady: "No",
+      ISNoBudget: "No",
+      ISTimely: "No",
+      ISOther: "No",
+      ISAgile: "No",
+      ISDemo: "No",
+      ISCust: "No",
+      ISWireless: "No",
+      ISOTS: "No",
+      ISTechWriter: "No",
+      ISDocControl: "No",
+      ISInterface: "No",
+      ISOtherBU: "No",
+      ISPASCAB: "No",
+      ISOTHERSISINT: "No",
+      ISSISPASINT: "No",
+      ISSISBMS: "No",
+      ISSISFGS: "No",
+      ISSISESD: "No",
+      ISOtherPAS: "No",
+      ISPASThird: "No",
+      ISPASBatch: "No",
+      ISPASComplex: "No",
+      ISPASCustom: "No",
+      ISSISCAB: "No",
 
 
-      // ISMultiAreaParallal: "No",
-      // ISMultiAreaPhased: "No",
-      // ISMultiEPC: "No",
-      // ISMultiEngg: "No",
+      ISPASBase: "No",
+      ISSAT: "No",
+      ISFAT: "No",
+      ISExecute: "No",
+      ISFEED: "No",
+
+
+      ISMultiAreaParallal: "No",
+      ISMultiAreaPhased: "No",
+      ISMultiEPC: "No",
+      ISMultiEngg: "No",
       ExecutionStrategyandModelExecution: "",
       ExecutionStrategyandModelFSO: "",
       FSOPMLeadsOpen: "",
@@ -1282,6 +1284,24 @@ export class eProjectNewForm extends React.Component<{}, any>{
     });
   }
 
+
+  public validateData = (e) => {
+
+    if ((this.state.ISPASOtherRemarkChecked == true) && (!this.state.EECInvolvScope_Remarks)) {
+      alert("Please fill all mandatory fields")
+      e.preventDefault()
+      return false;
+
+    } else if ((this.state.ISOtherRemarkChecked == true) && (!this.state.NonStd_Remarks)) {
+      alert("Please fill all mandatory fields")
+      e.preventDefault()
+      return false;
+
+    } else {
+      this.postdata(e)
+    }
+  }
+
   public loadperiod() {
     let perioddetails = []
     debugger;
@@ -1694,7 +1714,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
             ISPASBatchChecked: (response.d.results[0].ISPASBatch == "Yes"),
             ISPASThird: response.d.results[0].ISPASThird,
             ISPASThirdChecked: (response.d.results[0].ISPASThird == "Yes"),
-
+            IsVisibleSectionMsg: (response.d.results[0].IsV == "Yes"),
+            IsVisible: (response.d.results[0].IsV == "Yes"),
             ISOtherPAS: response.d.results[0].ISOtherPAS,
             ISOtherPASChecked: (response.d.results[0].ISOtherPAS == "Yes"),
             ISSISESD: response.d.results[0].ISSISESD,
@@ -1729,7 +1750,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
 
-
+            ISMIB: response.d.results[0].ISMIB,
+            ISMIBChecked: (response.d.results[0].ISMIB == "Yes"),
+            ISMIBDisable: (response.d.results[0].EEECCenter == "Pune"),
             ISWireless: response.d.results[0].ISWireless,
             ISWirelessChecked: (response.d.results[0].ISWireless == "Yes"),
             ISCust: response.d.results[0].ISCust,
@@ -1798,14 +1821,6 @@ export class eProjectNewForm extends React.Component<{}, any>{
             //ExecutionStrategyandModelFSO
 
 
-
-            // PEEProjectContractType: response.d.results[0].ProjectContractType
-            // PEEProjectContractType: response.d.results[0].ProjectContractType
-            // PEEProjectContractType: response.d.results[0].ProjectContractType
-            // PEEProjectContractType: response.d.results[0].ProjectContractType
-            // PEEProjectContractType: response.d.results[0].ProjectContractType
-            // PEEProjectContractType: response.d.results[0].ProjectContractType
-            // PEEProjectContractType: response.d.results[0].ProjectContractType
 
             EditForecast: response.d.results[0].ISForecasted,
             EditPDL: response.d.results[0].PDL,
@@ -2218,6 +2233,14 @@ export class eProjectNewForm extends React.Component<{}, any>{
   }
   public postdata(e) {
 
+    // if ((this.state.ISOtherRemarkChecked == true) || (this.state.ISPASOtherRemarkChecked == true)) {
+    //   if ((!this.state.EECInvolvScope_Remarks) || (!this.state.NonStd_Remarks)) {
+    //     alert("Please fill all mandatory fields ")
+    //     e.preventDefault()
+
+    //   }
+    // }
+
 
 
     debugger;
@@ -2305,13 +2328,17 @@ export class eProjectNewForm extends React.Component<{}, any>{
     var ProjectEndDate = pendDate
     var ProjectActdate = pactDate
     var ProjectAgreedEndDate = agreedendate
-    //console.log(title);
-
+    //console.log(title); 
+    var isV
     //binding for lookup
     var countryID = parseInt(this.Country.current.selectedOptions[0].id);
     //var worldAreaID = this.WorldArea.current.selectedOptions[0].id
     var IndSubID = parseInt(this.IndSubType.current.selectedOptions[0].id);
-
+    if (this.state.IsVisibleSectionMsg == true) {
+      isV = "Yes"
+    } else {
+      isV = "No"
+    }
     return new Promise((resolve, reject) => {
 
       const restUrl = _spPageContextInfo.webAbsoluteUrl + `/_api/web/lists/getbyTitle('Projectmaster')/Items(` + this.state.EditID + `)`;
@@ -2328,6 +2355,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
       {
         '__metadata': { 'type': 'SP.Data.' + listTitle + 'ListItem' },
         Title: "new MMID2",
+        ISMIB: this.state.ISMIB,
+        ISMail: 1,
         TotalRiskIndex: parseInt(this.state.RiskIndex_ProjectCT) + parseInt(this.state.RiskIndex_ProjectLD) + parseInt(this.state.RiskIndex_ProjectGP) + parseInt(this.state.RiskIndex_ExecutionFSO) + parseInt(this.state.RiskIndex_Execution) + parseInt(this.state.RiskIndex_ExecutionMulti) + parseInt(this.state.RiskIndex_EmersonHours) + parseInt(this.state.RiskIndex_EEECHours) + parseInt(this.state.RiskIndex_Budget) + parseInt(this.state.RiskIndex_Utilization) + parseInt(this.state.RiskIndex_Duration) + parseInt(this.state.RiskIndex_EEECInvolvement) + parseInt(this.state.RiskIndex_ProjectChart) + parseInt(this.state.RiskIndex_EEECScope) + parseInt(this.state.RiskIndex_EEECInvolvementScope) + parseInt(this.state.RiskIndex_FAT) + parseInt(this.state.RiskIndex_OverallPM) + parseInt(this.state.RiskIndex_OverallRisk) + parseInt(this.state.RiskIndex_OverallLead) + parseInt(this.state.RiskIndex_FSOLead) + parseInt(this.state.RiskIndex_ResourceSkill) + parseInt(this.state.RiskIndex_FSOSuccess) + parseInt(this.state.RiskIndex_NonStandard) + parseInt(this.state.RiskIndex_ResourcePlan) + parseInt(this.state.Non_Std) + parseInt(this.state.FSO_Success) + parseInt(this.state.EEEInvScope) + parseInt(this.state.EEEScope) + parseInt(this.state.OverallRisk) + parseInt(this.state.FSO) + parseInt(this.state.WA) + parseInt(this.state.FSO_WA) + parseInt(this.state.FSO_OPEN) + parseInt(this.state.FSO_Tech) + parseInt(this.state.FSO_Oth) + parseInt(this.state.FSO_EEC),
         RiskIndex_FSO: parseInt(this.state.FSO),
         RiskIndex_WA: parseInt(this.state.WA),
@@ -2336,6 +2365,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
         RiskIndex_LeadTech: parseInt(this.state.FSO_Tech),
         RiskIndex_LeadOth: parseInt(this.state.FSO_Oth),
         RiskIndex_LeadEEEC: parseInt(this.state.FSO_EEC),
+        IsV: isV,
         EPC: EPC,
         HWIO: HWIO,
         SWIO: SWIO,
@@ -2656,7 +2686,37 @@ export class eProjectNewForm extends React.Component<{}, any>{
       }
       Helper.executeJson(restUrl, "POST", headers, JSON.stringify($.extend(true, {}, savedata))).then((response) => {
         // Resolve the request
-        console.log(response);
+        console.log("Risks");
+        console.log(this.state.RiskIndex_ProjectCT)
+        console.log(this.state.RiskIndex_ProjectCT)
+        console.log(this.state.RiskIndex_ProjectGP)
+        console.log(this.state.RiskIndex_EmersonHours)
+        console.log(this.state.RiskIndex_Budget)
+        console.log(this.state.RiskIndex_Utilization)
+        console.log(this.state.RiskIndex_Duration)
+        console.log(this.state.RiskIndex_EEECInvolvement)
+        console.log(this.state.RiskIndex_ProjectChart)
+        console.log(this.state.OverallRisk)
+        console.log(this.state.EEECScope_Remarks)
+        console.log(this.state.EEEInvScope)
+        console.log(this.state.RiskIndex_FAT)
+        console.log(this.state.RiskIndex_OverallLead)
+        console.log(this.state.RiskIndex_OverallPM)
+        console.log(this.state.FSO_Success)
+        console.log(this.state.WA)
+        console.log(this.state.FSO_WA)
+        console.log(this.state.RiskIndex_ProjectCT)
+        console.log(this.state.RiskIndex_ProjectCT)
+        console.log(this.state.RiskIndex_ProjectCT)
+        console.log(this.state.RiskIndex_ProjectGP)
+
+
+
+
+        // if (this.state.IsVisibleSectionMsg == true) {
+        //   alert("All Fields in Project EE Categorisation is not filled. The record will be updated but please fill all the fields before project closing")
+        // }
+
         alert("Record Updated Succesfully")
         setTimeout(func, 700);
         function func() {
@@ -2676,6 +2736,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
   }
+
+
 
   public getCurrentFY(shortyear, entereddate, type) {
     this.setState({
@@ -3279,6 +3341,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
   }
 
 
+
   handleScopeChange = (event) => {
     if (event.target.checked) {
       this.setState({
@@ -3288,13 +3351,47 @@ export class eProjectNewForm extends React.Component<{}, any>{
   }
 
   public handleRiskChange = (event) => {
+    console.log("RiskChange")
+
+
 
 
 
     if ((event.target.name == "FSOMPMOpen") || (event.target.name == "FSOPMTechnical") || (event.target.name == "FSOPMOther") || (event.target.name == "FSOEEEC") || (event.target.name == "WA") || (event.target.name == "FSO") || (event.target.name == "FSOWA") || (event.target.name == "EEECInvScope") || (event.target.name == "EEEScope") || (event.target.name == "EEECInvScope") || (event.target.name == "FSOSuccess") || (event.target.name == "ChkNonStandardRequirements")) {
 
+      if (event.target.checked) {
+        if (event.target.id == "ISOther") {
+          this.setState({
+            ISPASOtherRemarkChecked: true
+          })
+        }
+
+        if (event.target.id == "ISOth") {
+          this.setState({
+            ISOtherRemarkChecked: true
+          })
+        }
+      } else {
+        if (event.target.id == "ISOther") {
+          this.setState({
+            ISPASOtherRemarkChecked: false
+          })
+        }
+
+        if (event.target.id == "ISOth") {
+          this.setState({
+            ISOtherRemarkChecked: false
+          })
+        }
+
+      }
+
       if ((event.target.name == "WA") || (event.target.name == "FSO") || (event.target.name == "FSOMPMOpen") || (event.target.name == "FSOPMTechnical") || (event.target.name == "FSOPMOther") || (event.target.name == "FSOEEEC")) {
         if (event.target.checked) {
+          this.setState({
+            IsVisibleSectionMsg: true
+          })
+
           this.setState({
             [event.target.id]: event.target.value,
             [event.target.className]: true
@@ -3312,6 +3409,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         if (event.target.checked) {
           this.setState({
+            IsVisibleSectionMsg: true
+          })
+          this.setState({
             [event.target.id]: "Yes",
             [event.target.className]: true,
           })
@@ -3326,6 +3426,12 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
           if (event.target.checked) {
 
+
+
+            this.setState({
+              IsVisibleSectionMsg: true
+            })
+
             if ((event.target.id == "ISOth") || (event.target.id == "ISDev")) {
               this.setState({
                 Non_Std: this.state.Non_Std + 4
@@ -3339,6 +3445,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
                 Non_Std: this.state.Non_Std + 2
               })
             } else {
+
+
               this.setState({
                 Non_Std: this.state.Non_Std + 1
               })
@@ -3347,6 +3455,8 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
           } else {
+
+
             if ((event.target.id == "ISOth") || (event.target.id == "ISDev")) {
               this.setState({
                 Non_Std: this.state.Non_Std - 4
@@ -3387,7 +3497,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
         if (event.target.checked) {
 
-
+          this.setState({
+            IsVisibleSectionMsg: true
+          })
           if (event.target.id == "ISMaintain") {
             this.setState({
               FSO_Success: this.state.FSO_Success + 2
@@ -3414,10 +3526,17 @@ export class eProjectNewForm extends React.Component<{}, any>{
       }
       if (event.target.name == "EEECInvScope") {
         if (event.target.checked) {
+
+
+          this.setState({
+            IsVisibleSectionMsg: true
+          })
+
           this.setState({
             EEEInvScope: this.state.EEEInvScope + 1
           })
         } else {
+
           this.setState({
             EEEInvScope: this.state.EEEInvScope - 1
           })
@@ -3429,6 +3548,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
       if (event.target.name == "EEEScope") {
 
         if (event.target.checked) {
+          this.setState({
+            IsVisibleSectionMsg: true
+          })
 
           if (event.target.id == "ISFAT") {
             this.setState({
@@ -3465,6 +3587,9 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
         if (event.target.checked) {
+          this.setState({
+            IsVisibleSectionMsg: true
+          })
 
           if (event.target.id == "ISAdditional") {
             this.setState({
@@ -3534,6 +3659,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
       var optionElement = event.target.childNodes[index]
       var value = optionElement.innerText.trim()
       var option = optionElement.getAttribute('data-set');
+      if (parseInt(option) != 0) {
+        this.setState({
+          IsVisibleSectionMsg: false
+        })
+      } else {
+        this.setState({
+          IsVisibleSectionMsg: true
+        })
+      }
       this.setState({
         [event.target.name]: parseInt(option),
         [event.target.id]: value
@@ -3556,6 +3690,21 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
     let ddltype = event.target.id;
+
+    if (ddltype == "chkMIB") {
+      if (event.target.checked) {
+        this.setState({
+          ISMIB: "Yes",
+          ISMIBChecked: true,
+        })
+      }
+      else {
+        this.setState({
+          ISMIB: "No",
+          ISMIBChecked: false
+        })
+      }
+    }
 
 
     if (ddltype == "PPEProjectContractType") {
@@ -4317,8 +4466,10 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
 
 
+
+
     return (
-      <form id='myform' onSubmit={this.postdata}>
+      <form id='myform' onSubmit={this.validateData} >
         <div id="mainContainerRender">
           <Card>
             <h5 className="table-color" id="mainSubheader">e-Project Control</h5>
@@ -4328,7 +4479,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                 <Card.Header >
                   <Accordion.Toggle onClick={this.AnalysisArrow} as={Card.Header} eventKey="1" className="header">
                     <span className={this.state.AnalysisDown === "Yes" ? "glyphicon glyphicon-menu-up" : "glyphicon glyphicon-menu-down"}></span>&nbsp;
-                               Project Initiation<br></br>
+                    Project Initiation<br></br>
                   </Accordion.Toggle>
                 </Card.Header>
 
@@ -4517,13 +4668,13 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           <td>
                             FSO LE
-                      </td>
+                          </td>
                           <td>
                             <label>{this.state.EditFSOLe}</label>
                           </td>
                           <td style={{ paddingLeft: "30px" }}>
                             FSO PM
-                       </td>
+                          </td>
                           <td>
                             <label>{this.state.EditFSOPm}</label>
                           </td>
@@ -4531,13 +4682,13 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             Edit FSO LE
-                </td>
+                          </td>
                           <td>
                             <SPPeoplePicker multi={false} pickerEnabled={true} onChange={this.handleFSOLEChange(this)} />
                           </td>
                           <td style={{ paddingLeft: "30px" }}>
                             Edit FSO PM
-                 </td>
+                          </td>
                           <td>
                             <SPPeoplePicker multi={false} pickerEnabled={true} onChange={this.handleFSOPMChange(this)} />
                           </td>
@@ -4545,7 +4696,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             EEEC LE
-                       </td>
+                          </td>
                           <td> <label>{this.state.EditEEECLe}</label>  </td>
 
                           <td style={{ paddingLeft: "30px" }}>
@@ -4556,7 +4707,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             Edit EEEC LE
-                </td>
+                          </td>
                           <td>
                             <SPPeoplePicker multi={false} pickerEnabled={true} onChange={this.hardwareLeChange(this)} />
                           </td>
@@ -4567,12 +4718,15 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             Hardware LE
-                      </td>
+                          </td>
                           <td>
 
                             <label>{this.state.EditHardwareLE}</label>
 
                           </td>
+                          <td></td>
+                          <td><input type="checkbox" checked={this.state.ISMIBChecked} name="chkMIB" id="chkMIB" onChange={this.handleInputChange} disabled={this.state.ISMIBDisable} />&nbsp;MIB</td>
+
 
                         </tr>
                         <tr>
@@ -4629,7 +4783,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             Actual  End Date
-                            </td>
+                          </td>
                           <td>
 
                             <DatePicker showWeekNumbers={false} isMonthPickerVisible={true}
@@ -4638,7 +4792,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           </td>
                           <td style={{ paddingLeft: "20px" }}>
                             Forecasted
-                             </td>
+                          </td>
                           <td>
 
                             <select className="AR-Select" id="ddlForecast" value={this.state.EditForecast} defaultValue={this.state.EditForecast} onChange={this.handleInputChange}>
@@ -4669,7 +4823,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                 <Card.Header>
                   <Accordion.Toggle onClick={this.AnalysisConfigArrow} as={Card.Header} eventKey="1" className="header">
                     <span className={this.state.AnalysisConfigDown === "Yes" ? "glyphicon glyphicon-menu-up" : "glyphicon glyphicon-menu-down"}></span>&nbsp;
-                                Configuration Data <br></br>
+                    Configuration Data <br></br>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
@@ -4698,7 +4852,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td style={{ width: '180px' }}>
                             HW IO
-                            </td>
+                          </td>
                           <td style={{ width: '100px' }}>
 
                             <input type="text" name="HWIO" id="addHWIO" ref={this.HWIO} onChange={this.handleTextChange} value={this.state.EditHWIO} />
@@ -4707,7 +4861,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td style={{ width: '180px' }}>
                             SW IO
-                             </td>
+                          </td>
                           <td style={{ width: '100px' }}>
 
                             <input type="text" name="SWIO" id="addSWIO" pattern="^[0-9]{1,45}$" title="Please enter valid number" ref={this.SWIO} onChange={this.handleTextChange} value={this.state.EditSWIO} />
@@ -4716,7 +4870,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td style={{ width: '180px' }}>
                             FF IO
-                             </td>
+                          </td>
                           <td style={{ width: '100px' }}>
 
                             <input type="text" name="FFIO" id="addFFIO" pattern="^[0-9]{1,45}$" title="Please enter valid number" ref={this.FFIO} onChange={this.handleTextChange} value={this.state.EditFWIO} />
@@ -4728,7 +4882,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             SIS IO
-                            </td>
+                          </td>
                           <td>
 
                             <input type="text" name="SISIO" id="addSISIO" ref={this.SSIO} onChange={this.handleTextChange} pattern="^[0-9]{1,45}$" title="Please enter valid number" value={this.state.EditSSIO} />
@@ -4737,7 +4891,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td>
                             Displays
-                             </td>
+                          </td>
                           <td>
 
                             <input type="text" name="Display" id="addDisplay" pattern="^[0-9]{1,45}$" title="Please enter valid number" ref={this.Display} onChange={this.handleTextChange} value={this.state.EditDisplays} />
@@ -4746,7 +4900,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td>
                             Cabinet/JBS
-                            </td>
+                          </td>
                           <td>
 
                             <input type="text" name="PR" pattern="^[0-9]{1,45}$" title="Please enter valid number" id="addCabinetJBS" ref={this.Cabinet} onChange={this.handleTextChange} value={this.state.EditCabinetJBS} />
@@ -4760,7 +4914,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           <td>
                             Module Classes
-                             </td>
+                          </td>
                           <td>
 
                             <input type="text" name="ModuleClasses" id="addModuleClasses" ref={this.newModuleClasses} onChange={this.handleTextChange} value={this.state.EditModulesClasses} />
@@ -4769,7 +4923,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td>
                             Modules
-                             </td>
+                          </td>
                           <td>
 
                             <input type="text" name="Modules" id="addModules" ref={this.newModule} onChange={this.handleTextChange} value={this.state.EditModules} />
@@ -4778,7 +4932,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td>
                             ILD (Instrument Loop Drawings)
-                             </td>
+                          </td>
                           <td>
 
                             <input type="text" name="ILD" id="addILD" ref={this.ILD} onChange={this.handleTextChange} value={this.state.EditILD} />
@@ -4788,7 +4942,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             Complex Loops
-                            </td>
+                          </td>
                           <td>
 
                             <input type="text" name="ComplexLoops" id="addComplexLoops" ref={this.ComplexLoops} onChange={this.handleTextChange} value={this.state.EditComplexLoops} />
@@ -4797,7 +4951,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td>
                             EQM Classes
-                             </td>
+                          </td>
                           <td>
 
                             <input type="text" name="EQMClasses" id="addEQMClasses" ref={this.EQMClasses} onChange={this.handleTextChange} value={this.state.EditEQMClasses} />
@@ -4806,7 +4960,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td>
                             EQMs
-                             </td>
+                          </td>
                           <td>
 
                             <input type="text" name="EQM" id="addEQM" ref={this.EQM} onChange={this.handleTextChange} value={this.state.EditEQM} />
@@ -4817,7 +4971,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             Phase Classes
-                            </td>
+                          </td>
                           <td>
 
                             <input type="text" name="PhraseClaases" id="addPhraseClasses" ref={this.PhraseClasses} onChange={this.handleTextChange} value={this.state.EditPhaseClasses} />
@@ -4826,7 +4980,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td>
                             OP
-                             </td>
+                          </td>
                           <td>
 
                             <input type="text" name="OP" id="addOP" ref={this.OP} onChange={this.handleTextChange} value={this.state.EditOP} />
@@ -4835,7 +4989,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td>
                             UP
-                             </td>
+                          </td>
                           <td>
 
                             <input type="text" name="UP" id="addUP" ref={this.UP} onChange={this.handleTextChange} value={this.state.EditUP} />
@@ -4845,7 +4999,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             PR
-                            </td>
+                          </td>
                           <td>
 
                             <input type="text" name="PR" id="addPR" ref={this.PR} onChange={this.handleTextChange} value={this.state.EditPR} />
@@ -4854,7 +5008,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td>
                             Dynamos
-                             </td>
+                          </td>
                           <td>
 
                             <input type="text" name="Dynamos" id="addDynamos" ref={this.Dynamos} onChange={this.handleTextChange} value={this.state.EditDynamos} />
@@ -4863,7 +5017,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td>
                             No. Of Controllers
-                            </td>
+                          </td>
                           <td>
 
                             <input type="text" name="PR" id="addControl" ref={this.NoOfControl} onChange={this.handleTextChange} value={this.state.EditNoOfControl} />
@@ -4880,7 +5034,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           <td>
                             No Of SLSs
-                             </td>
+                          </td>
                           <td>
 
                             <input type="text" name="NoOfSLS" id="NoOfSLS" ref={this.NoOfSLS} onChange={this.handleTextChange} value={this.state.EditNoOfSLS} />
@@ -4889,7 +5043,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td style={{ width: "50px" }}></td>
                           <td>
                             Nodes On DeltaV Network
-                             </td>
+                          </td>
                           <td>
 
                             <input type="text" name="Display" id="NodesOnDelta" ref={this.NodesDelta} onChange={this.handleTextChange} value={this.state.EditNodesOnDelta} />
@@ -4968,7 +5122,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                 <Card.Header>
                   <Accordion.Toggle onClick={this.AnalysisInfoArrow} as={Card.Header} eventKey="1" className="header">
                     <span className={this.state.AnalysisInfoDown === "Yes" ? "glyphicon glyphicon-menu-up" : "glyphicon glyphicon-menu-down"}></span>&nbsp;
-                                Project Information<br></br>
+                    Project Information<br></br>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
@@ -5017,7 +5171,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <td style={{ width: "200px" }}> <input type="checkbox" name="chkPDL" id="PDL" onChange={this.handleInputChange} value={this.state.EditPDL} checked={this.state.PDLChecked} ></input>&nbsp;PDL
 
 
-                      </td>
+                        </td>
                         <td style={{ width: "200px" }}> <input type="checkbox" name="chkDVLive" id="DVLive" onChange={this.handleInputChange} value={this.state.EditDVLive} checked={this.state.DVChecked}  ></input>&nbsp;DV Live</td>
                         <td style={{ width: "200px" }}> <input type="checkbox" name="chkCTO" id="CTO" onChange={this.handleInputChange} value={this.state.EditCTO} checked={this.state.CTOChecked} ></input>&nbsp;CTO</td>
                         <td><input type="checkbox" name="chkWireless" id="Wireless" onChange={this.handleInputChange} value={this.state.EditWireless} checked={this.state.WireChecked}  ></input>&nbsp;Wireless</td>
@@ -5174,17 +5328,29 @@ export class eProjectNewForm extends React.Component<{}, any>{
                 <Card.Header>
                   <Accordion.Toggle onClick={this.AnalysisCloseArrow} as={Card.Header} eventKey="1" className="header">
                     <span className={this.state.AnalysisCloseDown === "Yes" ? "glyphicon glyphicon-menu-up" : "glyphicon glyphicon-menu-down"}></span>&nbsp;
-                              Project EE Categorization <br></br>
+                    Project EE Categorization <br></br>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
                   <Card.Body>
-
+                    {
+                      (this.state.IsVisible == true) &&
+                      <span style={{ color: "red" }}>Please fill all information of section before project closing</span>
+                    }
                     <table>
                       <tr>
                         <th ></th>
                         <th  ></th>
-                        <th colSpan={2} style={{ textAlign: 'left', border: "1px solid black;" }}><span className="RiskIndex">Total Risk Index : &nbsp;&nbsp; {parseInt(this.state.RiskIndex_ProjectCT) + parseInt(this.state.RiskIndex_ProjectLD) + parseInt(this.state.RiskIndex_ProjectGP) + parseInt(this.state.RiskIndex_ExecutionFSO) + parseInt(this.state.RiskIndex_Execution) + parseInt(this.state.RiskIndex_ExecutionMulti) + parseInt(this.state.RiskIndex_EmersonHours) + parseInt(this.state.RiskIndex_EEECHours) + parseInt(this.state.RiskIndex_Budget) + parseInt(this.state.RiskIndex_Utilization) + parseInt(this.state.RiskIndex_Duration) + parseInt(this.state.RiskIndex_EEECInvolvement) + parseInt(this.state.RiskIndex_ProjectChart) + parseInt(this.state.RiskIndex_EEECScope) + parseInt(this.state.RiskIndex_EEECInvolvementScope) + parseInt(this.state.RiskIndex_FAT) + parseInt(this.state.RiskIndex_OverallPM) + parseInt(this.state.RiskIndex_OverallRisk) + parseInt(this.state.RiskIndex_OverallLead) + parseInt(this.state.RiskIndex_FSOLead) + parseInt(this.state.RiskIndex_ResourceSkill) + parseInt(this.state.RiskIndex_FSOSuccess) + parseInt(this.state.RiskIndex_NonStandard) + parseInt(this.state.RiskIndex_ResourcePlan) + parseInt(this.state.Non_Std) + parseInt(this.state.FSO_Success) + parseInt(this.state.EEEInvScope) + parseInt(this.state.EEEScope) + parseInt(this.state.OverallRisk) + this.state.FSO + this.state.WA + this.state.FSO_WA + this.state.FSO_OPEN + this.state.FSO_Tech + this.state.FSO_Oth + this.state.FSO_EEC}</span></th>
+                        {
+                          (this.state.IsVisible == false) &&
+                          <th colSpan={2} style={{ textAlign: 'left', border: "1px solid black;" }}>
+                            <span className="RiskIndex">
+                              Total Risk Index : &nbsp;&nbsp; {parseInt(this.state.RiskIndex_ProjectCT) + parseInt(this.state.RiskIndex_ProjectLD) + parseInt(this.state.RiskIndex_ProjectGP) + parseInt(this.state.RiskIndex_ExecutionFSO) + parseInt(this.state.RiskIndex_Execution) + parseInt(this.state.RiskIndex_ExecutionMulti) + parseInt(this.state.RiskIndex_EmersonHours) + parseInt(this.state.RiskIndex_EEECHours) + parseInt(this.state.RiskIndex_Budget) + parseInt(this.state.RiskIndex_Utilization) + parseInt(this.state.RiskIndex_Duration) + parseInt(this.state.RiskIndex_EEECInvolvement) + parseInt(this.state.RiskIndex_ProjectChart) + parseInt(this.state.RiskIndex_EEECScope) + parseInt(this.state.RiskIndex_EEECInvolvementScope) + parseInt(this.state.RiskIndex_FAT) + parseInt(this.state.RiskIndex_OverallPM) + parseInt(this.state.RiskIndex_OverallRisk) + parseInt(this.state.RiskIndex_OverallLead) + parseInt(this.state.RiskIndex_FSOLead) + parseInt(this.state.RiskIndex_ResourceSkill) + parseInt(this.state.RiskIndex_FSOSuccess) + parseInt(this.state.RiskIndex_NonStandard) + parseInt(this.state.RiskIndex_ResourcePlan) + parseInt(this.state.Non_Std) + parseInt(this.state.FSO_Success) + parseInt(this.state.EEEInvScope) + parseInt(this.state.EEEScope) + parseInt(this.state.OverallRisk) + this.state.FSO + this.state.WA + this.state.FSO_WA + this.state.FSO_OPEN + this.state.FSO_Tech + this.state.FSO_Oth + this.state.FSO_EEC}
+                            </span>
+                          </th>
+
+                        }
+
 
 
                       </tr>
@@ -5198,7 +5364,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <td style={{ width: '20%' }}>
                           Project Contract Type (Emerson)
-                                           </td>
+                        </td>
                         <td style={{ width: '65%' }}>
                           <select name="RiskIndex_ProjectCT" value={this.state.PEEProjectContractType} className="ms-Dropdown-select" id="PEEProjectContractType" onChange={this.handleRiskChange}>
                             <option data-set="0">Please Select</option>
@@ -5216,7 +5382,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <td style={{ width: '20%' }}>
                           Project LD  (Emerson)
-                                           </td>
+                        </td>
                         <td style={{ width: '45%' }}>
                           <select name="RiskIndex_ProjectLD" value={this.state.PEEProjectLD} className="ms-Dropdown-select" id="PEEProjectLD" onChange={this.handleRiskChange}>
                             <option data-set="0">Please Select</option>
@@ -5233,7 +5399,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <td>
                           Project GP
-                          </td>
+                        </td>
                         <td>
                           <select name="RiskIndex_ProjectGP" value={this.state.PEEProjectGP} className="ms-Dropdown-select" id="PEEProjectGP" onChange={this.handleRiskChange}>
                             <option data-set="0">Please Select</option>
@@ -5250,7 +5416,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <td >
                           Execution Strategy and Model
-                      </td>
+                        </td>
                         <td colSpan={1} style={{ width: '50%' }}>
                           <table style={{ borderCollapse: "collapse", borderStyle: "thin", borderWidth: "1px", border: "1px solid darkgray;", width: "95%" }}>
                             <tr>
@@ -5462,7 +5628,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <td>
                           Overall Risk Ranking
-                       </td>
+                        </td>
                         <td>
                           <select value={this.state.PEERiskRanking} name="OverallRisk" className="ms-Dropdown-select" id="PEERiskRanking" onChange={this.handleRiskChange} >
                             <option data-set="0">Please Select</option>
@@ -5481,13 +5647,17 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <td>
                           EEEC Scope
-                       </td>
+                        </td>
                         <td>
+                          <div style={{ width: "100%", border: "1px solid darkgray", padding: "10px", marginTop: "7px" }}>
 
-                          <input type="checkbox" name="EEEScope" id="ISFEED" checked={this.state.ISFEEDChecked} className="ISFEEDChecked" onChange={this.handleRiskChange}></input> &nbsp; Feed  <br></br>
-                          <input type="checkbox" name="EEEScope" id="ISExecute" checked={this.state.ISExecuteChecked} className="ISExecuteChecked" onChange={this.handleRiskChange}></input> &nbsp;Execute  <br></br>
-                          <input type="checkbox" name="EEEScope" id="ISFAT" checked={this.state.ISFATChecked} className="ISFATChecked" onChange={this.handleRiskChange}></input>&nbsp; FAT  <br></br>
-                          <input type="checkbox" name="EEEScope" id="ISSAT" checked={this.state.ISSATChecked} className="ISSATChecked" onChange={this.handleRiskChange}></input>&nbsp; SAT  <br></br>
+                            <input type="checkbox" name="EEEScope" id="ISFEED" checked={this.state.ISFEEDChecked} className="ISFEEDChecked" onChange={this.handleRiskChange}></input> &nbsp; Feed  <br></br>
+                            <input type="checkbox" name="EEEScope" id="ISExecute" checked={this.state.ISExecuteChecked} className="ISExecuteChecked" onChange={this.handleRiskChange}></input> &nbsp;Execute  <br></br>
+                            <input type="checkbox" name="EEEScope" id="ISFAT" checked={this.state.ISFATChecked} className="ISFATChecked" onChange={this.handleRiskChange}></input>&nbsp; FAT  <br></br>
+                            <input type="checkbox" name="EEEScope" id="ISSAT" checked={this.state.ISSATChecked} className="ISSATChecked" onChange={this.handleRiskChange}></input>&nbsp; SAT  <br></br>
+
+                          </div>
+
                         </td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.EEEScope}
@@ -5501,7 +5671,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                       <tr>
                         <td>
                           EEEC Involvement and Project Scope
-                          </td>
+                        </td>
                         <td>
                           <div id="EEECInvolvement" style={{ width: "100%", border: "1px solid darkgray", padding: "10px", marginTop: "7px" }}>
                             <table style={{ width: "100%" }} >
@@ -5559,7 +5729,11 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           {this.state.EEEInvScope}
                         </td>
                         <td>
+
                           <textarea value={this.state.EECInvolvScope_Remarks} name="EECInvolvScope_Remarks" onChange={this.handleTextChange} rows={2} cols={30}></textarea>
+                          {
+                            (this.state.ISPASOtherRemarkChecked == true) && <div style={{ color: "red" }}>Please fill remark field</div>
+                          }
                         </td>
 
                       </tr>
@@ -5675,16 +5849,57 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <textarea value={this.state.FSOPM_Remarks} onChange={this.handleTextChange} name="FSOPM_Remarks" rows={2} cols={30}></textarea>
                         </td>
                       </tr>
+                      <tr>
+                        <td> Resource Skillset</td>
+                        <td>
+
+                          <select value={this.state.PEEResource} name="RiskIndex_ResourceSkill" id="PEEResource" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
+                            <option data-set="0">Please Select</option>
+                            <option data-set="1" value="No Special Requirement" className="2"> No Special Requirement </option>
+                            <option data-set="2" value="Blended Mix" className="2"> Blended Mix</option>
+                            <option data-set="4" value="Special Skills" className="2">Special Skills  </option>
+                            <option data-set="6" value="Resource with Process background" className="2">Resource with Process background  </option>
+                          </select>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_ResourceSkill}
+                        </td>
+                        <td>
+                          <textarea onChange={this.handleTextChange} value={this.state.ResourceSkill_Remarks} name="ResourceSkill_Remarks" rows={2} cols={30}></textarea>
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>Resource Plan and Project Loading Chart</td>
+                        <select value={this.state.PEEProjectLoading} name="RiskIndex_ResourcePlan" id="PEEProjectLoading" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
+                          <option data-set="0">Please Select</option>
+                          <option data-set="1" value="Yes" className="2"> Yes </option>
+                          <option data-set="2" value="No" className="2"> No</option>
+                          <option data-set="3" value="To Be Defined Later" className="2">To Be Defined Later  </option>
+
+                        </select>
+                        <td style={{ textAlign: "center" }}>
+                          {this.state.RiskIndex_ResourcePlan}
+                        </td>
+                        <td>
+                          <textarea name="ResourcePlan_Remarks" value={this.state.ResourcePlan_Remarks} rows={2} cols={30} onChange={this.handleTextChange}> </textarea>
+                        </td>
+                      </tr>
+
 
 
                       <tr>
                         <td>What FSO Considers As a Success</td>
-                        <td><input type="checkbox" id="ISTimely" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISTimelyChecked} className="ISTimelyChecked" /> &nbsp;Timely Delivery <br></br>
-                          <input type="checkbox" id="ISNoBudget" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISNoBudgetChecked} className="ISNoBudgetChecked" /> &nbsp;No Budget Overrun<br></br>
-                          <input type="checkbox" id="ISFATReady" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISFATReadyChecked} className="ISFATReadyChecked" /> &nbsp;FAT Ready Deliverables<br></br>
-                          <input type="checkbox" id="ISRework" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISReworkChecked} className="ISReworkChecked" /> &nbsp;Minimal Rework after FAT {"<"}1% of Budget
-<br></br>
-                          <input type="checkbox" id="ISMaintain" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISMaintainChecked} className="ISMaintainChecked" /> &nbsp;Maintain or Improve Sales GP<br></br>
+
+                        <td>
+                          <div style={{ width: "100%", border: "1px solid darkgray", padding: "10px", marginTop: "7px" }}>
+                            <input type="checkbox" id="ISTimely" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISTimelyChecked} className="ISTimelyChecked" /> &nbsp;Timely Delivery <br></br>
+                            <input type="checkbox" id="ISNoBudget" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISNoBudgetChecked} className="ISNoBudgetChecked" /> &nbsp;No Budget Overrun<br></br>
+                            <input type="checkbox" id="ISFATReady" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISFATReadyChecked} className="ISFATReadyChecked" /> &nbsp;FAT Ready Deliverables<br></br>
+                            <input type="checkbox" id="ISRework" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISReworkChecked} className="ISReworkChecked" /> &nbsp;Minimal Rework after FAT {"<"}1% of Budget
+                            <br></br>
+                            <input type="checkbox" id="ISMaintain" name="FSOSuccess" onClick={this.handleRiskChange} checked={this.state.ISMaintainChecked} className="ISMaintainChecked" /> &nbsp;Maintain or Improve Sales GP<br></br>
+                          </div>
                         </td>
                         <td style={{ textAlign: "center" }}>
                           {this.state.FSO_Success}
@@ -5727,53 +5942,16 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         </td>
                         <td>
                           <textarea onChange={this.handleTextChange} value={this.state.NonStd_Remarks} name="NonStd_Remarks" rows={2} cols={30}></textarea>
+                          <div>
+                            {
+                              (this.state.ISOtherRemarkChecked == true) && <div style={{ color: "red" }}>Please fill remark field</div>
+                            }
+                          </div>
                         </td>
 
                       </tr>
 
-                      <tr>
-                        <td>
-                          <br></br>
-                          <br></br>
-                        </td>
-                      </tr>
 
-                      <tr>
-                        <td> Resource Skillset</td>
-                        <td>
-
-                          <select value={this.state.PEEResource} name="RiskIndex_ResourceSkill" id="PEEResource" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
-                            <option data-set="0">Please Select</option>
-                            <option data-set="1" value="No Special Requirement" className="2"> No Special Requirement </option>
-                            <option data-set="2" value="Blended Mix" className="2"> Blended Mix</option>
-                            <option data-set="4" value="Special Skills" className="2">Special Skills  </option>
-                            <option data-set="6" value="Resource with Process background" className="2">Resource with Process background  </option>
-                          </select>
-                        </td>
-                        <td style={{ textAlign: "center" }}>
-                          {this.state.RiskIndex_ResourceSkill}
-                        </td>
-                        <td>
-                          <textarea onChange={this.handleTextChange} value={this.state.ResourceSkill_Remarks} name="ResourceSkill_Remarks" rows={2} cols={30}></textarea>
-                        </td>
-
-                      </tr>
-                      <tr>
-                        <td>Resource Plan and Project Loading Chart</td>
-                        <select value={this.state.PEEProjectLoading} name="RiskIndex_ResourcePlan" id="PEEProjectLoading" className="ms-Dropdown-select" onChange={this.handleRiskChange} >
-                          <option data-set="0">Please Select</option>
-                          <option data-set="1" value="Yes" className="2"> Yes </option>
-                          <option data-set="2" value="No" className="2"> No</option>
-                          <option data-set="3" value="To Be Defined Later" className="2">To Be Defined Later  </option>
-
-                        </select>
-                        <td style={{ textAlign: "center" }}>
-                          {this.state.RiskIndex_ResourcePlan}
-                        </td>
-                        <td>
-                          <textarea name="ResourcePlan_Remarks" value={this.state.ResourcePlan_Remarks} rows={2} cols={30} onChange={this.handleTextChange}> </textarea>
-                        </td>
-                      </tr>
 
 
 
@@ -5788,7 +5966,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                 <Card.Header>
                   <Accordion.Toggle onClick={this.AnalysisTrackArrow} as={Card.Header} eventKey="1" className="header">
                     <span className={this.state.AnalysisTrackDown === "Yes" ? "glyphicon glyphicon-menu-up" : "glyphicon glyphicon-menu-down"}></span>&nbsp;
-                                Project Tracking<br></br>
+                    Project Tracking<br></br>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
@@ -5851,7 +6029,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           <td>
                             Budget Deviation
-                            </td>
+                          </td>
                           <td><table  >
                             <tr>
 
@@ -5867,7 +6045,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             Budget Change
-                            </td>
+                          </td>
                           <td>
                             <table>
                               <tr>
@@ -5880,7 +6058,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                           <td>
 
                             Schedule Change
-                                </td>
+                          </td>
                           <td>
                             <table  >
                               <tr>
@@ -5888,7 +6066,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                                 <td>
 
                                   <input type='text' className="addProgressDeviation" id="addScheduleChange" ref={this.ScheduleChange} onChange={this.handleTextChange} value={this.state.EditScheduleChange} />
-                                            &nbsp; <label>Days</label>  </td>
+                                  &nbsp; <label>Days</label>  </td>
                               </tr>
                             </table>
 
@@ -5898,7 +6076,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           <td>
                             Progress Deviation
-                            </td>
+                          </td>
                           <td>
                             <table  >
                               <tr>
@@ -5906,7 +6084,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                                 <td  >
 
                                   <input type='text' className="addProgressDeviation" id="addProgressDeviation" ref={this.ProgressDev} onChange={this.handleTextChange} value={this.state.EditProgressDeviation} />
-                                       &nbsp;   <label>Hours </label>  </td>
+                                  &nbsp;   <label>Hours </label>  </td>
                               </tr>
                             </table>
 
@@ -5914,7 +6092,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           <td>
                             Update Frequency
-                            </td>
+                          </td>
                           <td>
                             <table >
                               <tr>
@@ -5957,7 +6135,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             Risk Register Updated
-                            </td>
+                          </td>
                           <td>
 
                             <DatePicker showWeekNumbers={false} isMonthPickerVisible={true}
@@ -5968,7 +6146,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           <td>
                             QI DocumentsUpdated?
-                            </td>
+                          </td>
                           <td>
 
                             <DatePicker showWeekNumbers={false} isMonthPickerVisible={true}
@@ -5980,7 +6158,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             Change Management
-                            </td>
+                          </td>
                           <td>
 
                             <DatePicker showWeekNumbers={false} isMonthPickerVisible={true}
@@ -5991,7 +6169,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           <td>
                             Productivity Review-1
-                            </td>
+                          </td>
                           <td>
 
                             <DatePicker showWeekNumbers={false} isMonthPickerVisible={true}
@@ -6003,7 +6181,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             Productivity Review-2
-                            </td>
+                          </td>
                           <td>
 
                             <DatePicker showWeekNumbers={false} isMonthPickerVisible={true}
@@ -6013,7 +6191,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
 
                           <td>
                             Project Review Calls with FSO?
-                            </td>
+                          </td>
                           <td>
 
                             <DatePicker showWeekNumbers={false} isMonthPickerVisible={true}
@@ -6025,7 +6203,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                         <tr>
                           <td>
                             End User Design Review Meeting
-                            </td>
+                          </td>
                           <td>
 
                             <DatePicker showWeekNumbers={false} isMonthPickerVisible={true}
@@ -6046,7 +6224,7 @@ export class eProjectNewForm extends React.Component<{}, any>{
                 <Card.Header>
                   <Accordion.Toggle onClick={this.AnalysisCloseArrow} as={Card.Header} eventKey="1" className="header">
                     <span className={this.state.AnalysisCloseDown === "Yes" ? "glyphicon glyphicon-menu-up" : "glyphicon glyphicon-menu-down"}></span>&nbsp;
-                               Project Closing <br></br>
+                    Project Closing <br></br>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
@@ -6251,4 +6429,4 @@ export class eProjectNewForm extends React.Component<{}, any>{
     )
   }
 }
-export default eProjectNewForm;
+export default eProjectNewForm
